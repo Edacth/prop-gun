@@ -6,11 +6,11 @@ public class FloatingOrb : InteractableObject
 {
     public override void OnPointerEnter()
     {
-        throw new System.NotImplementedException();
+        MarkActive();
     }
 
     public override void OnPointerExit()
     {
-        throw new System.NotImplementedException();
+        UnmarkActive();
     }
 }

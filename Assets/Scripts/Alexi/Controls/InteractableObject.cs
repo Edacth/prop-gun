@@ -18,6 +18,8 @@ public abstract class InteractableObject : MonoBehaviour
     public Rigidbody myRigidbody { get; private set; }
     public Collider myCollider { get; private set; }
 
+    public static PhysicsGun gun;
+
     // Cade
     [SerializeField]
     InteractableChecker interactableChecker;
@@ -38,13 +40,13 @@ public abstract class InteractableObject : MonoBehaviour
     {
         if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
-            myMeshRenderer.material.color = selectedColor;
             selected = true;
+            OnPointerEnter();
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
-            myMeshRenderer.material.color = unselectedColor;
             selected = false;
+            OnPointerExit();
         }
     }
 
@@ -65,7 +67,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         // ToDo: implement interactability effect
 
-        GetComponent<Renderer>().material.color = Color.green;
+        GetComponent<Renderer>().material.color = Color.blue;
     }
 
     /// <summary>
