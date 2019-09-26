@@ -34,7 +34,7 @@ public abstract class InteractableObject : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
 
-        _meshRenderer = GetComponent<MeshRenderer>();
+        myMeshRenderer = GetComponent<MeshRenderer>();
 
         selectable = true;
         myMeshRenderer = GetComponent<MeshRenderer>();
@@ -51,7 +51,7 @@ public abstract class InteractableObject : MonoBehaviour
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
-            _meshRenderer.material.color = unselectedColor;
+            myMeshRenderer.material.color = unselectedColor;
 
             currentSelection = null;
             selected = false;
