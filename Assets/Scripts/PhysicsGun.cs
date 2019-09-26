@@ -24,9 +24,9 @@ public class PhysicsGun : MonoBehaviour
 
     const int modeCount = 8; // how many modes there are
 
-    public static Mode currentMode;
-
+    public static Mode currentMode; 
     InteractableObjectCollectionManager collectionManager;
+    Dictionary<Mode, PhysicsEffect> effects;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,17 @@ public class PhysicsGun : MonoBehaviour
 
         // can be changed to drag and drop for performance later
         collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
+
+        // initalize effects
+        effects = new Dictionary<Mode, PhysicsEffect>();
+        effects.Add(Mode.mass, new ChangeMass());
+        effects.Add(Mode.material, new ChangeMaterial());
+        effects.Add(Mode.gravity, new ChangeGravity());
+        effects.Add(Mode.layer, new ChangeLayer());
+        effects.Add(Mode.kinematic, new ToggleKinematic());
+        effects.Add(Mode.force, new ApplyForce());
+        effects.Add(Mode.magnet, new UseMagnet());
+        effects.Add(Mode.torque, new ApplyTorque());
     }
 
     void Update()
@@ -87,6 +98,8 @@ public class PhysicsGun : MonoBehaviour
     /// </summary>
     public void Fire()
     {
-        Debug.Log("fire");
+        PhysicsEffect eff;
+        effects.TryGetValue(currentMode, out eff);
+        eff?.ApplyEffect();
     }
 }

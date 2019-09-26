@@ -31,14 +31,14 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     {
         foreach (InteractableObject io in objects.FindAll(io => io.compatibleModes.Contains(currentMode))) // ToDo: make less expensive
         {
-            io.MarkActive();
+            io.UnmarkActive();
         }
 
         currentMode = newMode;
 
         foreach (InteractableObject io in objects.FindAll(io => io.compatibleModes.Contains(currentMode)))
         {
-            io.UnmarkActive();
+            io.MarkActive();
         }
     }
 }
