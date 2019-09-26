@@ -27,7 +27,8 @@ public class PhysicsGun : MonoBehaviour
 
     const int modeCount = 8; // how many modes there are
 
-    public static Mode currentMode; 
+    public static Mode currentMode;
+    public static InteractableObject currentObject;
     InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
 
@@ -69,23 +70,24 @@ public class PhysicsGun : MonoBehaviour
             Fire();
         }
 
-        if(Input.mouseScrollDelta.y < 0)
-        {
-            ScrollSelection();
-        }
+        if(Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
+        else if(Input.mouseScrollDelta.y > 0) { ScrollSelection(-1); }
     }
 
     /// <summary>
     /// go to next mode
     /// </summary>
-    void ScrollSelection()
+    void ScrollSelection(int add)
     {
         int cur = (int)currentMode;
-        cur++;
+        cur += add;
+
         if(cur >= modeCount) { cur = 0; }
+        else if(cur < 0) { cur = modeCount - 1; }
+
         SwitchMode((Mode)cur);
 
-        Debug.Log("switched to " + currentMode + " mode");
+        Debug.Log(currentMode);
     }
 
     public void SwitchMode(Mode newMode)
@@ -102,10 +104,12 @@ public class PhysicsGun : MonoBehaviour
     /// <summary>
     /// fire the gun
     /// </summary>
-    public static void Fire()
+    public void Fire()
     {
+        if(null == currentObject) { return; }
+
         PhysicsEffect eff;
         effects.TryGetValue(currentMode, out eff);
-        eff?.ApplyEffect();
+        eff?.ApplyEffect(currentObject);
     }
 }

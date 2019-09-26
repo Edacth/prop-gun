@@ -14,7 +14,7 @@ public class InteractableObjectCollectionManager : MonoBehaviour
 
     void Start()
     {
-        currentMode = PhysicsGun.currentMode; // initialize to default
+        currentMode = PhysicsGun.currentMode;
 
         // initialize another way
         objects = new List<InteractableObject>(FindObjectsOfType<InteractableObject>());
