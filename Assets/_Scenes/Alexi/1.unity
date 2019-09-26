@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 00000000
+  interactableChecker: {fileID: 1862800567}
 --- !u!65 &449081711
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -320,7 +321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449081708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.25, y: 1.98, z: 3.59}
+  m_LocalPosition: {x: 3.25, y: 1.64, z: 3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -502,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 00000000
+  interactableChecker: {fileID: 1862800567}
 --- !u!65 &1082958834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -568,7 +570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082958831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.72, y: 1.98, z: 3.59}
+  m_LocalPosition: {x: -1.72, y: 1.64, z: 3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -624,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 00000000
+  interactableChecker: {fileID: 1862800567}
 --- !u!65 &1253165170
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -690,7 +693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253165167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.61, y: 1.98, z: 3.59}
+  m_LocalPosition: {x: 1.61, y: 1.64, z: 3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -746,6 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 00000000
+  interactableChecker: {fileID: 1862800567}
 --- !u!65 &1311738934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -812,7 +816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311738931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 1.98, z: 3.59}
+  m_LocalPosition: {x: 0.14, y: 1.64, z: 3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -900,8 +904,9 @@ GameObject:
   - component: {fileID: 1862800564}
   - component: {fileID: 1862800563}
   - component: {fileID: 1862800562}
+  - component: {fileID: 1862800567}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: PhysicsGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -919,6 +924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de030d00416ad6f478c7674ce341f557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableChecker: {fileID: 1862800567}
+  bounce: {fileID: 13400000, guid: 7025f754af1c93648b0d695eab01243c, type: 2}
 --- !u!65 &1862800563
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -985,9 +992,23 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862800561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.55, z: 0}
+  m_LocalPosition: {x: 0, y: 0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1862800567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862800561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2e8d8724fb1d646bf728d9a812e935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceTransform: {fileID: 1862800566}
+  checkDistance: 5

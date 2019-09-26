@@ -12,21 +12,24 @@ public class PhysicsGun : MonoBehaviour
     /// </summary>
     public enum Mode
     {
-        mass, // increase/decrease mass
-        material, // change physics material
-        gravity, // increase/decrease gravity modifier
-        layer, // change collision layer
-        kinematic, // toggle isKinematic
-        force, // apply pushing force
-        magnet, // apply pulling force
-        torque // apply torque
+        mass,       // increase/decrease mass
+        material,   // change physics material
+        gravity,    // increase/decrease gravity modifier
+        layer,      // change collision layer
+        kinematic,  // toggle isKinematic
+        force,      // apply pushing force
+        magnet,     // apply pulling force
+        torque      // apply torque
     };
+
+    public InteractableChecker interactableChecker;
+    public PhysicMaterial bounce;
 
     const int modeCount = 8; // how many modes there are
 
     public static Mode currentMode; 
     InteractableObjectCollectionManager collectionManager;
-    Dictionary<Mode, PhysicsEffect> effects;
+    static Dictionary<Mode, PhysicsEffect> effects;
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +40,18 @@ public class PhysicsGun : MonoBehaviour
         collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
 
         // initalize effects
-        effects = new Dictionary<Mode, PhysicsEffect>();
-        effects.Add(Mode.mass, new ChangeMass());
-        effects.Add(Mode.material, new ChangeMaterial());
-        effects.Add(Mode.gravity, new ChangeGravity());
-        effects.Add(Mode.layer, new ChangeLayer());
-        effects.Add(Mode.kinematic, new ToggleKinematic());
-        effects.Add(Mode.force, new ApplyForce());
-        effects.Add(Mode.magnet, new UseMagnet());
-        effects.Add(Mode.torque, new ApplyTorque());
+        if(null == effects)
+        {
+            effects = new Dictionary<Mode, PhysicsEffect>();
+            effects.Add(Mode.mass, new ChangeMass());
+            effects.Add(Mode.material, new ChangeMaterial(bounce));
+            effects.Add(Mode.gravity, new ChangeGravity());
+            effects.Add(Mode.layer, new ChangeLayer());
+            effects.Add(Mode.kinematic, new ToggleKinematic());
+            effects.Add(Mode.force, new ApplyForce());
+            effects.Add(Mode.magnet, new UseMagnet());
+            effects.Add(Mode.torque, new ApplyTorque());
+        }
     }
 
     void Update()
@@ -96,7 +102,7 @@ public class PhysicsGun : MonoBehaviour
     /// <summary>
     /// fire the gun
     /// </summary>
-    public void Fire()
+    public static void Fire()
     {
         PhysicsEffect eff;
         effects.TryGetValue(currentMode, out eff);

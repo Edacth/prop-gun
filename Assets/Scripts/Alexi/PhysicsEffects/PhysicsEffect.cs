@@ -4,6 +4,9 @@ using UnityEngine;
 
 // ToDo: add ui, colors, inspector vars, etc
 
+/// <summary>
+/// An effect on an objects physics
+/// </summary>
 public abstract class PhysicsEffect
 {
 
@@ -21,6 +24,14 @@ public class ChangeMass : PhysicsEffect
 
 public class ChangeMaterial : PhysicsEffect
 {
+    PhysicMaterial origMat, newMat;
+
+    private ChangeMaterial() { }
+    public ChangeMaterial(PhysicMaterial _newMat)
+    {
+        newMat = _newMat;
+    }
+
     public override void ApplyEffect()
     {
         Debug.Log(this.GetType().ToString());
