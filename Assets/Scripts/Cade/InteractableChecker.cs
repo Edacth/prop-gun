@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractableChecker : MonoBehaviour
 {
     [SerializeField]
-    Transform sourceTransform;
+    Transform sourceTransform = null;
     [SerializeField]
     float checkDistance = 5.0f;
     RaycastHit raycastHit;

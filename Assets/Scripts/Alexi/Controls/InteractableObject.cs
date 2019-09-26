@@ -21,7 +21,7 @@ public abstract class InteractableObject : MonoBehaviour
     // Cade
     [SerializeField]
     InteractableChecker interactableChecker;
-    MeshRenderer _meshRenderer;
+    MeshRenderer myMeshRenderer;
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false;
@@ -31,21 +31,19 @@ public abstract class InteractableObject : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
 
-        _meshRenderer = GetComponent<MeshRenderer>();
+        myMeshRenderer = GetComponent<MeshRenderer>();
     }
 
     void CheckIfSelected()
     {
         if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
-
-            Debug.Log(gameObject.name + " is selected");
-            _meshRenderer.material.color = selectedColor;
+            myMeshRenderer.material.color = selectedColor;
             selected = true;
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
-            _meshRenderer.material.color = unselectedColor;
+            myMeshRenderer.material.color = unselectedColor;
             selected = false;
         }
     }
