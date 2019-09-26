@@ -23,7 +23,7 @@ public abstract class InteractableObject : MonoBehaviour
     // Cade
     [SerializeField]
     InteractableChecker interactableChecker;
-    MeshRenderer _meshRenderer;
+    MeshRenderer myMeshRenderer;
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false;
@@ -37,6 +37,7 @@ public abstract class InteractableObject : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
 
         selectable = true;
+        myMeshRenderer = GetComponent<MeshRenderer>();
     }
 
     void CheckIfSelected()
