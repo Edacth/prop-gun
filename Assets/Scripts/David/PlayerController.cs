@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     float horizontalRotation = 90;
     Rigidbody rb;
     bool grounded = false;
+    Vector3 fakeVelocity = Vector3.zero;
     
     private void Start()
     {
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        fakeVelocity += Physics.gravity*Time.fixedDeltaTime;
+        transform.position += fakeVelocity*Time.fixedDeltaTime;
+        print(fakeVelocity);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         lastMousePos = Input.mousePosition;
@@ -48,7 +52,7 @@ public class PlayerController : MonoBehaviour
                 Jump();
             } else
             {
-                rb.velocity -= new Vector3(rb.velocity.x * groundedFriction * Time.fixedDeltaTime, 0, rb.velocity.z * groundedFriction * Time.fixedDeltaTime);
+                fakeVelocity -= new Vector3(fakeVelocity.x * groundedFriction * Time.fixedDeltaTime, 0, fakeVelocity.z * groundedFriction * Time.fixedDeltaTime);
             }
             Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, groundAccel, 4);
         } else
@@ -69,19 +73,19 @@ public class PlayerController : MonoBehaviour
             throw new System.Exception("normalize your inputs SHEESH (magnitude: " + wishDir.magnitude + ")");
         }
         #endif
-        float speed = Vector3.Dot(rb.velocity,wishDir);
+        float speed = Vector3.Dot(fakeVelocity,wishDir);
         
         float addspeed = wishSpeed-speed * Time.fixedDeltaTime * accel;
         if(!(speed > wishSpeed && addspeed>0))
         {
-            rb.velocity+=addspeed*wishDir;
+            fakeVelocity+=addspeed*wishDir;
         }
         return;        
     }
     void Jump()
     {
         grounded = false;
-        rb.velocity = new Vector3(rb.velocity.x,jumpPower,rb.velocity.z);
+        fakeVelocity = new Vector3(fakeVelocity.x,jumpPower,fakeVelocity.z);
     }
     private void OnCollisionEnter(Collision collision)
     {
