@@ -45,9 +45,9 @@ public abstract class PhysicsEffect
         // EffectEditor.Close();
     }
 
-    public abstract void OnPointerEnter();
-    public abstract void OnPointerStay();
-    public abstract void OnPointerExit();
+    // public abstract void OnPointerEnter();
+    // public abstract void OnPointerStay();
+    // public abstract void OnPointerExit();
 
 }
 
