@@ -64,39 +64,42 @@ public class ChangeMass : PhysicsEffect
 {
     // ToDo: add mass delta step (not just min/max options)
 
-    float min, max, current;
+    float min, max, currentMass;
     public ChangeMass(float _min, float _max)
     {
-        min = current = _min;
+        min = currentMass = _min;
         max = _max;
     }
     private ChangeMass() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.myRigidbody.mass = current;
+        target.myRigidbody.mass = currentMass;
 
-        Debug.Log(target.name + " mass changed to " + current);
+        Debug.Log(target.name + " mass changed to " + currentMass);
     }
 
     public override void OnPointerStay(InteractableObject target)
     {
-        // mass things
+        for(float i = 0; i < 2 * Mathf.PI; i += Mathf.PI / 12)
+        {
+            Debug.DrawLine(target.transform.position, target.transform.position + new Vector3(Mathf.Cos(i) * currentMass, 0, Mathf.Sin(i) * currentMass), Color.red);
+        }
     }
 
     public override void RunEditMode()
     {
         if(Input.mouseScrollDelta.y > 0)
         { 
-            current = max;
+            currentMass = max;
 
-            Debug.Log("mass editor value = " + current);
+            Debug.Log("mass editor value = " + currentMass);
         }
         else if(Input.mouseScrollDelta.y < 0)
         {
-            current = min;
+            currentMass = min;
 
-            Debug.Log("mass editor value = " + current);
+            Debug.Log("mass editor value = " + currentMass);
         }
     }
 }

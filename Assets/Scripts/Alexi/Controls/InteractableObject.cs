@@ -33,11 +33,9 @@ public abstract class InteractableObject : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
-
         myMeshRenderer = GetComponent<MeshRenderer>();
 
         selectable = true;
-        myMeshRenderer = GetComponent<MeshRenderer>();
     }
 
     void Update()

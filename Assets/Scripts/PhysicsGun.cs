@@ -92,7 +92,8 @@ public class PhysicsGun : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             PhysicsEffect.current.ExitEditMode();
-        } else //not in edit mode
+        }
+        else //not in edit mode
         {
             if (Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
             else if (Input.mouseScrollDelta.y > 0) { ScrollSelection(-1); }
@@ -103,9 +104,6 @@ public class PhysicsGun : MonoBehaviour
         {
             Fire();
         }
-
-        if(Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
-        else if(Input.mouseScrollDelta.y > 0) { ScrollSelection(-1); }
 
         for (int i = 0; i < keyCodes.Length; i++)
         {
