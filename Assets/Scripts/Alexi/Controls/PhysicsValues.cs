@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// holds values for physics manipulations
@@ -23,6 +24,8 @@ public class PhysicsValues : MonoBehaviour
     public GameObject massPanel;
     [Tooltip("Mass slider")]
     public Slider massSlider;
+    [Tooltip("Mass value display")]
+    public TextMeshProUGUI massText;
 
     [Header("Material")]
     [Tooltip("Available physics materials")]

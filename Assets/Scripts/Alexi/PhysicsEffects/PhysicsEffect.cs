@@ -69,6 +69,9 @@ public class ChangeMass : PhysicsEffect
     public ChangeMass()
     {
         currentMass = PhysicsValues.instance.defMass;
+        PhysicsValues.instance.massSlider.value =
+                Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
+        PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
     }
 
     public override void ApplyEffect(InteractableObject target)
@@ -103,6 +106,9 @@ public class ChangeMass : PhysicsEffect
             {
                 currentMass = PhysicsValues.instance.maxMass;
             }
+            PhysicsValues.instance.massSlider.value =
+                Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
+            PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
 
             Debug.Log("mass editor value = " + currentMass);
         }
@@ -115,6 +121,7 @@ public class ChangeMass : PhysicsEffect
             }
             PhysicsValues.instance.massSlider.value = 
                 Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
+            PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
 
             Debug.Log("mass editor value = " + currentMass);
         }
@@ -316,26 +323,16 @@ public class ApplyForce : PhysicsEffect
 
     public override void OnPointerStay(InteractableObject target)
     {
-        Debug.DrawRay(target.transform.position, force , Color.red);
+        Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
     }
 
     public override void RunEditMode()
     {
         if (Input.mouseScrollDelta.y > 0)
         {
-
-            rotation += 1;
-            if (rotation > 360) { rotation -= 360; }
             
 
-            float rotationInRadians = (rotation) * (Mathf.PI / 180); // Convert to radians
-            
-            float rotatedX = Mathf.Cos(rotationInRadians) * (force.x) - Mathf.Sin(rotationInRadians) * (force.z);
-
-            float rotatedZ = Mathf.Sin(rotationInRadians) * (force.x) + Mathf.Cos(rotationInRadians) * (force.z);
-            
-            force = new Vector3(rotatedX, 0, rotatedZ);
-            Debug.Log("Force Vector: " + force + "Rotation: " + rotation);
+            Debug.Log("Mouse scroll value" + Input.mouseScrollDelta.y);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
