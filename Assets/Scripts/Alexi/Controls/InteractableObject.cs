@@ -18,7 +18,7 @@ public abstract class InteractableObject : MonoBehaviour
     public Rigidbody myRigidbody { get; private set; }
     public Collider myCollider { get; private set; }
 
-    public static PhysicsGun gun;
+    public static InteractableObject currentSelection { get; private set; }
 
     // Cade
     [SerializeField]
@@ -27,6 +27,7 @@ public abstract class InteractableObject : MonoBehaviour
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false;
+    bool selectable;
 
     void Start()
     {
@@ -34,17 +35,25 @@ public abstract class InteractableObject : MonoBehaviour
         myCollider = GetComponent<Collider>();
 
         myMeshRenderer = GetComponent<MeshRenderer>();
+
+        selectable = true;
+        myMeshRenderer = GetComponent<MeshRenderer>();
     }
 
     void CheckIfSelected()
     {
-        if (interactableChecker.getRaycastHit().transform == transform && !selected)
+        if (interactableChecker.getRaycastHit().transform == transform && !selected && selectable)
         {
+            // _meshRenderer.material.color = selectedColor;
+            currentSelection = this;
             selected = true;
             OnPointerEnter();
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
+            myMeshRenderer.material.color = unselectedColor;
+
+            currentSelection = null;
             selected = false;
             OnPointerExit();
         }
@@ -67,7 +76,9 @@ public abstract class InteractableObject : MonoBehaviour
     {
         // ToDo: implement interactability effect
 
-        GetComponent<Renderer>().material.color = Color.blue;
+        selectable = true;
+
+        Debug.Log(name + " active");
     }
 
     /// <summary>
@@ -75,7 +86,9 @@ public abstract class InteractableObject : MonoBehaviour
     /// </summary>
     public void UnmarkActive()
     {
-        GetComponent<Renderer>().material.color = Color.white;
+        selectable = false;
+
+        Debug.Log(name + " inactive");
     }
 
     // Subscribing Delegate

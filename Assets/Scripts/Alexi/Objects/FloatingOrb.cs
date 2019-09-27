@@ -6,11 +6,11 @@ public class FloatingOrb : InteractableObject
 {
     public override void OnPointerEnter()
     {
-        MarkActive();
+        PhysicsGun.currentObject = this;
     }
 
     public override void OnPointerExit()
     {
-        UnmarkActive();
+        PhysicsGun.currentObject = null;
     }
 }
