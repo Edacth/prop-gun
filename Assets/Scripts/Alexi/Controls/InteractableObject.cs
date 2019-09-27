@@ -42,7 +42,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         if (selected)
         {
-            PhysicsEffect.current.OnPointerStay(this);
+            PhysicsEffect.current?.OnPointerStay(this);
         } 
     }
 

@@ -118,11 +118,14 @@ public class ChangeMaterial : PhysicsEffect
     {
         mats = _mats;
         idx = 0;
+        if (mats.Count <= 0) { return; }
+
         current = mats[idx];
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
+        if(null == current) { return; }
         target.myCollider.material = current;
 
         Debug.Log(target.name + " physics material set to " + current.name);
