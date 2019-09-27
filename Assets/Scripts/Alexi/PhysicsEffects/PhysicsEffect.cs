@@ -152,24 +152,63 @@ public class ChangeGravity : PhysicsEffect
 
 public class ChangeLayer : PhysicsEffect
 {
-    int def, lay1, lay2;
+    struct Layer
+    {
+        public string name;
+        public int layer;
+
+        public Layer(string n, int l)
+        {
+            name = n;
+            layer = l;
+        }
+    }
+    List<Layer> layers;
+
+    int def, lay1, lay2, idx;
+    Layer current;
     public ChangeLayer(int _def, int _lay1, int _lay2)
     {
         def = _def;
         lay1 = _lay1;
         lay2 = _lay2;
+        idx = 0;
+
+        layers = new List<Layer>();
+        layers.Add(new Layer("default", def));
+        layers.Add(new Layer("layer1", lay1));
+        layers.Add(new Layer("layer2", lay2));
+
+        current = layers[idx];
     }
 
     private ChangeLayer() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.GetComponent<Renderer>().material.color = Color.cyan;
+        target.gameObject.layer = current.layer;
+
+        Debug.Log(target.name + " layer set to " + current.layer + ": " + current.name);
     }
 
     public override void RunEditMode()
     {
-        throw new System.NotImplementedException();
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            idx++;
+            if (idx >= layers.Count) { idx = 0; }
+            current = layers[idx];
+
+            Debug.Log("layer editor value set to " + current.layer);
+        }
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            idx--;
+            if (idx < 0) { idx = layers.Count - 1; }
+            current = layers[idx];
+
+            Debug.Log("layer editor value set to " + current.layer);
+        }
     }
 }
 
