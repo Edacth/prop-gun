@@ -9,6 +9,8 @@ using UnityEngine;
 /// </summary>
 public abstract class PhysicsEffect
 {
+    public static PhysicsEffect current;
+
     /// <summary>
     /// apply this physics effect
     /// </summary>
@@ -42,6 +44,11 @@ public abstract class PhysicsEffect
 
         // EffectEditor.Close();
     }
+
+    // public abstract void OnPointerEnter();
+    // public abstract void OnPointerStay();
+    // public abstract void OnPointerExit();
+
 }
 
 /// <summary>
