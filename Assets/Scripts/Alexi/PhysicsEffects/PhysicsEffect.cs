@@ -9,24 +9,71 @@ using UnityEngine;
 /// </summary>
 public abstract class PhysicsEffect
 {
-
+    /// <summary>
+    /// apply this physics effect
+    /// </summary>
+    /// 
+    /// <param name="target">
+    /// the target of this effect
+    /// </param>
     public abstract void ApplyEffect(InteractableObject target);
+
+    /// <summary>
+    /// open effect editor gui
+    /// </summary>
+    public void EnterEditMode()
+    {
+        Debug.Log("enter " + GetType().ToString() + " editor");
+
+        // EffectEditor.Open(PhysicsEffectType this);
+    }
+
+    /// <summary>
+    /// update effect editor gui
+    /// </summary>
+    public abstract void RunEditMode();
+
+    /// <summary>
+    /// close effect editor gui
+    /// </summary>
+    public void ExitEditMode()
+    {
+        Debug.Log("exit " + GetType().ToString() + " editor");
+
+        // EffectEditor.Close();
+    }
 }
 
 
 public class ChangeMass : PhysicsEffect
 {
-    float min, max;
+    float min, max, current;
     public ChangeMass(float _min, float _max)
     {
-        min = _min;
+        min = current = _min;
         max = _max;
     }
     private ChangeMass() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.GetComponent<Renderer>().material.color = Color.black;
+        target.myRigidbody.mass = current;
+    }
+
+    public override void RunEditMode()
+    {
+        if(Input.mouseScrollDelta.y > 0)
+        { 
+            current = max;
+
+            Debug.Log("mass editor value = " + current);
+        }
+        else if(Input.mouseScrollDelta.y < 0)
+        {
+            current = min;
+
+            Debug.Log("mass editor value = " + current);
+        }
     }
 }
 
@@ -46,6 +93,11 @@ public class ChangeMaterial : PhysicsEffect
     {
         target.GetComponent<Renderer>().material.color = new Color(1, 0, 1, 1);
     }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class ChangeGravity : PhysicsEffect
@@ -62,6 +114,11 @@ public class ChangeGravity : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = Color.grey;
+    }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -81,6 +138,11 @@ public class ChangeLayer : PhysicsEffect
     {
         target.GetComponent<Renderer>().material.color = Color.cyan;
     }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class ToggleKinematic : PhysicsEffect
@@ -88,6 +150,11 @@ public class ToggleKinematic : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = Color.green;
+    }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -106,6 +173,11 @@ public class ApplyForce : PhysicsEffect
         target.GetComponent<Renderer>().material.color = new Color(0, 1, 1, 1);
         Debug.Log("boom");
     }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class UseMagnet : PhysicsEffect
@@ -120,6 +192,11 @@ public class UseMagnet : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -136,6 +213,11 @@ public class ApplyTorque : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 1);
+    }
+
+    public override void RunEditMode()
+    {
+        throw new System.NotImplementedException();
     }
 }
 

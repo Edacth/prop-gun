@@ -28,6 +28,7 @@ public class PhysicsGun : MonoBehaviour
     const int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
+    static PhysicsEffect currentEffect;
     public static InteractableObject currentObject;
     InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
@@ -35,13 +36,8 @@ public class PhysicsGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentMode = Mode.mass; // initialize to default
-
-        // can be changed to drag and drop for performance later
-        collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
-
         // initalize effects
-        if(null == effects)
+        if (null == effects)
         {
             effects = new Dictionary<Mode, PhysicsEffect>();
             effects.Add(Mode.mass, new ChangeMass(data.minMass, data.maxMass));
@@ -53,6 +49,12 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.magnet, new UseMagnet(data.magForce));
             effects.Add(Mode.torque, new ApplyTorque(data.torque));
         }
+
+        currentMode = Mode.mass; // initialize to default
+        SwitchMode(currentMode); // initialize effect
+
+        // can be changed to drag and drop for performance later
+        collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
     }
 
     void Update()
@@ -65,6 +67,21 @@ public class PhysicsGun : MonoBehaviour
     /// </summary>
     void TakeInput()
     {
+        #region Effect Editor
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            currentEffect.EnterEditMode();
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentEffect.RunEditMode();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            currentEffect.ExitEditMode();
+        }
+        #endregion
+
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
@@ -99,6 +116,7 @@ public class PhysicsGun : MonoBehaviour
         // switch gun ui
 
         currentMode = newMode;
+        effects.TryGetValue(currentMode, out currentEffect);
     }
 
     /// <summary>
@@ -108,8 +126,7 @@ public class PhysicsGun : MonoBehaviour
     {
         if(null == currentObject) { return; }
 
-        PhysicsEffect eff;
-        effects.TryGetValue(currentMode, out eff);
-        eff?.ApplyEffect(currentObject);
+        
+        currentEffect.ApplyEffect(currentObject);
     }
 }
