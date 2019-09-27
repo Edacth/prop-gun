@@ -1,19 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// holds values for physics manipulations
 /// </summary>
 public class PhysicsValues : MonoBehaviour
 {
+    public static PhysicsValues instance;
+
     [Header("Mass")]
     [Tooltip("Minimum allowable mass")]
     public float minMass;
     [Tooltip("Maximum allowable mass")]
     public float maxMass;
     [Tooltip("Mass step value")]
-    public float massStep;
+    public float step;
+    [Tooltip("Default mass")]
+    public float defMass;
+    [Tooltip("Mass panel UI")]
+    public GameObject massPanel;
+    [Tooltip("Mass slider")]
+    public Slider massSlider;
 
     [Header("Material")]
     [Tooltip("Available physics materials")]
@@ -49,4 +58,9 @@ public class PhysicsValues : MonoBehaviour
     [SerializeField]
     [Tooltip("Torque applied")]
     public Vector3 torque;
+
+    void Awake()
+    {
+        instance = this;
+    }
 }
