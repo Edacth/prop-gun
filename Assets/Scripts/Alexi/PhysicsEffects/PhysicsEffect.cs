@@ -5,7 +5,7 @@ using UnityEngine;
 // ToDo: add ui, colors, inspector vars, etc
 
 /// <summary>
-/// An effect on an objects physics
+/// An effect on an object's physics
 /// </summary>
 public abstract class PhysicsEffect
 {
@@ -170,8 +170,10 @@ public class ApplyForce : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        Debug.Log("Force Effect Applied");
         target.GetComponent<Renderer>().material.color = new Color(0, 1, 1, 1);
-        Debug.Log("boom");
+        target.myRigidbody.AddForce(force);
+        
     }
 
     public override void RunEditMode()

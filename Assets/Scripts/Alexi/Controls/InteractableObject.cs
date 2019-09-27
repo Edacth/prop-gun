@@ -22,7 +22,7 @@ public abstract class InteractableObject : MonoBehaviour
 
     // Cade
     [SerializeField]
-    InteractableChecker interactableChecker;
+    InteractableChecker interactableChecker = null;
     MeshRenderer myMeshRenderer;
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
@@ -51,7 +51,7 @@ public abstract class InteractableObject : MonoBehaviour
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
-            myMeshRenderer.material.color = unselectedColor;
+            //myMeshRenderer.material.color = unselectedColor;
 
             currentSelection = null;
             selected = false;

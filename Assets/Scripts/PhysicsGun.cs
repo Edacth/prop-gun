@@ -33,6 +33,18 @@ public class PhysicsGun : MonoBehaviour
     InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
 
+    private KeyCode[] keyCodes = {
+         KeyCode.Alpha1,
+         KeyCode.Alpha2,
+         KeyCode.Alpha3,
+         KeyCode.Alpha4,
+         KeyCode.Alpha5,
+         KeyCode.Alpha6,
+         KeyCode.Alpha7,
+         KeyCode.Alpha8,
+         KeyCode.Alpha9,
+    };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +101,19 @@ public class PhysicsGun : MonoBehaviour
 
         if(Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
         else if(Input.mouseScrollDelta.y > 0) { ScrollSelection(-1); }
+
+        for (int i = 0; i < keyCodes.Length; i++)
+        {
+            if (Input.GetKeyDown(keyCodes[i]))
+            {
+                int numberPressed = i + 1;
+                Mode newMode = (Mode)numberPressed;
+                SwitchMode(newMode);
+                //Debug.Log(numberPressed);
+            }
+
+             
+        }
     }
 
     /// <summary>
@@ -104,7 +129,7 @@ public class PhysicsGun : MonoBehaviour
 
         SwitchMode((Mode)cur);
 
-        Debug.Log(currentMode);
+        
     }
 
     public void SwitchMode(Mode newMode)
@@ -117,6 +142,7 @@ public class PhysicsGun : MonoBehaviour
 
         currentMode = newMode;
         effects.TryGetValue(currentMode, out currentEffect);
+        Debug.Log(currentMode);
     }
 
     /// <summary>
