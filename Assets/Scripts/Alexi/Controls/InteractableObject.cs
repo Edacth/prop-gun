@@ -23,13 +23,13 @@ public abstract class InteractableObject : MonoBehaviour
     // Cade
     [SerializeField]
     InteractableChecker interactableChecker;
-    MeshRenderer myMeshRenderer;
+    public MeshRenderer myMeshRenderer { get; private set; }
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false;
     bool selectable;
 
-    void Start()
+    void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
