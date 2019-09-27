@@ -44,9 +44,13 @@ public abstract class PhysicsEffect
     }
 }
 
-
+/// <summary>
+/// change the mass of the object
+/// </summary>
 public class ChangeMass : PhysicsEffect
 {
+    // ToDo: add mass delta step (not just min/max options)
+
     float min, max, current;
     public ChangeMass(float _min, float _max)
     {
@@ -58,6 +62,8 @@ public class ChangeMass : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.myRigidbody.mass = current;
+
+        Debug.Log(target.name + " mass changed to " + current);
     }
 
     public override void RunEditMode()
@@ -77,9 +83,13 @@ public class ChangeMass : PhysicsEffect
     }
 }
 
+/// <summary>
+/// change the physics material
+/// </summary>
 public class ChangeMaterial : PhysicsEffect
 {
     List<PhysicMaterial> mats;
+    PhysicMaterial current;
     int idx;
 
     private ChangeMaterial() { }
@@ -87,16 +97,34 @@ public class ChangeMaterial : PhysicsEffect
     {
         mats = _mats;
         idx = 0;
+        current = mats[idx];
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.GetComponent<Renderer>().material.color = new Color(1, 0, 1, 1);
+        target.myCollider.material = current;
+
+        Debug.Log(target.name + " physics material set to " + current.name);
     }
 
     public override void RunEditMode()
     {
-        throw new System.NotImplementedException();
+        if(Input.mouseScrollDelta.y > 0)
+        {
+            idx++;
+            if(idx >= mats.Count) { idx = 0; }
+            current = mats[idx];
+
+            Debug.Log("material editor value set to " + current.name);
+        }
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            idx--;
+            if (idx < 0) { idx = mats.Count - 1; }
+            current = mats[idx];
+
+            Debug.Log("material editor value set to " + current.name);
+        }
     }
 }
 
@@ -124,24 +152,63 @@ public class ChangeGravity : PhysicsEffect
 
 public class ChangeLayer : PhysicsEffect
 {
-    int def, lay1, lay2;
+    struct Layer
+    {
+        public string name;
+        public int layer;
+
+        public Layer(string n, int l)
+        {
+            name = n;
+            layer = l;
+        }
+    }
+    List<Layer> layers;
+
+    int def, lay1, lay2, idx;
+    Layer current;
     public ChangeLayer(int _def, int _lay1, int _lay2)
     {
         def = _def;
         lay1 = _lay1;
         lay2 = _lay2;
+        idx = 0;
+
+        layers = new List<Layer>();
+        layers.Add(new Layer("default", def));
+        layers.Add(new Layer("layer1", lay1));
+        layers.Add(new Layer("layer2", lay2));
+
+        current = layers[idx];
     }
 
     private ChangeLayer() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.GetComponent<Renderer>().material.color = Color.cyan;
+        target.gameObject.layer = current.layer;
+
+        Debug.Log(target.name + " layer set to " + current.layer + ": " + current.name);
     }
 
     public override void RunEditMode()
     {
-        throw new System.NotImplementedException();
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            idx++;
+            if (idx >= layers.Count) { idx = 0; }
+            current = layers[idx];
+
+            Debug.Log("layer editor value set to " + current.layer);
+        }
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            idx--;
+            if (idx < 0) { idx = layers.Count - 1; }
+            current = layers[idx];
+
+            Debug.Log("layer editor value set to " + current.layer);
+        }
     }
 }
 
