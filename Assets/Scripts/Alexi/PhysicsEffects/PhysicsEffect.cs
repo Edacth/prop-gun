@@ -23,7 +23,7 @@ public abstract class PhysicsEffect
     /// <summary>
     /// open effect editor gui
     /// </summary>
-    public void EnterEditMode()
+    public virtual void EnterEditMode()
     {
         Debug.Log("enter " + GetType().ToString() + " editor");
 
@@ -38,7 +38,7 @@ public abstract class PhysicsEffect
     /// <summary>
     /// close effect editor gui
     /// </summary>
-    public void ExitEditMode()
+    public virtual void ExitEditMode()
     {
         Debug.Log("exit " + GetType().ToString() + " editor");
 
@@ -64,17 +64,21 @@ public class ChangeMass : PhysicsEffect
 {
     // ToDo: add mass delta step (not just min/max options)
 
-    float min, max, currentMass;
-    public ChangeMass(float _min, float _max)
+    float currentMass;
+
+    public ChangeMass()
     {
-        min = currentMass = _min;
-        max = _max;
+        currentMass = PhysicsValues.instance.defMass;
+        PhysicsValues.instance.massSlider.value =
+                Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
+        PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
     }
-    private ChangeMass() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
         target.myRigidbody.mass = currentMass;
+        target.myRigidbody.WakeUp();
+
 
         Debug.Log(target.name + " mass changed to " + currentMass);
     }
@@ -87,20 +91,46 @@ public class ChangeMass : PhysicsEffect
         }
     }
 
+    public override void EnterEditMode()
+    {
+        base.EnterEditMode();
+        PhysicsValues.instance.massPanel.SetActive(true);
+    }
+
     public override void RunEditMode()
     {
         if(Input.mouseScrollDelta.y > 0)
         { 
-            currentMass = max;
+            currentMass += PhysicsValues.instance.step;
+            if(currentMass > PhysicsValues.instance.maxMass)
+            {
+                currentMass = PhysicsValues.instance.maxMass;
+            }
+            PhysicsValues.instance.massSlider.value =
+                Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
+            PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
 
             Debug.Log("mass editor value = " + currentMass);
         }
         else if(Input.mouseScrollDelta.y < 0)
         {
-            currentMass = min;
+            currentMass -= PhysicsValues.instance.step;
+            if (currentMass < PhysicsValues.instance.minMass)
+            {
+                currentMass = PhysicsValues.instance.minMass;
+            }
+            PhysicsValues.instance.massSlider.value = 
+                Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
+            PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
 
             Debug.Log("mass editor value = " + currentMass);
         }
+    }
+
+    public override void ExitEditMode()
+    {
+        base.ExitEditMode();
+        PhysicsValues.instance.massPanel.SetActive(false);
     }
 }
 
@@ -110,7 +140,7 @@ public class ChangeMass : PhysicsEffect
 public class ChangeMaterial : PhysicsEffect
 {
     List<PhysicMaterial> mats;
-    PhysicMaterial current;
+    PhysicMaterial currentMat;
     int idx;
 
     private ChangeMaterial() { }
@@ -120,15 +150,15 @@ public class ChangeMaterial : PhysicsEffect
         idx = 0;
         if (mats.Count <= 0) { return; }
 
-        current = mats[idx];
+        currentMat = mats[idx];
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
         if(null == current) { return; }
-        target.myCollider.material = current;
+        target.myCollider.material = currentMat;
 
-        Debug.Log(target.name + " physics material set to " + current.name);
+        Debug.Log(target.name + " physics material set to " + currentMat.name);
     }
 
     public override void RunEditMode()
@@ -137,17 +167,17 @@ public class ChangeMaterial : PhysicsEffect
         {
             idx++;
             if(idx >= mats.Count) { idx = 0; }
-            current = mats[idx];
+            currentMat = mats[idx];
 
-            Debug.Log("material editor value set to " + current.name);
+            Debug.Log("material editor value set to " + currentMat.name);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
             idx--;
             if (idx < 0) { idx = mats.Count - 1; }
-            current = mats[idx];
+            currentMat = mats[idx];
 
-            Debug.Log("material editor value set to " + current.name);
+            Debug.Log("material editor value set to " + currentMat.name);
         }
     }
 
@@ -293,26 +323,16 @@ public class ApplyForce : PhysicsEffect
 
     public override void OnPointerStay(InteractableObject target)
     {
-        Debug.DrawRay(target.transform.position, force , Color.red);
+        Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
     }
 
     public override void RunEditMode()
     {
         if (Input.mouseScrollDelta.y > 0)
         {
-
-            rotation += 1;
-            if (rotation > 360) { rotation -= 360; }
             
 
-            float rotationInRadians = (rotation) * (Mathf.PI / 180); // Convert to radians
-            
-            float rotatedX = Mathf.Cos(rotationInRadians) * (force.x) - Mathf.Sin(rotationInRadians) * (force.z);
-
-            float rotatedZ = Mathf.Sin(rotationInRadians) * (force.x) + Mathf.Cos(rotationInRadians) * (force.z);
-            
-            force = new Vector3(rotatedX, 0, rotatedZ);
-            Debug.Log("Force Vector: " + force + "Rotation: " + rotation);
+            Debug.Log("Mouse scroll value" + Input.mouseScrollDelta.y);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {

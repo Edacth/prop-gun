@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         fakeVelocity += Physics.gravity*Time.fixedDeltaTime;
         transform.position += fakeVelocity*Time.fixedDeltaTime;
-        print(fakeVelocity);
+        // print(fakeVelocity);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         lastMousePos = Input.mousePosition;
