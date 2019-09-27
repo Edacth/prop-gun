@@ -116,6 +116,7 @@ public class ChangeMaterial : PhysicsEffect
     private ChangeMaterial() { }
     public ChangeMaterial(List<PhysicMaterial> _mats)
     {
+        if(mats.Count <= 0) { return; }
         mats = _mats;
         idx = 0;
         current = mats[idx];
@@ -123,6 +124,7 @@ public class ChangeMaterial : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        if(null == current) { return; }
         target.myCollider.material = current;
 
         Debug.Log(target.name + " physics material set to " + current.name);
