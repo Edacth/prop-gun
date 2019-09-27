@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float airAccel = 1f;
     [SerializeField] float groundSpeed = 5f;
     [SerializeField] float airSpeed = 2f;
+    [SerializeField] float overBounce = 1.05f;
     float verticalRotation = 0;
     float horizontalRotation = 90;
     Rigidbody rb;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     
     private void Start()
     {
+        verticalRotation = transform.eulerAngles.y;
         rb = GetComponent<Rigidbody>();
         lookDir = cam.transform.rotation;
     }
@@ -93,9 +95,19 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (Vector3.Dot(collision.contacts[0].normal, Vector3.up) > 0.5f) {
+        Vector3 normal = collision.contacts[0].normal;
+        float backOff = Vector3.Dot(fakeVelocity,normal);
+        if(backOff < 0)
+        {
+            backOff *= overBounce;
+        } else
+        {
+            backOff /= overBounce;
+        }
+        if (Vector3.Dot(normal, Vector3.up) > 0.5f) {
             grounded = true;
         }
+        fakeVelocity-=normal*backOff;
     }
     private void OnCollisionExit(Collision collision)
     {
