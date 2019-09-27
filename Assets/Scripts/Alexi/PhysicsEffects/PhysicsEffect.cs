@@ -116,9 +116,10 @@ public class ChangeMaterial : PhysicsEffect
     private ChangeMaterial() { }
     public ChangeMaterial(List<PhysicMaterial> _mats)
     {
-        if(mats.Count <= 0) { return; }
         mats = _mats;
         idx = 0;
+        if (mats.Count <= 0) { return; }
+
         current = mats[idx];
     }
 

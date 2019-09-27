@@ -337,8 +337,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -20
-    max: 20
+    min: -10
+    max: 10
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 1439996713}
   - component: {fileID: 1439996712}
   - component: {fileID: 1439996716}
+  - component: {fileID: 1439996717}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -530,6 +531,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1439996717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439996711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa69eb42a085904b9c245f7c2170719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compatibleModes: 
+  interactableChecker: {fileID: 1785408046}
+  P: 25
+  I: 3
+  D: -60
+  grabTarget: {fileID: 0}
 --- !u!1 &1536243020
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +562,7 @@ GameObject:
   - component: {fileID: 1536243023}
   - component: {fileID: 1536243022}
   - component: {fileID: 1536243021}
+  - component: {fileID: 1536243026}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -638,6 +658,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1536243026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536243020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa69eb42a085904b9c245f7c2170719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compatibleModes: 
+  interactableChecker: {fileID: 1785408046}
+  P: 25
+  I: 3
+  D: -60
+  grabTarget: {fileID: 0}
 --- !u!1 &1747259364
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +732,18 @@ MonoBehaviour:
   force: {x: 0, y: 0, z: 0}
   magForce: {x: 0, y: 0, z: 0}
   torque: {x: 0, y: 0, z: 0}
+--- !u!114 &1785408046 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 527720482991473060, guid: ab4843b9804d9814bafbc9cb59eeed56,
+    type: 3}
+  m_PrefabInstance: {fileID: 1064761788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2e8d8724fb1d646bf728d9a812e935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954067633
 GameObject:
   m_ObjectHideFlags: 0
