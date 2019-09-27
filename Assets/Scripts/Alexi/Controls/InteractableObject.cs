@@ -48,6 +48,7 @@ public abstract class InteractableObject : MonoBehaviour
             currentSelection = this;
             selected = true;
             OnPointerEnter();
+            // PhysicsEffect.current.OnPointerEnter();
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
@@ -56,6 +57,7 @@ public abstract class InteractableObject : MonoBehaviour
             currentSelection = null;
             selected = false;
             OnPointerExit();
+            // PhysicsEffect.current.OnPointerExit();
         }
     }
 

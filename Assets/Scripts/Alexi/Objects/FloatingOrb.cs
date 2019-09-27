@@ -8,7 +8,7 @@ public class FloatingOrb : InteractableObject
     {
         PhysicsGun.currentObject = this;
 
-        myMeshRenderer.material.color = Color.blue;
+        myMeshRenderer.material.color = Color.green;
     }
 
     public override void OnPointerExit()
