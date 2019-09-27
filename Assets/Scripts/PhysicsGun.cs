@@ -173,8 +173,11 @@ public class PhysicsGun : MonoBehaviour
     }
     public void Grab()
     {
+        if(grabPoint == null)
+        {
+            throw new System.Exception("You guys remeber to set grab point to an empty vaugly infront of the charecter");
+        }
         if (null == grabedObject) { return; }
-
         grabedObject.grabTarget = grabPoint;      
         grabedObject.grabUpdate();
     }
