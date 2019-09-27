@@ -32,6 +32,8 @@ public class PhysicsGun : MonoBehaviour
     public static InteractableObject currentObject;
     InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
+    [SerializeField] Transform grabPoint;
+    InteractableObject grabedObject;
 
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -120,9 +122,17 @@ public class PhysicsGun : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
+            GetGrab();
+        }
+        if (Input.GetMouseButton(1))
+        {
             Grab();
         }
-        
+        if (Input.GetMouseButtonUp(1))
+        {
+            UnGrab();
+        }
+
     }
 
     /// <summary>
@@ -166,9 +176,18 @@ public class PhysicsGun : MonoBehaviour
     }
     public void Grab()
     {
+        if (null == grabedObject) { return; }
+
+        grabedObject.grabTarget = grabPoint;      
+        grabedObject.grabUpdate();
+    }
+    public void GetGrab()
+    {
         if (null == currentObject) { return; }
-
-
-        currentEffect.ApplyEffect(currentObject);
+        grabedObject = currentObject;
+    }
+    public void UnGrab()
+    {
+        grabedObject = null;
     }
 }
