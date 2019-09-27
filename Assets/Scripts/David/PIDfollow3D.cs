@@ -11,11 +11,10 @@ public class PIDfollow3D : MonoBehaviour
     private Vector3 error;
     private Vector3 errorSum = Vector3.zero;
     public Transform target; //maybe use a transform?
-    Vector3 tempDeleteThis;
+   
     // Start is called before the first frame update
     void Start()
     {
-        tempDeleteThis = transform.position;
         rb = GetComponent<Rigidbody>();
         error = target.position - transform.position; //how far off target are we on each axis
     }
