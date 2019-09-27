@@ -81,15 +81,17 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         grounded = false;
-        rb.velocity += new Vector3(0,jumpPower,0);
+        rb.velocity = new Vector3(rb.velocity.x,jumpPower,rb.velocity.z);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        grounded = true;
+        OnCollisionStay(collision);
     }
     private void OnCollisionStay(Collision collision)
     {
-        grounded = true;
+        if (Vector3.Dot(collision.contacts[0].normal, Vector3.up) > 0.5f) {
+            grounded = true;
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
