@@ -265,10 +265,12 @@ public class ToggleKinematic : PhysicsEffect
 
 public class ApplyForce : PhysicsEffect
 {
+    Vector3 defaultForce;
     Vector3 force;
-    public ApplyForce(Vector3 _force)
+    public ApplyForce(Vector3 _defaultForce)
     {
-        force = _force;
+        defaultForce = _defaultForce;
+        force = defaultForce;
     }
 
     private ApplyForce() { }
