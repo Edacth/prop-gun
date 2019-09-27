@@ -40,6 +40,11 @@ public abstract class InteractableObject : MonoBehaviour
         myMeshRenderer = GetComponent<MeshRenderer>();
     }
 
+    void Update()
+    {
+        PhysicsEffect.current.OnPointerStay(this);
+    }
+
     void CheckIfSelected()
     {
         if (interactableChecker.getRaycastHit().transform == transform && !selected && selectable)

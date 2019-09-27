@@ -28,7 +28,6 @@ public class PhysicsGun : MonoBehaviour
     const int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
-    static PhysicsEffect currentEffect;
     public static InteractableObject currentObject;
     InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
@@ -84,15 +83,15 @@ public class PhysicsGun : MonoBehaviour
         #region Effect Editor
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            currentEffect.EnterEditMode();
+            PhysicsEffect.current.EnterEditMode();
         }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentEffect.RunEditMode();
+            PhysicsEffect.current.RunEditMode();
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            currentEffect.ExitEditMode();
+            PhysicsEffect.current.ExitEditMode();
         } else //not in edit mode
         {
             if (Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
@@ -160,7 +159,7 @@ public class PhysicsGun : MonoBehaviour
         // switch gun ui
 
         currentMode = newMode;
-        effects.TryGetValue(currentMode, out currentEffect);
+        effects.TryGetValue(currentMode, out PhysicsEffect.current);
         Debug.Log(currentMode);
     }
 
@@ -171,8 +170,8 @@ public class PhysicsGun : MonoBehaviour
     {
         if(null == currentObject) { return; }
 
-        
-        currentEffect.ApplyEffect(currentObject);
+
+        PhysicsEffect.current.ApplyEffect(currentObject);
     }
     public void Grab()
     {

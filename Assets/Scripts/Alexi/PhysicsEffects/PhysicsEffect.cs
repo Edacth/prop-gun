@@ -46,7 +46,13 @@ public abstract class PhysicsEffect
     }
 
     // public abstract void OnPointerEnter();
-    // public abstract void OnPointerStay();
+
+    /// <summary>
+    /// update interactable object visual indicator effects
+    /// </summary>
+    /// <param name="target"></param>
+    public abstract void OnPointerStay(InteractableObject target);
+
     // public abstract void OnPointerExit();
 
 }
@@ -71,6 +77,11 @@ public class ChangeMass : PhysicsEffect
         target.myRigidbody.mass = current;
 
         Debug.Log(target.name + " mass changed to " + current);
+    }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // mass things
     }
 
     public override void RunEditMode()
@@ -133,6 +144,11 @@ public class ChangeMaterial : PhysicsEffect
             Debug.Log("material editor value set to " + current.name);
         }
     }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // material things
+    }
 }
 
 public class ChangeGravity : PhysicsEffect
@@ -149,6 +165,11 @@ public class ChangeGravity : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = Color.grey;
+    }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // gravity things
     }
 
     public override void RunEditMode()
@@ -217,6 +238,11 @@ public class ChangeLayer : PhysicsEffect
             Debug.Log("layer editor value set to " + current.layer);
         }
     }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // layer things
+    }
 }
 
 public class ToggleKinematic : PhysicsEffect
@@ -224,6 +250,11 @@ public class ToggleKinematic : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = Color.green;
+    }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // kinematic things
     }
 
     public override void RunEditMode()
@@ -250,6 +281,11 @@ public class ApplyForce : PhysicsEffect
         
     }
 
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // force things
+    }
+
     public override void RunEditMode()
     {
         throw new System.NotImplementedException();
@@ -268,6 +304,11 @@ public class UseMagnet : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // magnet things
     }
 
     public override void RunEditMode()
@@ -289,6 +330,11 @@ public class ApplyTorque : PhysicsEffect
     public override void ApplyEffect(InteractableObject target)
     {
         target.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 1);
+    }
+
+    public override void OnPointerStay(InteractableObject target)
+    {
+        // torque things
     }
 
     public override void RunEditMode()
