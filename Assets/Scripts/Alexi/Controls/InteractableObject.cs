@@ -42,7 +42,10 @@ public abstract class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        PhysicsEffect.current.OnPointerStay(this);
+        if (selected)
+        {
+            PhysicsEffect.current.OnPointerStay(this);
+        } 
     }
 
     void CheckIfSelected()

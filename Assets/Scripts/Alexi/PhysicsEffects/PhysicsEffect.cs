@@ -267,10 +267,12 @@ public class ApplyForce : PhysicsEffect
 {
     Vector3 defaultForce;
     Vector3 force;
+    float rotation;
     public ApplyForce(Vector3 _defaultForce)
     {
         defaultForce = _defaultForce;
         force = defaultForce;
+        rotation = 0.0f;
     }
 
     private ApplyForce() { }
@@ -285,12 +287,23 @@ public class ApplyForce : PhysicsEffect
 
     public override void OnPointerStay(InteractableObject target)
     {
-        // force things
+        Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
     }
 
     public override void RunEditMode()
     {
-        throw new System.NotImplementedException();
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            
+
+            Debug.Log("Mouse scroll value" + Input.mouseScrollDelta.y);
+        }
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            //current = min;
+
+            //Debug.Log("mass editor value = " + current);
+        }
     }
 }
 
