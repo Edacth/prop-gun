@@ -23,7 +23,7 @@ public class PhysicsGun : MonoBehaviour
     };
 
     public InteractableChecker interactableChecker;
-    public PhysicMaterial bounce;
+    public PhysicsValues data;
 
     const int modeCount = 8; // how many modes there are
 
@@ -44,14 +44,14 @@ public class PhysicsGun : MonoBehaviour
         if(null == effects)
         {
             effects = new Dictionary<Mode, PhysicsEffect>();
-            effects.Add(Mode.mass, new ChangeMass());
-            effects.Add(Mode.material, new ChangeMaterial(bounce));
-            effects.Add(Mode.gravity, new ChangeGravity());
-            effects.Add(Mode.layer, new ChangeLayer());
+            effects.Add(Mode.mass, new ChangeMass(data.minMass, data.maxMass));
+            effects.Add(Mode.material, new ChangeMaterial(data.physMaterials));
+            effects.Add(Mode.gravity, new ChangeGravity(data.minGrav, data.maxGrav));
+            effects.Add(Mode.layer, new ChangeLayer(data.defaultLayer, data.layer1, data.layer2));
             effects.Add(Mode.kinematic, new ToggleKinematic());
-            effects.Add(Mode.force, new ApplyForce());
-            effects.Add(Mode.magnet, new UseMagnet());
-            effects.Add(Mode.torque, new ApplyTorque());
+            effects.Add(Mode.force, new ApplyForce(data.force));
+            effects.Add(Mode.magnet, new UseMagnet(data.magForce));
+            effects.Add(Mode.torque, new ApplyTorque(data.torque));
         }
     }
 

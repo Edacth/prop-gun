@@ -419,6 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599456115}
   - component: {fileID: 599456116}
+  - component: {fileID: 599456117}
   m_Layer: 0
   m_Name: GameComponents
   m_TagString: Untagged
@@ -453,6 +454,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects: []
+--- !u!114 &599456117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599456114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b7e22d36be89c469c7653f2c16610b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minMass: 0
+  maxMass: 0
+  physMaterials: []
+  minGrav: 0
+  maxGrav: 0
+  defaultLayer: 0
+  layer1: 0
+  layer2: 0
+  force: {x: 0, y: 0, z: 0}
+  magForce: {x: 0, y: 0, z: 0}
+  torque: {x: 0, y: 0, z: 0}
 --- !u!1001 &1036236318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -636,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableChecker: {fileID: 1862800567}
-  bounce: {fileID: 13400000, guid: 7025f754af1c93648b0d695eab01243c, type: 2}
+  data: {fileID: 599456117}
 --- !u!65 &1862800563
 BoxCollider:
   m_ObjectHideFlags: 0
