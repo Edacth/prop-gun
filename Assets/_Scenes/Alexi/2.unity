@@ -466,9 +466,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b7e22d36be89c469c7653f2c16610b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMass: 0
-  maxMass: 0
-  physMaterials: []
+  minMass: 0.1
+  maxMass: 10
+  physMaterials:
+  - {fileID: 13400000, guid: fc76308f8d713254d9b188f4a5491dc0, type: 2}
+  - {fileID: 13400000, guid: 7025f754af1c93648b0d695eab01243c, type: 2}
   minGrav: 0
   maxGrav: 0
   defaultLayer: 0
