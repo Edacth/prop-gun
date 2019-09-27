@@ -79,6 +79,10 @@ public class PhysicsGun : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             currentEffect.ExitEditMode();
+        } else //not in edit mode
+        {
+            if (Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
+            else if (Input.mouseScrollDelta.y > 0) { ScrollSelection(-1); }
         }
         #endregion
 
@@ -86,9 +90,11 @@ public class PhysicsGun : MonoBehaviour
         {
             Fire();
         }
-
-        if(Input.mouseScrollDelta.y < 0) { ScrollSelection(1); }
-        else if(Input.mouseScrollDelta.y > 0) { ScrollSelection(-1); }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Grab();
+        }
+        
     }
 
     /// <summary>
@@ -99,7 +105,7 @@ public class PhysicsGun : MonoBehaviour
         int cur = (int)currentMode;
         cur += add;
 
-        if(cur >= modeCount) { cur = 0; }
+        if(cur >= modeCount) { cur = 0; } //FIXME this may break when adding more than modeCount, modulo would fix that but would break on negitive numbers aswell, we may want to just make this take a up or down bool anyway
         else if(cur < 0) { cur = modeCount - 1; }
 
         SwitchMode((Mode)cur);
@@ -127,6 +133,13 @@ public class PhysicsGun : MonoBehaviour
         if(null == currentObject) { return; }
 
         
+        currentEffect.ApplyEffect(currentObject);
+    }
+    public void Grab()
+    {
+        if (null == currentObject) { return; }
+
+
         currentEffect.ApplyEffect(currentObject);
     }
 }
