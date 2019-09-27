@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableChecker: {fileID: 527720482991473060}
   data: {fileID: 0}
+  grabPoint: {fileID: 0}
 --- !u!114 &527720482991473060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ GameObject:
   - component: {fileID: 1346194480879902251}
   - component: {fileID: 1346194480879902252}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +352,7 @@ MonoBehaviour:
   verticalSensitivity: -2
   maxAngle: 16
   groundedFriction: 10
-  jumpPower: 2
+  jumpPower: 5
   groundAccel: 4
   airAccel: 1
   groundSpeed: 5

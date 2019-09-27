@@ -33,11 +33,9 @@ public abstract class InteractableObject : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
-
         myMeshRenderer = GetComponent<MeshRenderer>();
 
         selectable = true;
-        myMeshRenderer = GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -112,7 +110,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         InteractableChecker.interactableCheckDelegate -= CheckIfSelected;
     }
-    public float P, I, D;
+    public float P = 25, I = 3, D = -60;
     private Vector3 lastError;
     private Vector3 error = Vector3.zero;
     private Vector3 errorSum = Vector3.zero;
