@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
         verticalRotation += Input.GetAxisRaw("Mouse Y") * verticalSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation,-90+maxAngle,90-maxAngle);
         cam.transform.rotation = Quaternion.Euler(0, horizontalRotation, 0) * Quaternion.AngleAxis(verticalRotation, lookDir * Vector3.right); //Remeber changing the order changes the result
-        print(grounded);
         if(grounded)
         {
             Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, groundAccel, 4);
