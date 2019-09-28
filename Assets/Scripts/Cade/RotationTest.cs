@@ -21,5 +21,6 @@ public class RotationTest : MonoBehaviour
         float rotatedZ = Mathf.Sin(rotationInRadians) * (point.x) + Mathf.Cos(rotationInRadians) * (point.z);
 
         Debug.DrawRay(transform.position + source, new Vector3(rotatedX, 0, rotatedZ), Color.red);
+        Debug.Log("Force Vector: " + point.ToString("F3") + "Rotation: " + rotation);
     }
 }

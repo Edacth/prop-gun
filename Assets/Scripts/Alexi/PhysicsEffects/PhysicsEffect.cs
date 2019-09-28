@@ -274,11 +274,13 @@ public class ApplyForce : PhysicsEffect
     Vector3 defaultForce;
     Vector3 force;
     float rotation;
-    public ApplyForce(Vector3 _defaultForce)
+    GameObject camera;
+    public ApplyForce(Vector3 _defaultForce, GameObject _camera)
     {
         defaultForce = _defaultForce;
         force = defaultForce;
         rotation = 0.0f;
+        camera = _camera;
     }
 
     private ApplyForce() { }
@@ -293,7 +295,14 @@ public class ApplyForce : PhysicsEffect
 
     public override void OnPointerStay(InteractableObject target)
     {
-        Debug.DrawRay(target.transform.position, force , Color.red);
+        float rotationInRadians = ((rotation) * (Mathf.PI / 180)) - ((camera.transform.localEulerAngles.y) * (Mathf.PI / 180)); // Convert to radians
+        float rotatedX = Mathf.Cos(rotationInRadians) * (defaultForce.x) - Mathf.Sin(rotationInRadians) * (defaultForce.z);
+        float rotatedZ = Mathf.Sin(rotationInRadians) * (defaultForce.x) + Mathf.Cos(rotationInRadians) * (defaultForce.z);
+
+        force = new Vector3(rotatedX, 0, rotatedZ);
+        //Debug.Log(camera.transform.localEulerAngles);
+
+        Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
     }
 
     public override void RunEditMode()
@@ -301,24 +310,15 @@ public class ApplyForce : PhysicsEffect
         if (Input.mouseScrollDelta.y > 0)
         {
 
-            rotation += 1;
+            rotation += 10;
             if (rotation > 360) { rotation -= 360; }
-            
 
-            float rotationInRadians = (rotation) * (Mathf.PI / 180); // Convert to radians
-            
-            float rotatedX = Mathf.Cos(rotationInRadians) * (force.x) - Mathf.Sin(rotationInRadians) * (force.z);
-
-            float rotatedZ = Mathf.Sin(rotationInRadians) * (force.x) + Mathf.Cos(rotationInRadians) * (force.z);
-            
-            force = new Vector3(rotatedX, 0, rotatedZ);
-            Debug.Log("Force Vector: " + force + "Rotation: " + rotation);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
-            //current = min;
+            rotation -= 10;
+            if (rotation < 360) { rotation += 360; }
 
-            //Debug.Log("mass editor value = " + current);
         }
     }
 }
