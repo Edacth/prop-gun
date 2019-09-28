@@ -9,7 +9,7 @@ public class ObjectLauncher : MonoBehaviour
     [SerializeField]
     public Vector3 force = new Vector3(-1, 1, 0);
     [Range(1, 5)]
-    public float rate;
+    public float rate = 2;
 
     float elapsed;
 
@@ -27,7 +27,7 @@ public class ObjectLauncher : MonoBehaviour
         {
             elapsed = 0;
 
-            InteractableObject io = Instantiate(projectile, transform.position + Vector3.up, Quaternion.identity)
+            InteractableObject io = Instantiate(projectile, transform.position, Quaternion.identity)
                 .GetComponent<InteractableObject>();
             
             io.myRigidbody.AddExplosionForce(force.magnitude, transform.position - force.normalized, 10);

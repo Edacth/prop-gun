@@ -53,7 +53,7 @@ public class PhysicsGun : MonoBehaviour
         if (null == effects)
         {
             effects = new Dictionary<Mode, PhysicsEffect>();
-            effects.Add(Mode.mass, new ChangeMass(data.minMass, data.maxMass));
+            effects.Add(Mode.mass, new ChangeMass());
             effects.Add(Mode.material, new ChangeMaterial(data.physMaterials));
             effects.Add(Mode.gravity, new ChangeGravity(data.minGrav, data.maxGrav));
             effects.Add(Mode.layer, new ChangeLayer(data.defaultLayer, data.layer1, data.layer2));
@@ -171,8 +171,11 @@ public class PhysicsGun : MonoBehaviour
     }
     public void Grab()
     {
+        if(grabPoint == null)
+        {
+            throw new System.Exception("You guys remeber to set grab point to an empty vaugly infront of the charecter");
+        }
         if (null == grabedObject) { return; }
-
         grabedObject.grabTarget = grabPoint;      
         grabedObject.grabUpdate();
     }
