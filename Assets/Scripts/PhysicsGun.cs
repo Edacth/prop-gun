@@ -58,7 +58,7 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.gravity, new ChangeGravity(data.minGrav, data.maxGrav));
             effects.Add(Mode.layer, new ChangeLayer(data.defaultLayer, data.layer1, data.layer2));
             effects.Add(Mode.kinematic, new ToggleKinematic());
-            effects.Add(Mode.force, new ApplyForce(data.force));
+            effects.Add(Mode.force, new ApplyForce(data.force, data.camera));
             effects.Add(Mode.magnet, new UseMagnet(data.magForce));
             effects.Add(Mode.torque, new ApplyTorque(data.torque));
         }
@@ -143,9 +143,7 @@ public class PhysicsGun : MonoBehaviour
         if(cur >= modeCount) { cur = 0; } //FIXME this may break when adding more than modeCount, modulo would fix that but would break on negitive numbers aswell, we may want to just make this take a up or down bool anyway
         else if(cur < 0) { cur = modeCount - 1; }
 
-        SwitchMode((Mode)cur);
-
-        
+        SwitchMode((Mode)cur); 
     }
 
     public void SwitchMode(Mode newMode)
