@@ -46,7 +46,7 @@ public class PhysicsValues : MonoBehaviour
     [Tooltip("Other collison layer")]
     public int layer2;
 
-    // kinematic (toggle - doesn't need anything
+    // kinematic (toggle - doesn't need anything)
 
     [Header("Force")]
     [SerializeField]
@@ -63,6 +63,15 @@ public class PhysicsValues : MonoBehaviour
     [SerializeField]
     [Tooltip("Torque applied")]
     public Vector3 torque;
+
+    [Header("Visualizer images")]
+    public Sprite bigMass;
+    public Sprite lilMass;
+    public Sprite layer;
+    public Sprite bounce;
+    public Sprite noBounce;
+    public Sprite friction;
+    public Sprite noFriction;
 
     void Awake()
     {

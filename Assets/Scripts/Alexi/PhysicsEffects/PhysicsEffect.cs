@@ -45,7 +45,10 @@ public abstract class PhysicsEffect
         // EffectEditor.Close();
     }
 
-    // public abstract void OnPointerEnter();
+    /// <summary>
+    /// initialize effect
+    /// </summary>
+    public virtual void OnPointerEnter() { }
 
     /// <summary>
     /// update interactable object visual indicator effects
@@ -53,7 +56,10 @@ public abstract class PhysicsEffect
     /// <param name="target"></param>
     public abstract void OnPointerStay(InteractableObject target);
 
-    // public abstract void OnPointerExit();
+    /// <summary>
+    /// terminate effect
+    /// </summary>
+    public virtual void OnPointerExit() { }
 
 }
 
@@ -83,12 +89,24 @@ public class ChangeMass : PhysicsEffect
         Debug.Log(target.name + " mass changed to " + currentMass);
     }
 
+    public override void OnPointerEnter()
+    {
+        // base.OnPointerEnter();
+        InteractableVisualizer.instance.ShowDisplay(InteractableObject.currentSelection.transform, Vector3.zero, PhysicsValues.instance.bigMass); // object position
+    }
+
     public override void OnPointerStay(InteractableObject target)
     {
         for(float i = 0; i < 2 * Mathf.PI; i += Mathf.PI / 12)
         {
             Debug.DrawLine(target.transform.position, target.transform.position + new Vector3(Mathf.Cos(i) * currentMass, 0, Mathf.Sin(i) * currentMass), Color.red);
         }
+    }
+
+    public override void OnPointerExit()
+    {
+        // base.OnPointerExit();
+        InteractableVisualizer.instance.HideDisplay();
     }
 
     public override void EnterEditMode()
@@ -226,7 +244,7 @@ public class ChangeLayer : PhysicsEffect
     List<Layer> layers;
 
     int def, lay1, lay2, idx;
-    Layer current;
+    Layer currentLayer;
     public ChangeLayer(int _def, int _lay1, int _lay2)
     {
         def = _def;
@@ -239,16 +257,16 @@ public class ChangeLayer : PhysicsEffect
         layers.Add(new Layer("layer1", lay1));
         layers.Add(new Layer("layer2", lay2));
 
-        current = layers[idx];
+        currentLayer = layers[idx];
     }
 
     private ChangeLayer() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.gameObject.layer = current.layer;
+        target.gameObject.layer = currentLayer.layer;
 
-        Debug.Log(target.name + " layer set to " + current.layer + ": " + current.name);
+        Debug.Log(target.name + " layer set to " + currentLayer.layer + ": " + currentLayer.name);
     }
 
     public override void RunEditMode()
@@ -257,17 +275,17 @@ public class ChangeLayer : PhysicsEffect
         {
             idx++;
             if (idx >= layers.Count) { idx = 0; }
-            current = layers[idx];
+            currentLayer = layers[idx];
 
-            Debug.Log("layer editor value set to " + current.layer);
+            Debug.Log("layer editor value set to " + currentLayer.layer);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
             idx--;
             if (idx < 0) { idx = layers.Count - 1; }
-            current = layers[idx];
+            currentLayer = layers[idx];
 
-            Debug.Log("layer editor value set to " + current.layer);
+            Debug.Log("layer editor value set to " + currentLayer.layer);
         }
     }
 
