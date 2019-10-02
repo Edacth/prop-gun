@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         cam.transform.rotation = Quaternion.Euler(0, horizontalRotation, 0) * Quaternion.AngleAxis(verticalRotation, lookDir * Vector3.right); //Remeber changing the order changes the result
         if(grounded)
         {
-            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, groundAccel, 4);
+            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, groundAccel, groundSpeed);
             if (Input.GetAxis("Jump")>0)
             {
                 Jump();
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
             
         } else
         {
-            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, airAccel, 4);
+            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, airAccel, airSpeed);
         }
         
     }
@@ -80,11 +80,14 @@ public class PlayerController : MonoBehaviour
         #endif
         float speed = Vector3.Dot(fakeVelocity,wishDir);
         
-        float addspeed = wishSpeed-speed * Time.fixedDeltaTime * accel;
-        if(!(speed > wishSpeed && addspeed>0))
+        float addspeed = wishSpeed - speed;
+        if (addspeed <= 0)
         {
-            fakeVelocity+=addspeed*wishDir;
+            return;
         }
+        addspeed = Mathf.Min(addspeed,accel*Time.fixedDeltaTime);
+
+        fakeVelocity+=addspeed*wishDir;
         return;        
     }
     void Jump()

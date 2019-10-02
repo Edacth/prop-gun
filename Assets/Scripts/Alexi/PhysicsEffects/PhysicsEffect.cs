@@ -148,7 +148,7 @@ public class ChangeMass : PhysicsEffect
     public override void ExitEditMode()
     {
         base.ExitEditMode();
-        PhysicsValues.instance.massPanel.SetActive(false);
+        //PhysicsValues.instance.massPanel.SetActive(false);
     }
 }
 
@@ -207,17 +207,13 @@ public class ChangeMaterial : PhysicsEffect
 
 public class ChangeGravity : PhysicsEffect
 {
-    float min, max;
-    public ChangeGravity(float _min, float _max)
-    {
-        min = _min;
-        max = _max;
-    }
+    bool ModeOfSettage;
 
-    private ChangeGravity() { }
+    public ChangeGravity() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
+        target.myRigidbody.useGravity = !target.myRigidbody.useGravity;
         target.GetComponent<Renderer>().material.color = Color.grey;
     }
 

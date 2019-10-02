@@ -31,11 +31,12 @@ public class PhysicsValues : MonoBehaviour
     [Tooltip("Available physics materials")]
     public List<PhysicMaterial> physMaterials; // would individual be better?
 
-    [Header("Gravity")]
-    [Tooltip("Minimum allowable gravity scale")]
-    public float minGrav;
-    [Tooltip("Maximum allowable gravity scale")]
-    public float maxGrav;
+    //Just going to use a gravity toggle, doesn't need anything
+    //[Header("Gravity")]
+    //[Tooltip("Minimum allowable gravity scale")]
+    //public float minGrav;
+    //[Tooltip("Maximum allowable gravity scale")]
+    //public float maxGrav;
 
     [Header("Layer")]
     [Tooltip("Default object layer")]
