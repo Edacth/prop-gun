@@ -51,7 +51,7 @@ public class PhysicsValues : MonoBehaviour
     [SerializeField]
     [Tooltip("Force applied")]
     public Vector3 force;
-    public GameObject camera;
+    public GameObject camera; // what is this for
 
     [Header("Magnet")]
     [SerializeField]

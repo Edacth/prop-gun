@@ -10,7 +10,7 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     [Tooltip("All the interactable objects")]
     public List<InteractableObject> objects;
 
-    PhysicsGun.Mode currentMode; // current gun mode
+    static PhysicsGun.Mode currentMode; // current gun mode
 
     void Start()
     {
@@ -18,6 +18,11 @@ public class InteractableObjectCollectionManager : MonoBehaviour
 
         // initialize another way
         objects = new List<InteractableObject>(FindObjectsOfType<InteractableObject>());
+
+        foreach(InteractableObject io in objects)
+        {
+            io.UnmarkActive();
+        }
     }
 
     /// <summary>
@@ -40,5 +45,20 @@ public class InteractableObjectCollectionManager : MonoBehaviour
         {
             io.MarkActive();
         }
+    }
+
+    /// <summary>
+    /// checks if object ie selesctable
+    /// </summary>
+    /// 
+    /// <param name="io">
+    /// object to check
+    /// param>
+    /// <returns>
+    /// this objece is selectable
+    /// </returns>
+    public static bool QuerySelectable(InteractableObject io)
+    {
+        return io.compatibleModes.Contains(currentMode);
     }
 }
