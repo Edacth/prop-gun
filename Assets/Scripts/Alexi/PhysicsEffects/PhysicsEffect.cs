@@ -148,7 +148,7 @@ public class ChangeMass : PhysicsEffect
     public override void ExitEditMode()
     {
         base.ExitEditMode();
-        PhysicsValues.instance.massPanel.SetActive(false);
+        //PhysicsValues.instance.massPanel.SetActive(false);
     }
 }
 
