@@ -58,7 +58,7 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.gravity, new ChangeGravity());
             effects.Add(Mode.layer, new ChangeLayer(data.defaultLayer, data.layer1, data.layer2));
             effects.Add(Mode.kinematic, new ToggleKinematic());
-            effects.Add(Mode.force, new ApplyForce(data.force, data.camera));
+            effects.Add(Mode.force, new ApplyForce(data.force, data.forceStepAmount, data.camera));
             effects.Add(Mode.magnet, new UseMagnet(data.magForce));
             effects.Add(Mode.torque, new ApplyTorque(data.torque));
         }

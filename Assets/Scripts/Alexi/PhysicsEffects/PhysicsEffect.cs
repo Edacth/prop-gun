@@ -318,11 +318,13 @@ public class ApplyForce : PhysicsEffect
     Vector3 defaultForce;
     Vector3 force;
     float rotation;
+    float stepAmount;
     GameObject camera;
-    public ApplyForce(Vector3 _defaultForce, GameObject _camera)
+    public ApplyForce(Vector3 _defaultForce, float _stepAmount, GameObject _camera)
     {
         defaultForce = _defaultForce;
         force = defaultForce;
+        stepAmount = _stepAmount;
         rotation = 0.0f;
         camera = _camera;
     }
@@ -354,13 +356,13 @@ public class ApplyForce : PhysicsEffect
         if (Input.mouseScrollDelta.y > 0)
         {
 
-            rotation += 10;
+            rotation += stepAmount;
             if (rotation > 360) { rotation -= 360; }
 
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
-            rotation -= 10;
+            rotation -= stepAmount;
             if (rotation < 360) { rotation += 360; }
 
         }
