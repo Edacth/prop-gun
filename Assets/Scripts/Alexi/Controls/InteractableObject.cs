@@ -14,6 +14,8 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField]
     [Tooltip("All modes that can interact with this object")]
     public List<PhysicsGun.Mode> compatibleModes;
+    [Tooltip("Effect visualiation")]
+    public InteractableVisualizer visual;
 
     public Rigidbody myRigidbody { get; private set; }
     public Collider myCollider { get; private set; }
@@ -35,7 +37,8 @@ public abstract class InteractableObject : MonoBehaviour
         myCollider = GetComponent<Collider>();
         myMeshRenderer = GetComponent<MeshRenderer>();
 
-        selectable = InteractableObjectCollectionManager.QuerySelectable(this);
+        selectable = true;
+        // selectable = InteractableObjectCollectionManager.QuerySelectable(this);
     }
 
     void Update()

@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa69eb42a085904b9c245f7c2170719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compatibleModes: 
+  compatibleModes: 00000000
   interactableChecker: {fileID: 1785408046}
   P: 25
   I: 3
@@ -1198,8 +1198,6 @@ MonoBehaviour:
   - {fileID: 13400000, guid: fc76308f8d713254d9b188f4a5491dc0, type: 2}
   - {fileID: 13400000, guid: 20fd4b381cb5856498d9466d7b800ccf, type: 2}
   - {fileID: 13400000, guid: 65f4d21e66cc4ce46901e4dae9faf895, type: 2}
-  minGrav: 0
-  maxGrav: 0
   defaultLayer: 0
   layer1: 0
   layer2: 0

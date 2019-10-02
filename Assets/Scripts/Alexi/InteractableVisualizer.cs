@@ -8,33 +8,29 @@ using UnityEngine.UI;
 /// </summary>
 public class InteractableVisualizer : MonoBehaviour
 {
-    public Image display; // holder for image to display
-
-    public static InteractableVisualizer instance;
-
-    Transform target; // target to show graphic
+    [SerializeField]
+    [Tooltip("holder for image to display")]
+    Image display;
+    [SerializeField]
+    [Tooltip("Mode this represents")]
+    PhysicsGun.Mode mode;
 
     void Start()
     {
-        instance = this;
         HideDisplay();
     }
 
     void Update()
     {
-        if(null != target)
-        {
-            transform.LookAt(target);
-        }
+        transform.LookAt(PhysicsValues.instance.visualTarget);
     }
 
     /// <summary>
     /// show the visualizer
     /// </summary>
-    public void ShowDisplay(Transform _target, Vector3 origin, Sprite sprite)
+    public void ShowDisplay(Vector3 origin, Sprite sprite)
     {
         display.enabled = true;
-        target = _target;
         // display.sprite = sprite;
 
         transform.position = origin;
@@ -46,6 +42,5 @@ public class InteractableVisualizer : MonoBehaviour
     public void HideDisplay()
     {
         display.enabled = false;
-        target = null;
     }
 }

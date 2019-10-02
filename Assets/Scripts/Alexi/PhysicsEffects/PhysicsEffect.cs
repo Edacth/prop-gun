@@ -92,7 +92,7 @@ public class ChangeMass : PhysicsEffect
     public override void OnPointerEnter()
     {
         // base.OnPointerEnter();
-        InteractableVisualizer.instance.ShowDisplay(InteractableObject.currentSelection.transform, Vector3.zero, PhysicsValues.instance.bigMass); // object position
+        // InteractableVisualizer.instance.ShowDisplay(InteractableObject.currentSelection.transform, Vector3.zero, PhysicsValues.instance.bigMass); // object position
     }
 
     public override void OnPointerStay(InteractableObject target)
@@ -106,7 +106,7 @@ public class ChangeMass : PhysicsEffect
     public override void OnPointerExit()
     {
         // base.OnPointerExit();
-        InteractableVisualizer.instance.HideDisplay();
+        // InteractableVisualizer.instance.HideDisplay();
     }
 
     public override void EnterEditMode()

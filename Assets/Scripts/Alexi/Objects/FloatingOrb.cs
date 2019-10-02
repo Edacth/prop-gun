@@ -8,6 +8,8 @@ public class FloatingOrb : InteractableObject
     {
         PhysicsGun.currentObject = this;
 
+        // visual?.ShowDisplay();
+
         myMeshRenderer.material.color = Color.green;
     }
 
