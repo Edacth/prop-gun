@@ -14,6 +14,8 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField]
     [Tooltip("All modes that can interact with this object")]
     public List<PhysicsGun.Mode> compatibleModes;
+    [Tooltip("Effect visualiation")]
+    public InteractableVisualizer visual;
 
     public Rigidbody myRigidbody { get; private set; }
     public Collider myCollider { get; private set; }
@@ -36,6 +38,7 @@ public abstract class InteractableObject : MonoBehaviour
         myMeshRenderer = GetComponent<MeshRenderer>();
 
         selectable = true;
+        // selectable = InteractableObjectCollectionManager.QuerySelectable(this);
     }
 
     void Update()
@@ -48,7 +51,9 @@ public abstract class InteractableObject : MonoBehaviour
 
     void CheckIfSelected()
     {
-        if (interactableChecker.getRaycastHit().transform == transform && !selected && selectable)
+        if (!selectable) { return; }
+
+        if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
             // _meshRenderer.material.color = selectedColor;
             currentSelection = this;

@@ -74,8 +74,17 @@ public class PhysicsValues : MonoBehaviour
     public Sprite friction;
     public Sprite noFriction;
 
+    [Header("Other")]
+    [Tooltip("Target for visualizers")]
+    public Transform visualTarget;
+
     void Awake()
     {
         instance = this;
+
+        if(null == visualTarget)
+        {
+            Debug.LogError("No visual target set");
+        }
     }
 }
