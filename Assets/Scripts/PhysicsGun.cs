@@ -55,7 +55,7 @@ public class PhysicsGun : MonoBehaviour
             effects = new Dictionary<Mode, PhysicsEffect>();
             effects.Add(Mode.mass, new ChangeMass());
             effects.Add(Mode.material, new ChangeMaterial(data.physMaterials));
-            effects.Add(Mode.gravity, new ChangeGravity(data.minGrav, data.maxGrav));
+            effects.Add(Mode.gravity, new ChangeGravity());
             effects.Add(Mode.layer, new ChangeLayer(data.defaultLayer, data.layer1, data.layer2));
             effects.Add(Mode.kinematic, new ToggleKinematic());
             effects.Add(Mode.force, new ApplyForce(data.force, data.camera));
