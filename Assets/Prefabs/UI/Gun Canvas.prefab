@@ -1881,7 +1881,7 @@ GameObject:
   - component: {fileID: 5844804889831899422}
   - component: {fileID: 5844804889831899423}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Mass Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3165,7 +3165,7 @@ GameObject:
   - component: {fileID: 5844804891592523181}
   - component: {fileID: 5844804891592523180}
   m_Layer: 5
-  m_Name: Value
+  m_Name: Mass Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3562,7 +3562,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bd555bc6859b5f54e9ac5103703a6d49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0177c1ffc4f50044ac5b808165c96d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3713,11 +3713,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

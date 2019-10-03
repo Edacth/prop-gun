@@ -33,12 +33,12 @@ public class PhysicsValues : MonoBehaviour
     [SerializeField]
     public MaterialUI[] m;
 
-    //Just going to use a gravity toggle, doesn't need anything
-    //[Header("Gravity")]
-    //[Tooltip("Minimum allowable gravity scale")]
-    //public float minGrav;
-    //[Tooltip("Maximum allowable gravity scale")]
-    //public float maxGrav;
+    [Header("Gravity")]
+    [Tooltip("Gravity panel UI")]
+    public GameObject gravityImage;
+    public Sprite onSprite;
+    public Sprite offSprite;
+    public Sprite noneSprite;
 
     [Header("Layer")]
     [Tooltip("Default object layer")]
@@ -53,9 +53,13 @@ public class PhysicsValues : MonoBehaviour
     [Header("Force")]
     [SerializeField]
     [Tooltip("Force applied")]
-    public Vector3 force;
+    public Vector3 force = new Vector3(0, 0, -600);
+    [Tooltip("Amount to increment in run mode")]
     public float forceStepAmount = 10;
+    [Tooltip("Camera to base rotation off of. Should be player's camera")]
     public GameObject camera;
+    [Tooltip("Mass panel UI")]
+    public GameObject forceImage;
 
     [Header("Magnet")]
     [SerializeField]

@@ -9,6 +9,9 @@ public class FloatingOrb : InteractableObject
         PhysicsGun.currentObject = this;
 
         visual?.ShowDisplay(transform.position);
+        
+        // This might be a really dumb way to do this. SORRY ALEXI
+        PhysicsEffect.current.OnPointerEnter(this);
     }
 
     public override void OnPointerExit()
@@ -16,5 +19,8 @@ public class FloatingOrb : InteractableObject
         PhysicsGun.currentObject = null;
 
         visual?.HideDisplay();
+
+        // This might be a really dumb way to do this. SORRY ALEXI
+        PhysicsEffect.current.OnPointerExit();
     }
 }

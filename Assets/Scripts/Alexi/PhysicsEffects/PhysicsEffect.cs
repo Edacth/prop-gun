@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // ToDo: add ui, colors, inspector vars, etc
 
@@ -48,7 +49,7 @@ public abstract class PhysicsEffect
     /// <summary>
     /// initialize effect
     /// </summary>
-    public virtual void OnPointerEnter() { }
+    public virtual void OnPointerEnter(InteractableObject target) { }
 
     /// <summary>
     /// update interactable object visual indicator effects
@@ -89,7 +90,7 @@ public class ChangeMass : PhysicsEffect
         Debug.Log(target.name + " mass changed to " + currentMass);
     }
 
-    public override void OnPointerEnter()
+    public override void OnPointerEnter(InteractableObject target)
     {
         // base.OnPointerEnter();
         // InteractableVisualizer.instance.ShowDisplay(InteractableObject.currentSelection.transform, Vector3.zero, PhysicsValues.instance.bigMass); // object position
@@ -208,13 +209,23 @@ public class ChangeMaterial : PhysicsEffect
 public class ChangeGravity : PhysicsEffect
 {
     bool ModeOfSettage;
+    Image GravityImage;
 
-    public ChangeGravity() { }
+    public ChangeGravity()
+    {
+        GravityImage = PhysicsValues.instance.gravityImage.GetComponent<Image>();
+    }
 
     public override void ApplyEffect(InteractableObject target)
     {
         target.myRigidbody.useGravity = !target.myRigidbody.useGravity;
         target.GetComponent<Renderer>().material.color = Color.grey;
+        GravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
+    }
+
+    public override void OnPointerEnter(InteractableObject target)
+    {
+        GravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
     }
 
     public override void OnPointerStay(InteractableObject target)
@@ -222,9 +233,13 @@ public class ChangeGravity : PhysicsEffect
         // gravity things
     }
 
+    public override void OnPointerExit()
+    {
+        GravityImage.sprite = PhysicsValues.instance.noneSprite;
+    }
+
     public override void RunEditMode()
     {
-        throw new System.NotImplementedException();
     }
 }
 
@@ -358,13 +373,13 @@ public class ApplyForce : PhysicsEffect
 
             rotation += stepAmount;
             if (rotation > 360) { rotation -= 360; }
-
+            PhysicsValues.instance.forceImage.transform.eulerAngles = new Vector3(0, 0, rotation);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
             rotation -= stepAmount;
             if (rotation < 360) { rotation += 360; }
-
+            PhysicsValues.instance.forceImage.transform.eulerAngles = new Vector3(0, 0, rotation);
         }
     }
 }
