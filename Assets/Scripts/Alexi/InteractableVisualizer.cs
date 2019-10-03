@@ -9,15 +9,21 @@ using UnityEngine.UI;
 public class InteractableVisualizer : MonoBehaviour
 {
     [SerializeField]
-    [Tooltip("holder for image to display")]
-    Image display;
+    [Tooltip("Holder for image to display")]
+    GameObject display;
+    [SerializeField]
+    [Tooltip("Image to display")]
+    Sprite sprite;
     [SerializeField]
     [Tooltip("Mode this represents")]
     PhysicsGun.Mode mode;
 
+    MeshRenderer mr;
+
     void Start()
     {
-        HideDisplay();
+        mr = GetComponentInChildren<MeshRenderer>();
+        HideDisplay();        
     }
 
     void Update()
@@ -28,10 +34,9 @@ public class InteractableVisualizer : MonoBehaviour
     /// <summary>
     /// show the visualizer
     /// </summary>
-    public void ShowDisplay(Vector3 origin, Sprite sprite)
+    public void ShowDisplay(Vector3 origin)
     {
-        display.enabled = true;
-        // display.sprite = sprite;
+        mr.enabled = true;
 
         transform.position = origin;
     }
@@ -41,6 +46,6 @@ public class InteractableVisualizer : MonoBehaviour
     /// </summary>
     public void HideDisplay()
     {
-        display.enabled = false;
+        mr.enabled = false;
     }
 }

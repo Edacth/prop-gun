@@ -30,6 +30,8 @@ public class PhysicsValues : MonoBehaviour
     [Header("Material")]
     [Tooltip("Available physics materials")]
     public List<PhysicMaterial> physMaterials; // would individual be better?
+    [SerializeField]
+    public MaterialUI[] m;
 
     //Just going to use a gravity toggle, doesn't need anything
     //[Header("Gravity")]
@@ -84,10 +86,10 @@ public class PhysicsValues : MonoBehaviour
     void Awake()
     {
         instance = this;
-
-        if(null == visualTarget)
+        if (null == visualTarget)
         {
-            Debug.LogError("No visual target set");
+            Debug.LogError("No visual target set, cannot display visualizer icons");
         }
     }
+
 }
