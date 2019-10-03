@@ -91,7 +91,7 @@ public abstract class InteractableObject : MonoBehaviour
 
         selectable = true;
 
-        Debug.Log(name + " active");
+        // Debug.Log(name + " active");
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         selectable = false;
 
-        Debug.Log(name + " inactive");
+        // Debug.Log(name + " inactive");
     }
 
     // Subscribing Delegate

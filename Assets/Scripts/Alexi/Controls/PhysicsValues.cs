@@ -80,10 +80,10 @@ public class PhysicsValues : MonoBehaviour
     void Awake()
     {
         instance = this;
-
-        if(null == visualTarget)
+        if (null == visualTarget)
         {
-            Debug.LogError("No visual target set");
+            Debug.LogError("No visual target set, cannot display visualizer icons");
         }
     }
+
 }
