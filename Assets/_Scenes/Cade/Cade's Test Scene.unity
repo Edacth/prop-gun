@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &126790879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5844804890103085927, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &165622511
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +572,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472243463}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &493572568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4081172059705793923, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &497736919 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5844804891592523180, guid: 5cddf593ad22adf44ae948e18a52875a,
@@ -752,6 +764,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cddf593ad22adf44ae948e18a52875a, type: 3}
+--- !u!1 &602783649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 935395349146699690, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &677175585
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +869,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &795687800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742317089188075275, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &802222472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1057,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &864753199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4973096051769234573, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &889100189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 0000000001000000020000000500000004000000
+  visual: {fileID: 0}
   interactableChecker: {fileID: 422277662}
   P: 0
   I: 0
@@ -1651,6 +1682,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1247718301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5014458132924185238, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1293819260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1863,6 +1900,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
       propertyPath: massPanel
       value: 
       objectReference: {fileID: 237091779}
@@ -1882,6 +1923,34 @@ PrefabInstance:
       propertyPath: step
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[0]
+      value: 
+      objectReference: {fileID: 237091779}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[1]
+      value: 
+      objectReference: {fileID: 126790879}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[2]
+      value: 
+      objectReference: {fileID: 1247718301}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[3]
+      value: 
+      objectReference: {fileID: 602783649}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[4]
+      value: 
+      objectReference: {fileID: 795687800}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[5]
+      value: 
+      objectReference: {fileID: 864753199}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: UIPanels.Array.data[6]
+      value: 
+      objectReference: {fileID: 493572568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
 --- !u!1 &1839058594
@@ -1918,6 +1987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 0000000001000000020000000500000004000000
+  visual: {fileID: 0}
   interactableChecker: {fileID: 422277662}
   P: 0
   I: 0

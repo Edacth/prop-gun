@@ -110,7 +110,7 @@ public class PhysicsGun : MonoBehaviour
             if (Input.GetKeyDown(keyCodes[i]))
             {
                 int numberPressed = i + 1;
-                Mode newMode = (Mode)numberPressed;
+                Mode newMode = (Mode)numberPressed - 1;
                 SwitchMode(newMode);
                 //Debug.Log(numberPressed);
             }
@@ -152,7 +152,8 @@ public class PhysicsGun : MonoBehaviour
 
         // any kind of animation here
 
-        // switch gun ui
+        // Switch gun UI panels
+        SwitchUI(newMode);
 
         currentMode = newMode;
         effects.TryGetValue(currentMode, out PhysicsEffect.current);
@@ -187,5 +188,21 @@ public class PhysicsGun : MonoBehaviour
     public void UnGrab()
     {
         grabedObject = null;
+    }
+
+    /// <summary>
+    /// Set all ui panels to false except the one we want
+    /// </summary>
+    private void SwitchUI(Mode newMode)
+    {
+        data.UIPanels[(int)newMode].SetActive(true);
+
+        int offset = (int)newMode + 1;
+        for (int i = 0; i < data.UIPanels.Length - 1; ++i)
+        {
+            int index = (offset + i) % data.UIPanels.Length;
+            data.UIPanels[index].SetActive(false);
+            //Debug.Log("Disable " + (Mode)index);
+        }
     }
 }

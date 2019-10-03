@@ -74,6 +74,9 @@ public class PhysicsValues : MonoBehaviour
     public Sprite friction;
     public Sprite noFriction;
 
+    [Header("UI Panels")]
+    public GameObject[] UIPanels;
+
     [Header("Other")]
     [Tooltip("Target for visualizers")]
     public Transform visualTarget;
