@@ -30,6 +30,8 @@ public class PhysicsValues : MonoBehaviour
     [Header("Material")]
     [Tooltip("Available physics materials")]
     public List<PhysicMaterial> physMaterials; // would individual be better?
+    [SerializeField]
+    public MaterialUI[] m;
 
     //Just going to use a gravity toggle, doesn't need anything
     //[Header("Gravity")]

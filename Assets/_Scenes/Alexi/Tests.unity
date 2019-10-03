@@ -710,6 +710,22 @@ PrefabInstance:
       propertyPath: m_ClearFlags
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5844804890103085927, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804890381139118, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804890780772029, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1d49e450c8653c940a425d7702a46500,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cddf593ad22adf44ae948e18a52875a, type: 3}
 --- !u!1001 &807726353
@@ -1394,6 +1410,7 @@ MonoBehaviour:
   layer1: 0
   layer2: 0
   force: {x: 0, y: 0, z: 0}
+  forceStepAmount: 10
   camera: {fileID: 0}
   magForce: {x: 0, y: 0, z: 0}
   torque: {x: 0, y: 0, z: 0}
