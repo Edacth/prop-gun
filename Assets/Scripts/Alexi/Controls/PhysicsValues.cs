@@ -50,11 +50,11 @@ public class PhysicsValues : MonoBehaviour
     [Header("Layer")]
     public bool layerEnabled = false;
     [Tooltip("Default object layer")]
-    public int defaultLayer;
-    [Tooltip("Other collison layer")]
-    public int layer1;
-    [Tooltip("Other collison layer")]
-    public int layer2;
+    public LayerUI[] layers;
+    [Tooltip("Layer image")]
+    public Image layerImage;
+    [Tooltip("Layer name text")]
+    public TextMeshProUGUI layerName;
 
     // kinematic (toggle - doesn't need anything)
 
@@ -103,7 +103,7 @@ public class PhysicsValues : MonoBehaviour
         instance = this;
         if (null == visualTarget)
         {
-            Debug.LogError("No visual target set, cannot display visualizer icons");
+            Debug.LogWarning("No visual target set, cannot display visualizer icons");
         }
     }
 

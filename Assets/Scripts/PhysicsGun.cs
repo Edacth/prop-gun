@@ -65,6 +65,13 @@ public class PhysicsGun : MonoBehaviour
         currentMode = Mode.mass; // initialize to default
         SwitchMode(currentMode); // initialize effect
 
+        // debug for physics effect
+        if(null == PhysicsEffect.current)
+        {
+            Debug.LogWarning("Physics effect not set. Default to mass");
+            PhysicsEffect.current = new ChangeMass();
+        }
+
         // can be changed to drag and drop for performance later
         collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
     }
@@ -157,7 +164,8 @@ public class PhysicsGun : MonoBehaviour
 
         // Switch gun UI panels
         SwitchUI(newMode);
-        PhysicsEffect.current.OnSwitchedTo();
+        if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect"); }
+        else { PhysicsEffect.current?.OnSwitchedTo(); }
     }
 
     /// <summary>
