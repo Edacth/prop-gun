@@ -25,19 +25,33 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     bool grounded = false;
     Vector3 fakeVelocity = Vector3.zero;
-    
+    float tempDeleteThis = 0;
+    Rigidbody[] rbs;
     private void Start()
     {
+        rbs = transform.GetComponentsInChildren<Rigidbody>();
         verticalRotation = transform.eulerAngles.y;
         rb = GetComponent<Rigidbody>();
         lookDir = cam.transform.rotation;
     }
+
+    void Die()
+    {
+        GetComponentInChildren<Animator>().enabled = false;
+
+        for (int i = 0; i < rbs.Length; i++)
+        {
+            rbs[i].isKinematic = false;
+            rbs[i].transform.GetComponent<Collider>().enabled = true;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         jumpedThisFrame = false;
         fakeVelocity += Physics.gravity*Time.fixedDeltaTime;
-        transform.position += fakeVelocity*Time.fixedDeltaTime;
+        rb.MovePosition(transform.position+fakeVelocity*Time.fixedDeltaTime);
         // print(fakeVelocity);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -51,20 +65,27 @@ public class PlayerController : MonoBehaviour
         cam.transform.rotation = Quaternion.Euler(0, horizontalRotation, 0) * Quaternion.AngleAxis(verticalRotation, lookDir * Vector3.right); //Remeber changing the order changes the result
         if(grounded)
         {
-            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, groundAccel, groundSpeed);
-            if (Input.GetAxis("Jump")>0)
+           
+            if (Input.GetButtonDown("Jump"))
             {
+                Die();
                 Jump();
+                Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, airSpeed, airAccel);
             } else
             {
+                Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, groundSpeed, groundAccel);
                 fakeVelocity -= new Vector3(fakeVelocity.x * groundedFriction * Time.fixedDeltaTime, 0, fakeVelocity.z * groundedFriction * Time.fixedDeltaTime);
             }
             
         } else
         {
-            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, airAccel, airSpeed);
+            Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, airSpeed, airAccel);
         }
         
+    }
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(0,0,100,100), tempDeleteThis.ToString());
     }
     void Accelerate(Vector3 wishDir, float wishSpeed, float accel)
     {
@@ -79,13 +100,17 @@ public class PlayerController : MonoBehaviour
         }
         #endif
         float speed = Vector3.Dot(fakeVelocity,wishDir);
-        
+        tempDeleteThis = speed;
         float addspeed = wishSpeed - speed;
         if (addspeed <= 0)
         {
             return;
         }
-        addspeed = Mathf.Min(addspeed,accel*Time.fixedDeltaTime);
+        float accelSpeed = accel * Time.fixedDeltaTime;
+        if (accelSpeed<addspeed)
+        {
+            addspeed = accelSpeed;
+        }
 
         fakeVelocity+=addspeed*wishDir;
         return;        
@@ -104,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpedThisFrame) return;
         Vector3 normal = collision.contacts[0].normal;
-        if (Vector3.Dot(normal, Vector3.up) > 0.5f)
+        if (Vector3.Dot(normal, Vector3.up) > 0.7f)
         {
             grounded = true;
         }
@@ -115,9 +140,14 @@ public class PlayerController : MonoBehaviour
             backOff *= overBounce;
         } else
         {
-            backOff /= overBounce;
+            return;
+            backOff /= overBounce;//honestly why does quake do this? makes no sense to me
         }
-        
+        if (collision.collider.attachedRigidbody)
+        {
+            
+            collision.collider.attachedRigidbody.AddForceAtPosition(backOff*normal, collision.contacts[0].point,ForceMode.VelocityChange);
+        }
         fakeVelocity-=normal*backOff;
     }
     private void OnCollisionExit(Collision collision)
