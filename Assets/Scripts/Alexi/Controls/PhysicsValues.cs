@@ -36,6 +36,8 @@ public class PhysicsValues : MonoBehaviour
     [Header("Gravity")]
     [Tooltip("Gravity panel UI")]
     public GameObject gravityImage;
+    [Tooltip("Gravity panel UI")]
+    public GameObject gravityValue;
     public Sprite onSprite;
     public Sprite offSprite;
     public Sprite noneSprite;

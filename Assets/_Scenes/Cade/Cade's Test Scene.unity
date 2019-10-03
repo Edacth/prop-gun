@@ -532,16 +532,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5844804891592523180, guid: 5cddf593ad22adf44ae948e18a52875a,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5844804891592523180, guid: 5cddf593ad22adf44ae948e18a52875a,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5844804890032608803, guid: 5cddf593ad22adf44ae948e18a52875a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -647,11 +637,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5844804891453896144, guid: 5cddf593ad22adf44ae948e18a52875a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5844804890902753874, guid: 5cddf593ad22adf44ae948e18a52875a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -666,6 +651,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804891592523180, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804891592523180, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804891453896144, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cddf593ad22adf44ae948e18a52875a, type: 3}
@@ -1737,6 +1737,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293819260}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1312942330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5004895943530368907, guid: 5cddf593ad22adf44ae948e18a52875a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557639581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1438422514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3317050841622563404, guid: 5cddf593ad22adf44ae948e18a52875a,
@@ -1754,11 +1760,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 527720482991473060, guid: ab4843b9804d9814bafbc9cb59eeed56,
-        type: 3}
-      propertyPath: checkDistance
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1346194480879902263, guid: ab4843b9804d9814bafbc9cb59eeed56,
         type: 3}
@@ -1906,6 +1907,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a0177c1ffc4f50044ac5b808165c96d2,
         type: 3}
+    - target: {fileID: 1678952791, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
+      propertyPath: gavityValue
+      value: 
+      objectReference: {fileID: 1312942330}
+    - target: {fileID: 527720482991473060, guid: ab4843b9804d9814bafbc9cb59eeed56,
+        type: 3}
+      propertyPath: checkDistance
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab4843b9804d9814bafbc9cb59eeed56, type: 3}
 --- !u!1 &1667831157 stripped

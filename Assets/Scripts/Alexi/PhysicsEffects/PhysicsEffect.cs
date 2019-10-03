@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // ToDo: add ui, colors, inspector vars, etc
 
@@ -26,7 +27,7 @@ public abstract class PhysicsEffect
     /// </summary>
     public virtual void EnterEditMode()
     {
-        Debug.Log("enter " + GetType().ToString() + " editor");
+        //Debug.Log("enter " + GetType().ToString() + " editor");
 
         // EffectEditor.Open(PhysicsEffectType this);
     }
@@ -41,7 +42,7 @@ public abstract class PhysicsEffect
     /// </summary>
     public virtual void ExitEditMode()
     {
-        Debug.Log("exit " + GetType().ToString() + " editor");
+        //Debug.Log("exit " + GetType().ToString() + " editor");
 
         // EffectEditor.Close();
     }
@@ -61,6 +62,8 @@ public abstract class PhysicsEffect
     /// terminate effect
     /// </summary>
     public virtual void OnPointerExit() { }
+
+    public virtual void OnSwitchedTo() { }
 
 }
 
@@ -85,9 +88,6 @@ public class ChangeMass : PhysicsEffect
     {
         target.myRigidbody.mass = currentMass;
         target.myRigidbody.WakeUp();
-
-
-        Debug.Log(target.name + " mass changed to " + currentMass);
     }
 
     public override void OnPointerEnter(InteractableObject target)
@@ -128,8 +128,6 @@ public class ChangeMass : PhysicsEffect
             PhysicsValues.instance.massSlider.value =
                 Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
             PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
-
-            Debug.Log("mass editor value = " + currentMass);
         }
         else if(Input.mouseScrollDelta.y < 0)
         {
@@ -141,8 +139,6 @@ public class ChangeMass : PhysicsEffect
             PhysicsValues.instance.massSlider.value = 
                 Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
             PhysicsValues.instance.massText.text = currentMass.ToString("0.0");
-
-            Debug.Log("mass editor value = " + currentMass);
         }
     }
 
@@ -208,38 +204,55 @@ public class ChangeMaterial : PhysicsEffect
 
 public class ChangeGravity : PhysicsEffect
 {
-    bool ModeOfSettage;
-    Image GravityImage;
+    bool modeOfSettage;
+    Image gravityImage;
+    TMP_Text gravityValue;
+    bool newTarget;
 
     public ChangeGravity()
     {
-        GravityImage = PhysicsValues.instance.gravityImage.GetComponent<Image>();
+        gravityImage = PhysicsValues.instance.gravityImage.GetComponent<Image>();
+        gravityValue = PhysicsValues.instance.gravityValue.GetComponent<TMP_Text>();
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
         target.myRigidbody.useGravity = !target.myRigidbody.useGravity;
-        target.GetComponent<Renderer>().material.color = Color.grey;
-        GravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
+        gravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
+        gravityValue.text = target.myRigidbody.useGravity ? "ON" : "OFF";
     }
 
     public override void OnPointerEnter(InteractableObject target)
     {
-        GravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
+        newTarget = true;
     }
 
     public override void OnPointerStay(InteractableObject target)
     {
-        // gravity things
+        if (newTarget)
+        {
+            if (null != target)
+            {
+                gravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
+                gravityValue.text = target.myRigidbody.useGravity ? "ON" : "OFF";
+            }
+            newTarget = false;
+        }
     }
 
     public override void OnPointerExit()
     {
-        GravityImage.sprite = PhysicsValues.instance.noneSprite;
+        gravityImage.sprite = PhysicsValues.instance.noneSprite;
+        gravityValue.text = "NULL";
     }
 
-    public override void RunEditMode()
+    public override void RunEditMode() { }
+
+    public override void OnSwitchedTo()
     {
+        gravityImage.sprite = PhysicsValues.instance.noneSprite;
+        gravityValue.text = "NULL";
+        newTarget = true;
     }
 }
 

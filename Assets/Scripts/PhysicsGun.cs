@@ -42,8 +42,7 @@ public class PhysicsGun : MonoBehaviour
          KeyCode.Alpha5,
          KeyCode.Alpha6,
          KeyCode.Alpha7,
-         KeyCode.Alpha8,
-         KeyCode.Alpha9,
+         KeyCode.Alpha8
     };
 
     // Start is called before the first frame update
@@ -152,12 +151,13 @@ public class PhysicsGun : MonoBehaviour
 
         // any kind of animation here
 
-        // Switch gun UI panels
-        SwitchUI(newMode);
-
         currentMode = newMode;
         effects.TryGetValue(currentMode, out PhysicsEffect.current);
-        Debug.Log(currentMode);
+        //Debug.Log(currentMode);
+
+        // Switch gun UI panels
+        SwitchUI(newMode);
+        PhysicsEffect.current.OnSwitchedTo();
     }
 
     /// <summary>
