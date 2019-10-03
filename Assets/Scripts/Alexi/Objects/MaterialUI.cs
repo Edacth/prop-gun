@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
+using System;
 
-[SerializeField]
+[Serializable]
 public class MaterialUI
 {
-    [SerializeField]
     public string name;
-    [SerializeField]
     public PhysicMaterial material;
+    public Sprite image;
 }
