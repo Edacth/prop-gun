@@ -12,6 +12,7 @@ public class PhysicsValues : MonoBehaviour
     public static PhysicsValues instance;
 
     [Header("Mass")]
+    public bool massEnabled = false;
     [Tooltip("Minimum allowable mass")]
     public float minMass;
     [Tooltip("Maximum allowable mass")]
@@ -28,12 +29,16 @@ public class PhysicsValues : MonoBehaviour
     public TextMeshProUGUI massText;
 
     [Header("Material")]
+    public bool materialEnabled = false;
     [Tooltip("Available physics materials")]
-    public List<PhysicMaterial> physMaterials; // would individual be better?
-    [SerializeField]
-    public MaterialUI[] m;
+    public MaterialUI[] physMaterials;
+    [Tooltip("Material image")]
+    public Image matImage;
+    [Tooltip("Material name text")]
+    public TextMeshProUGUI matName;
 
     [Header("Gravity")]
+    public bool gravityEnabled = false;
     [Tooltip("Gravity panel UI")]
     public GameObject gravityImage;
     [Tooltip("Gravity panel UI")]
@@ -43,16 +48,18 @@ public class PhysicsValues : MonoBehaviour
     public Sprite noneSprite;
 
     [Header("Layer")]
+    public bool layerEnabled = false;
     [Tooltip("Default object layer")]
-    public int defaultLayer;
-    [Tooltip("Other collison layer")]
-    public int layer1;
-    [Tooltip("Other collison layer")]
-    public int layer2;
+    public LayerUI[] layers;
+    [Tooltip("Layer image")]
+    public Image layerImage;
+    [Tooltip("Layer name text")]
+    public TextMeshProUGUI layerName;
 
     // kinematic (toggle - doesn't need anything)
 
     [Header("Force")]
+    public bool forceEnabled = false;
     [SerializeField]
     [Tooltip("Force applied")]
     public Vector3 force = new Vector3(0, 0, -600);
@@ -64,11 +71,13 @@ public class PhysicsValues : MonoBehaviour
     public GameObject forceImage;
 
     [Header("Magnet")]
+    public bool magnetEnabled;
     [SerializeField]
     [Tooltip("Force applied towards player")]
     public Vector3 magForce;
 
     [Header("Torque")]
+    public bool torqueEnabled = false;
     [SerializeField]
     [Tooltip("Torque applied")]
     public Vector3 torque;
@@ -94,7 +103,7 @@ public class PhysicsValues : MonoBehaviour
         instance = this;
         if (null == visualTarget)
         {
-            Debug.LogError("No visual target set, cannot display visualizer icons");
+            Debug.LogWarning("No visual target set, cannot display visualizer icons");
         }
     }
 

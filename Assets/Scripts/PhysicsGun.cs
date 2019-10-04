@@ -53,9 +53,9 @@ public class PhysicsGun : MonoBehaviour
         {
             effects = new Dictionary<Mode, PhysicsEffect>();
             effects.Add(Mode.mass, new ChangeMass());
-            effects.Add(Mode.material, new ChangeMaterial(data.physMaterials));
+            effects.Add(Mode.material, new ChangeMaterial());
             effects.Add(Mode.gravity, new ChangeGravity());
-            effects.Add(Mode.layer, new ChangeLayer(data.defaultLayer, data.layer1, data.layer2));
+            effects.Add(Mode.layer, new ChangeLayer());
             effects.Add(Mode.kinematic, new ToggleKinematic());
             effects.Add(Mode.force, new ApplyForce(data.force, data.forceStepAmount, data.camera));
             effects.Add(Mode.magnet, new UseMagnet(data.magForce));
@@ -64,6 +64,13 @@ public class PhysicsGun : MonoBehaviour
 
         currentMode = Mode.mass; // initialize to default
         SwitchMode(currentMode); // initialize effect
+
+        // debug for physics effect
+        if(null == PhysicsEffect.current)
+        {
+            Debug.LogWarning("Physics effect not set. Default to mass");
+            PhysicsEffect.current = new ChangeMass();
+        }
 
         // can be changed to drag and drop for performance later
         collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
@@ -157,7 +164,8 @@ public class PhysicsGun : MonoBehaviour
 
         // Switch gun UI panels
         SwitchUI(newMode);
-        PhysicsEffect.current.OnSwitchedTo();
+        if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect"); }
+        else { PhysicsEffect.current?.OnSwitchedTo(); }
     }
 
     /// <summary>

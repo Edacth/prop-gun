@@ -154,51 +154,52 @@ public class ChangeMass : PhysicsEffect
 /// </summary>
 public class ChangeMaterial : PhysicsEffect
 {
-    List<PhysicMaterial> mats;
-    PhysicMaterial currentMat;
+    MaterialUI currentMat;
     int idx;
-
-    private ChangeMaterial() { }
-    public ChangeMaterial(List<PhysicMaterial> _mats)
+    public ChangeMaterial()
     {
-        mats = _mats;
         idx = 0;
-        if (mats.Count <= 0) { return; }
+        if (PhysicsValues.instance.physMaterials.Length <= 0) { return; }
 
-        currentMat = mats[idx];
+        currentMat = PhysicsValues.instance.physMaterials[idx];
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
         if(null == current) { return; }
-        target.myCollider.material = currentMat;
+        target.myCollider.material = currentMat.material;
 
         Debug.Log(target.name + " physics material set to " + currentMat.name);
     }
 
     public override void RunEditMode()
     {
-        if(Input.mouseScrollDelta.y > 0)
+        if (!PhysicsValues.instance.materialEnabled) { return; }
+
+        if(Input.mouseScrollDelta.y == 0) { return; }
+        else if(Input.mouseScrollDelta.y > 0)
         {
             idx++;
-            if(idx >= mats.Count) { idx = 0; }
-            currentMat = mats[idx];
-
-            Debug.Log("material editor value set to " + currentMat.name);
+            if(idx >= PhysicsValues.instance.physMaterials.Length) { idx = 0; }          
         }
-        else if (Input.mouseScrollDelta.y < 0)
+        else
         {
             idx--;
-            if (idx < 0) { idx = mats.Count - 1; }
-            currentMat = mats[idx];
-
-            Debug.Log("material editor value set to " + currentMat.name);
+            if (idx < 0) { idx = PhysicsValues.instance.physMaterials.Length - 1; }
         }
+
+        currentMat = PhysicsValues.instance.physMaterials[idx];
+        PhysicsValues.instance.matName.text = currentMat.name;
+        PhysicsValues.instance.matImage.sprite = currentMat.image;
     }
 
     public override void OnPointerStay(InteractableObject target)
     {
-        // material things
+        for (float i = 0; i < 2 * Mathf.PI; i += Mathf.PI / 12)
+        {
+            Debug.DrawLine(target.transform.position, target.transform.position 
+                + new Vector3(Mathf.Cos(i) * 2, Mathf.Sin(i) * 2, 0), Color.red);
+        }
     }
 }
 
@@ -211,12 +212,16 @@ public class ChangeGravity : PhysicsEffect
 
     public ChangeGravity()
     {
+        if(null == gravityImage) { return; }
+
         gravityImage = PhysicsValues.instance.gravityImage.GetComponent<Image>();
         gravityValue = PhysicsValues.instance.gravityValue.GetComponent<TMP_Text>();
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
+        if(null == gravityImage) { return; } // no action if values not assigned
+
         target.myRigidbody.useGravity = !target.myRigidbody.useGravity;
         gravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
         gravityValue.text = target.myRigidbody.useGravity ? "ON" : "OFF";
@@ -242,6 +247,8 @@ public class ChangeGravity : PhysicsEffect
 
     public override void OnPointerExit()
     {
+        if (!PhysicsValues.instance.gravityEnabled) { return; }
+
         gravityImage.sprite = PhysicsValues.instance.noneSprite;
         gravityValue.text = "NULL";
     }
@@ -250,6 +257,8 @@ public class ChangeGravity : PhysicsEffect
 
     public override void OnSwitchedTo()
     {
+        if (!PhysicsValues.instance.gravityEnabled) { return; }
+
         gravityImage.sprite = PhysicsValues.instance.noneSprite;
         gravityValue.text = "NULL";
         newTarget = true;
@@ -258,68 +267,49 @@ public class ChangeGravity : PhysicsEffect
 
 public class ChangeLayer : PhysicsEffect
 {
-    struct Layer
+    int idx;
+    LayerUI currentLayer;
+    public ChangeLayer()
     {
-        public string name;
-        public int layer;
+        if (!PhysicsValues.instance.layerEnabled) { return; }
 
-        public Layer(string n, int l)
-        {
-            name = n;
-            layer = l;
-        }
-    }
-    List<Layer> layers;
-
-    int def, lay1, lay2, idx;
-    Layer currentLayer;
-    public ChangeLayer(int _def, int _lay1, int _lay2)
-    {
-        def = _def;
-        lay1 = _lay1;
-        lay2 = _lay2;
         idx = 0;
-
-        layers = new List<Layer>();
-        layers.Add(new Layer("default", def));
-        layers.Add(new Layer("layer1", lay1));
-        layers.Add(new Layer("layer2", lay2));
-
-        currentLayer = layers[idx];
+        currentLayer = PhysicsValues.instance.layers[idx];
     }
-
-    private ChangeLayer() { }
 
     public override void ApplyEffect(InteractableObject target)
     {
         target.gameObject.layer = currentLayer.layer;
-
-        Debug.Log(target.name + " layer set to " + currentLayer.layer + ": " + currentLayer.name);
     }
 
     public override void RunEditMode()
     {
-        if (Input.mouseScrollDelta.y > 0)
+        if (!PhysicsValues.instance.layerEnabled) { return; }
+
+        if(Input.mouseScrollDelta.y == 0) { return; }
+        else if (Input.mouseScrollDelta.y > 0)
         {
             idx++;
-            if (idx >= layers.Count) { idx = 0; }
-            currentLayer = layers[idx];
-
-            Debug.Log("layer editor value set to " + currentLayer.layer);
+            if (idx >= PhysicsValues.instance.layers.Length) { idx = 0; }
         }
-        else if (Input.mouseScrollDelta.y < 0)
+        else
         {
             idx--;
-            if (idx < 0) { idx = layers.Count - 1; }
-            currentLayer = layers[idx];
-
-            Debug.Log("layer editor value set to " + currentLayer.layer);
+            if (idx < 0) { idx = PhysicsValues.instance.layers.Length - 1; }
         }
+
+        currentLayer = PhysicsValues.instance.layers[idx];
+        PhysicsValues.instance.layerName.text = currentLayer.name;
+        PhysicsValues.instance.layerImage.sprite = currentLayer.image;
     }
 
     public override void OnPointerStay(InteractableObject target)
     {
-        // layer things
+        for (float i = 0; i < 2 * Mathf.PI; i += Mathf.PI / 12)
+        {
+            Debug.DrawLine(target.transform.position, target.transform.position
+                + new Vector3(0, Mathf.Sin(i) * 2, Mathf.Cos(i) * 2), Color.green);
+        }
     }
 }
 
