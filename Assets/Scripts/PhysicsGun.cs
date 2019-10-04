@@ -181,8 +181,6 @@ public class PhysicsGun : MonoBehaviour
         {
             Debug.LogError("shotPointParticles is null. Assign it in physics values to the 'Spark emitter' prefab");
         }
-        
-        
 
         if(null == currentObject) { return; }
 
