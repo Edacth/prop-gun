@@ -173,6 +173,17 @@ public class PhysicsGun : MonoBehaviour
     /// </summary>
     public void Fire()
     {
+        if (null != PhysicsValues.instance.shotPointParticles)
+        {
+            Instantiate(PhysicsValues.instance.shotPointParticles, interactableChecker.getRaycastHit().point, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("shotPointParticles is null. Assign it in physics values to the 'Spark emitter' prefab");
+        }
+        
+        
+
         if(null == currentObject) { return; }
 
 

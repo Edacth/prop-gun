@@ -97,6 +97,8 @@ public class PhysicsValues : MonoBehaviour
     [Header("Other")]
     [Tooltip("Target for visualizers")]
     public Transform visualTarget;
+    [Tooltip("Particle system at the shot point")]
+    public GameObject shotPointParticles;
 
     void Awake()
     {

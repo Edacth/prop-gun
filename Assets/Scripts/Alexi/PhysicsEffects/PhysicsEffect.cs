@@ -212,7 +212,6 @@ public class ChangeGravity : PhysicsEffect
 
     public ChangeGravity()
     {
-        if(null == gravityImage) { return; }
 
         gravityImage = PhysicsValues.instance.gravityImage.GetComponent<Image>();
         gravityValue = PhysicsValues.instance.gravityValue.GetComponent<TMP_Text>();
@@ -220,7 +219,6 @@ public class ChangeGravity : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
-        if(null == gravityImage) { return; } // no action if values not assigned
 
         target.myRigidbody.useGravity = !target.myRigidbody.useGravity;
         gravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
@@ -351,7 +349,6 @@ public class ApplyForce : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
-        Debug.Log("Force Effect Applied");
         target.GetComponent<Renderer>().material.color = new Color(0, 1, 1, 1);
         target.myRigidbody.AddForce(force);
         
