@@ -373,7 +373,7 @@ public class ApplyForce : PhysicsEffect
         float rotatedX = Mathf.Cos(rotationInRadians) * (defaultForce.x) - Mathf.Sin(rotationInRadians) * (defaultForce.z);
         float rotatedZ = Mathf.Sin(rotationInRadians) * (defaultForce.x) + Mathf.Cos(rotationInRadians) * (defaultForce.z);
 
-        force = new Vector3(rotatedX, 0, rotatedZ);
+        force = new Vector3(rotatedX, force.y, rotatedZ);
         //Debug.Log(camera.transform.localEulerAngles);
 
         Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
