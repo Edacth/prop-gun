@@ -8,13 +8,18 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Geometry" }
+        Tags 
+        { 
+            "RenderType" = "Opaque" 
+            "Queue" = "Geometry" 
+        }
         LOD 100
 
         Stencil
         {
             Ref [_StencilRef]
             Comp Equal
+            Pass Replace
         }
 
         Pass

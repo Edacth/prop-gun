@@ -3,15 +3,10 @@
 public class GlowOutlinePostProcessing : MonoBehaviour
 {
     [SerializeField]
-    Material postprocessMaterial;
+    Material readMaterial;
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        Graphics.Blit(source, destination, postprocessMaterial);
-    }
-
-    private void OnPostRender()
-    {
-        
+        Graphics.Blit(source, destination, readMaterial);
     }
 }

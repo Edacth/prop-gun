@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GlowOutline
-  m_Shader: {fileID: 4800000, guid: 3d55757f1c5673c46a3ac8de9dacf655, type: 3}
+  m_Shader: {fileID: 4800000, guid: 16e81dab4a3899c469aaf9335b646367, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -71,6 +71,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StencilRef: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
