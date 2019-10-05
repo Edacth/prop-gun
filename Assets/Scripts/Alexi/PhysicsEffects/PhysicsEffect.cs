@@ -313,19 +313,53 @@ public class ChangeLayer : PhysicsEffect
 
 public class ToggleKinematic : PhysicsEffect
 {
+    bool modeOfSettage;
+    TMP_Text kinematicValue;
+    bool newTarget;
+
+    public ToggleKinematic ()
+    {
+        kinematicValue = PhysicsValues.instance.kinematicValue.GetComponent<TMP_Text>();
+    }
+
     public override void ApplyEffect(InteractableObject target)
     {
-        target.GetComponent<Renderer>().material.color = Color.green;
+        target.myRigidbody.isKinematic = !target.myRigidbody.isKinematic;
+        kinematicValue.text = target.myRigidbody.isKinematic ? "ON" : "OFF";
+        Debug.Log("Kinematic shoot");
+    }
+
+    public override void OnPointerEnter(InteractableObject target)
+    {
+        newTarget = true;
     }
 
     public override void OnPointerStay(InteractableObject target)
     {
-        // kinematic things
+        if (newTarget)
+        {
+            if (null != target)
+            {
+                kinematicValue.text = target.myRigidbody.useGravity ? "ON" : "OFF";
+            }
+            newTarget = false;
+        }
+    }
+    public override void OnPointerExit()
+    {
+        if (!PhysicsValues.instance.gravityEnabled) { return; }
+
+        kinematicValue.text = "NULL";
     }
 
-    public override void RunEditMode()
+    public override void RunEditMode() { }
+
+    public override void OnSwitchedTo()
     {
-        throw new System.NotImplementedException();
+        if (!PhysicsValues.instance.gravityEnabled) { return; }
+
+        kinematicValue.text = "NULL";
+        newTarget = true;
     }
 }
 

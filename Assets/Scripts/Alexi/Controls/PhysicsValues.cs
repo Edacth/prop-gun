@@ -56,7 +56,9 @@ public class PhysicsValues : MonoBehaviour
     [Tooltip("Layer name text")]
     public TextMeshProUGUI layerName;
 
-    // kinematic (toggle - doesn't need anything)
+    [Header("Kinematic")]
+    [Tooltip("Mass panel UI")]
+    public GameObject kinematicValue;
 
     [Header("Force")]
     public bool forceEnabled = false;

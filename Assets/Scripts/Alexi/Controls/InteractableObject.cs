@@ -46,7 +46,7 @@ public abstract class InteractableObject : MonoBehaviour
         if (selected)
         {
             if(null == PhysicsEffect.current)
-            { Debug.LogWarning("Invalid physics effect"); }
+            { /*Debug.LogWarning("Invalid physics effect");*/ }
             else { PhysicsEffect.current.OnPointerStay(this); }
 
         } 

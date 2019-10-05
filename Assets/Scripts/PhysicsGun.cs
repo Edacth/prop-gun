@@ -123,15 +123,15 @@ public class PhysicsGun : MonoBehaviour
 
              
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
         {
             GetGrab();
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
         {
             Grab();
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(2))
         {
             UnGrab();
         }

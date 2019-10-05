@@ -9,24 +9,27 @@ public class InteractableChecker : MonoBehaviour
     [SerializeField]
     float checkDistance = 5.0f;
     RaycastHit raycastHit;
+    LayerMask layerMask = 1 << 2;
+    
 
     public delegate void OnInteractableCheckDelegate();
     public static event OnInteractableCheckDelegate interactableCheckDelegate;
 
+    private void Start()
+    {
+        layerMask = ~layerMask;
+    }
+
     void Update()
     {
         Debug.DrawRay(sourceTransform.position, sourceTransform.forward * checkDistance, Color.red);
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            
-        }
         InteractableCheck();
     }
 
     void InteractableCheck()
     {
-        Physics.Raycast(sourceTransform.position, sourceTransform.forward, out raycastHit, checkDistance);
+        
+        Physics.Raycast(sourceTransform.position, sourceTransform.forward, out raycastHit, checkDistance, layerMask);
         if (interactableCheckDelegate != null)
         {
             interactableCheckDelegate();

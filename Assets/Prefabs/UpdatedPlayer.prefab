@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4744173237126182773}
   - component: {fileID: 4744173237126182768}
   - component: {fileID: 5081299081438396291}
+  - component: {fileID: 1884567673270918705}
   m_Layer: 0
   m_Name: PhysicsGun
   m_TagString: Untagged
@@ -129,6 +130,20 @@ MonoBehaviour:
   visualTarget: {fileID: 0}
   shotPointParticles: {fileID: 2302695725346934261, guid: 82d2ed89bac26dc47a6e4b8743dabc25,
     type: 3}
+--- !u!114 &1884567673270918705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4744173237126182774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a195f63f001b545b4f025a8551dcbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalOffset: {x: 0.216, y: -0.636, z: 1.026}
+  scopedOffset: {x: 0, y: -0.56, z: 0.7}
 --- !u!1 &4744173237337292469
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +472,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
