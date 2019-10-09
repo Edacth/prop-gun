@@ -52,14 +52,14 @@ public class PhysicsGun : MonoBehaviour
         if (null == effects)
         {
             effects = new Dictionary<Mode, PhysicsEffect>();
-            effects.Add(Mode.mass, new ChangeMass());
-            effects.Add(Mode.material, new ChangeMaterial());
-            effects.Add(Mode.gravity, new ChangeGravity());
-            effects.Add(Mode.layer, new ChangeLayer());
+            effects.Add(Mode.mass,      new ChangeMass());
+            effects.Add(Mode.material,  new ChangeMaterial());
+            effects.Add(Mode.gravity,   new ChangeGravity());
+            effects.Add(Mode.layer,     new ChangeLayer());
             effects.Add(Mode.kinematic, new ToggleKinematic());
-            effects.Add(Mode.force, new ApplyForce(data.force, data.forceStepAmount, data.camera));
-            effects.Add(Mode.magnet, new UseMagnet(data.magForce));
-            effects.Add(Mode.torque, new ApplyTorque(data.torque));
+            effects.Add(Mode.force,     new ApplyForce(data.force, data.forceStepAmount, data.camera));
+            effects.Add(Mode.magnet,    new UseMagnet(data.magForce));
+            effects.Add(Mode.torque,    new ApplyTorque(data.torque));
         }
 
         currentMode = Mode.mass; // initialize to default
@@ -154,18 +154,18 @@ public class PhysicsGun : MonoBehaviour
 
     public void SwitchMode(Mode newMode)
     {
-        collectionManager?.SwitchMode(newMode);
+        collectionManager.SwitchMode(newMode);
 
         // any kind of animation here
 
         currentMode = newMode;
         effects.TryGetValue(currentMode, out PhysicsEffect.current);
-        //Debug.Log(currentMode);
+
+        if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect: " + newMode); }
+        else { PhysicsEffect.current.OnSwitchedTo(); }
 
         // Switch gun UI panels
         SwitchUI(newMode);
-        if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect"); }
-        else { PhysicsEffect.current?.OnSwitchedTo(); }
     }
 
     /// <summary>
