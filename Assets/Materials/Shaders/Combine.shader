@@ -1,4 +1,5 @@
-﻿Shader "Custom/Combine"
+﻿// combines scene view with highlighted objects
+Shader "Custom/Combine"
 {
     Properties
     {
@@ -7,7 +8,7 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "Queue" = "Overlay" }
         LOD 100
 
         Pass
@@ -45,15 +46,17 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 ob = tex2D(_ObjectTex, i.uv);
-                fixed4 b = fixed4(0, 0, 0, 1);
-                if(ob.r == b.r && ob.g == b.g && ob.b == b.b)
+                fixed4 object = tex2D(_ObjectTex, i.uv);
+                fixed4 base = tex2D(_MainTex, i.uv);
+
+                // if object texture is black
+                if(object.r == 0 && object.g == 0 && object.b == 0)
                 {
-                    return tex2D(_MainTex, i.uv);
+                    return base;
                 }
                 else
                 {
-                    return ob;
+                    return object;
                 }
             }
             ENDCG

@@ -1,13 +1,16 @@
-﻿Shader "Custom/Glow"
+﻿// provides highlight effect for objects
+Shader "Custom/Glow"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
+        _BlurSize("Blur size", Range(0, 0.1)) = 0.01
+        [IntRange]_Samples("Sample count", Range(10, 30)) = 10 
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        Tags { "Queue" = "Overlay" }
+        LOD 300
 
         Pass
         {
@@ -32,6 +35,9 @@
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            float _BlurSize;
+            int _Samples;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -43,14 +49,12 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = 0;
-                float2 uv = i.uv;
-                for(float i = 0; i < 10; i++)
+                for(int j = 0; j < _Samples; j++)
                 {
-                    float2 b = uv + float2((i / 9 - 0.5) * 0.1, (i / 9 - 0.5) * 0.1);
-                    col += tex2D(_MainTex, b);
+                    float2 uv = i.uv + float2(0, (j / (_Samples - 1) - 0.5) * _BlurSize);
+                    col += tex2D(_MainTex, uv);
                 }
-                col = col / 10;
-                col = lerp(col, fixed4(1, 0, 0, 1), 0.5);
+                col /= _Samples;
                 return col;
             }
             ENDCG
