@@ -78,6 +78,8 @@ public class ChangeMass : PhysicsEffect
 
     public ChangeMass()
     {
+        if (PhysicsValues.instance.massEnabled) { return; }
+
         currentMass = PhysicsValues.instance.defMass;
         PhysicsValues.instance.massSlider.value =
                 Mathf.InverseLerp(PhysicsValues.instance.minMass, PhysicsValues.instance.maxMass, currentMass);
@@ -212,7 +214,7 @@ public class ChangeGravity : PhysicsEffect
 
     public ChangeGravity()
     {
-
+        if (!PhysicsValues.instance.gravityEnabled) { return; }
         gravityImage = PhysicsValues.instance.gravityImage.GetComponent<Image>();
         gravityValue = PhysicsValues.instance.gravityValue.GetComponent<TMP_Text>();
     }

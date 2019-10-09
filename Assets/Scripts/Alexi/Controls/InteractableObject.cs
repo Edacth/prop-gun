@@ -39,6 +39,8 @@ public abstract class InteractableObject : MonoBehaviour
 
         selectable = true;
         // selectable = InteractableObjectCollectionManager.QuerySelectable(this);
+
+        interactableChecker = GameObject.FindObjectOfType<InteractableChecker>(); // change this
     }
 
     void Update()
@@ -118,6 +120,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         InteractableChecker.interactableCheckDelegate -= CheckIfSelected;
     }
+
     public float P = 25, I = 3, D = -60;
     private Vector3 lastError;
     private Vector3 error = Vector3.zero;
