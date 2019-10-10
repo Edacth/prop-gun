@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableChecker: {fileID: 4744173237126182768}
   data: {fileID: 5081299081438396291}
+  collectionManager: {fileID: 957320157}
   grabPoint: {fileID: 1177963131364136155}
   aimDownSights: {fileID: 1884567673270918705}
 --- !u!114 &4744173237126182768
