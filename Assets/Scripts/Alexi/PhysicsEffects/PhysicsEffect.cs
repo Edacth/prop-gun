@@ -441,7 +441,7 @@ public class UseMagnet : PhysicsEffect
 
     public override void RunEditMode()
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("magnet not implemented");
     }
 }
 

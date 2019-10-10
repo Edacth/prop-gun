@@ -5,7 +5,7 @@ Shader "Custom/Glow"
     {
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
         _BlurSize("Blur size", Range(0, 0.1)) = 0.01
-        [IntRange]_Samples("Sample count", Range(10, 30)) = 10 
+        [IntRange]_Samples("Sample count", Range(2, 30)) = 10 
     }
     SubShader
     {
@@ -42,14 +42,14 @@ Shader "Custom/Glow"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv = v.uv;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = 0;
-                for(int j = 0; j < _Samples; j++)
+                for(float j = 0.0; j < _Samples; j++)
                 {
                     float2 uv = i.uv + float2(0, (j / (_Samples - 1) - 0.5) * _BlurSize);
                     col += tex2D(_MainTex, uv);
