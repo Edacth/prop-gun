@@ -151,7 +151,8 @@ MonoBehaviour:
   - {fileID: 4973096051201640647}
   - {fileID: 4081172060214952393}
   - {fileID: 3173939652543745269}
-  shotPointParticles: {fileID: 0}
+  shotPointParticles: {fileID: 2302695725346934261, guid: 82d2ed89bac26dc47a6e4b8743dabc25,
+    type: 3}
 --- !u!114 &1884567673270918705
 MonoBehaviour:
   m_ObjectHideFlags: 0

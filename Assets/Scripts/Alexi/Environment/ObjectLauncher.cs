@@ -95,6 +95,7 @@ public class ObjectLauncher : MonoBehaviour
     public void RecycleProjectile(Projectile oldProjectile)
     {
         oldProjectile.gameObject.SetActive(false);
+        oldProjectile.myRigidbody.velocity = Vector3.zero;
 
         for(int i = 0; i < maxProjectiles; i++)
         {

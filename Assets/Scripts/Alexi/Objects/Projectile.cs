@@ -19,7 +19,7 @@ public class Projectile : InteractableObject
             pm.bounciness = 1;
             pm.bounceCombine = PhysicMaterialCombine.Maximum;
             myCollider.material = pm;
-        }       
+        }    
     }
 
     public override void OnPointerEnter()
