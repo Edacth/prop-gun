@@ -29,11 +29,14 @@ public class GlowOutlinePostProcessing : MonoBehaviour
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        RenderTexture _temp = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
-        Graphics.Blit(_objects, _temp, _blur);
-        _combiner.SetTexture("_ObjectTex", _temp);
+        RenderTexture _hori = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
+        RenderTexture _vert = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
+        Graphics.Blit(_objects, _vert, _blur, 0);
+        Graphics.Blit(_vert, _hori, _blur, 1);
+        _combiner.SetTexture("_ObjectTex", _hori);
         Graphics.Blit(source, destination, _combiner);
-        RenderTexture.ReleaseTemporary(_temp);
+        RenderTexture.ReleaseTemporary(_hori);
+        RenderTexture.ReleaseTemporary(_vert);
     }
 
     void OnApplicationQuit()
