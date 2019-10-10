@@ -24,7 +24,7 @@ public class PhysicsGun : MonoBehaviour
     public InteractableChecker interactableChecker;
     public PhysicsValues data;
 
-    const int modeCount = 8; // how many modes there are
+    int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
     public static InteractableObject currentObject;
@@ -59,6 +59,8 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.kinematic, new ToggleKinematic());
             effects.Add(Mode.force,     new ApplyForce(data.force, data.forceStepAmount, data.camera));
             effects.Add(Mode.magnet,    new UseMagnet(data.magForce));
+
+            modeCount = effects.Count;
         }
 
         currentMode = Mode.mass; // initialize to default

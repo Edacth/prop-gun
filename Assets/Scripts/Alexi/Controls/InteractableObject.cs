@@ -90,7 +90,6 @@ public abstract class InteractableObject : MonoBehaviour
     {
         gameObject.layer = GlowOutlinePostProcessing.ObjectLayer;
         selectable = true;
-        Debug.Log(name + " layer = " + gameObject.layer);
     }
 
     /// <summary>

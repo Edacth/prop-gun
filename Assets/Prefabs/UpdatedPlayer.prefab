@@ -168,16 +168,16 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: f34b16f8099f99e4eb26448e46e9a2e3, type: 3}
   - name: Bounce
     material: {fileID: 13400000, guid: 7025f754af1c93648b0d695eab01243c, type: 2}
-    image: {fileID: 21300000, guid: 46ed09dec1f4c4545a5a8c3757711af7, type: 3}
+    image: {fileID: 21300000, guid: 34b50912730af094eb25fc9d7e2d7bc6, type: 3}
   - name: No Bounce
     material: {fileID: 13400000, guid: fc76308f8d713254d9b188f4a5491dc0, type: 2}
-    image: {fileID: 21300000, guid: 551d74eb1c820684684c999a92eb5d5f, type: 3}
+    image: {fileID: 21300000, guid: 16103d6593311ef4d89dd4244009ca01, type: 3}
   - name: Friction
     material: {fileID: 13400000, guid: 20fd4b381cb5856498d9466d7b800ccf, type: 2}
-    image: {fileID: 21300000, guid: 1d49e450c8653c940a425d7702a46500, type: 3}
+    image: {fileID: 21300000, guid: 6192b32630f70244d83e67659307efcd, type: 3}
   - name: No Friction
     material: {fileID: 13400000, guid: 65f4d21e66cc4ce46901e4dae9faf895, type: 2}
-    image: {fileID: 21300000, guid: add63e691bc7a44479ffc1a3fb7280e3, type: 3}
+    image: {fileID: 21300000, guid: 7a64bb430178fd94c95cbef4bc8e1258, type: 3}
   matImage: {fileID: 5844804891346467575}
   matName: {fileID: 5844804890201854724}
   gravityEnabled: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: f34b16f8099f99e4eb26448e46e9a2e3, type: 3}
   - name: Barrier
     layer: 9
-    image: {fileID: 21300000, guid: 5d2d3737594b39d4daadce6b9edaf881, type: 3}
+    image: {fileID: 21300000, guid: 8bd78be10746de441be9e8c4465b7175, type: 3}
   - name: Ignore Barrier
     layer: 10
-    image: {fileID: 21300000, guid: 38019ef076583d646a1fdd38f3fa369c, type: 3}
+    image: {fileID: 21300000, guid: da96c80a6fec79547b1c26b5205ec034, type: 3}
   layerImage: {fileID: 1054665288283038373}
   layerName: {fileID: 8260133229206965264}
   kinematicValue: {fileID: 2486751842858096308}
