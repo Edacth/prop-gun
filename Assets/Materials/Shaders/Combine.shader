@@ -49,8 +49,8 @@ Shader "Custom/Combine"
                 fixed4 object = tex2D(_ObjectTex, i.uv);
                 fixed4 base = tex2D(_MainTex, i.uv);
 
-                // if object texture is black
-                if(object.r == 0 && object.g == 0 && object.b == 0)
+                // if object texture is black or white
+                if(object.a == 0)
                 {
                     return base;
                 }

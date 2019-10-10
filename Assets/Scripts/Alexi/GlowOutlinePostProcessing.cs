@@ -4,27 +4,34 @@
 public class GlowOutlinePostProcessing : MonoBehaviour
 {
     [Tooltip("Main scene view camera")]
-    [SerializeField]
-    Camera mainCamera;
+    [SerializeField] Camera mainCamera;
     [Tooltip("Physics object view camera")]
-    [SerializeField]
-    Camera objectCamera;
+    [SerializeField] Camera objectCamera;
     [Tooltip("Object layer number")]
-    [SerializeField]
-    int objectLayer = 11;
-    [SerializeField]
-    RenderTexture _objects;
-    [SerializeField]
-    Material _blur;
-    [SerializeField]
-    Material _combiner;
+    [SerializeField] int objectLayer = 11;
+    [Tooltip("RenderTexture for objects")]
+    [SerializeField] RenderTexture _objects;
+    [Tooltip("Object effect material")]
+    [SerializeField] Material _blur;
+    [Tooltip("Layering combine material")]
+    [SerializeField]  Material _combiner;
 
-    Camera cam;
+    [Header("Setup")]
+    [Tooltip("Find objects and move them to object layer?")]
+    [SerializeField] bool setObjectLayer = false;
 
     void Start()
     {
         mainCamera.cullingMask &= ~(1 << objectLayer); // take off layer
         objectCamera.cullingMask = 1 << objectLayer;
+
+        if (setObjectLayer)
+        {
+            foreach(InteractableObject io in FindObjectsOfType<InteractableObject>())
+            {
+                io.gameObject.layer = objectLayer;
+            }
+        }
     }
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
