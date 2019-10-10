@@ -29,7 +29,7 @@ public class PhysicsGun : MonoBehaviour
 
     public static Mode currentMode;
     public static InteractableObject currentObject;
-    InteractableObjectCollectionManager collectionManager;
+    // InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
     [SerializeField] Transform grabPoint;
     InteractableObject grabedObject;
@@ -73,7 +73,7 @@ public class PhysicsGun : MonoBehaviour
         }
 
         // can be changed to drag and drop for performance later
-        collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
+        // collectionManager = FindObjectOfType<InteractableObjectCollectionManager>();
     }
 
     void Update()
@@ -154,7 +154,7 @@ public class PhysicsGun : MonoBehaviour
 
     public void SwitchMode(Mode newMode)
     {
-        collectionManager.SwitchMode(newMode);
+        // collectionManager.SwitchMode(newMode);
 
         // any kind of animation here
 

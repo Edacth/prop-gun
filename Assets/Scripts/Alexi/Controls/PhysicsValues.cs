@@ -97,18 +97,12 @@ public class PhysicsValues : MonoBehaviour
     public GameObject[] UIPanels;
 
     [Header("Other")]
-    [Tooltip("Target for visualizers")]
-    public Transform visualTarget;
     [Tooltip("Particle system at the shot point")]
     public GameObject shotPointParticles;
 
     void Awake()
     {
         instance = this;
-        if (null == visualTarget)
-        {
-            Debug.LogWarning("No visual target set, cannot display visualizer icons");
-        }
     }
 
 }
