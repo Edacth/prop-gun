@@ -1,0 +1,347 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PhysicsValues
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: f5b7e22d36be89c469c7653f2c16610b,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: massEnabled
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: minMass
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: maxMass
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: step
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: defMass
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: massPanel
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: massSlider
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: massText
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: materialEnabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.size
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[0].name
+    value: None
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[0].material
+    value: 
+    objectReference: {fileID: 13400000, guid: f2c9cc2922f1b3b4990187c08f3a2826, type: 2}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[0].image
+    value: 
+    objectReference: {fileID: 21300000, guid: f34b16f8099f99e4eb26448e46e9a2e3, type: 3}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[1].name
+    value: Bounce
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[1].material
+    value: 
+    objectReference: {fileID: 13400000, guid: 7025f754af1c93648b0d695eab01243c, type: 2}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[1].image
+    value: 
+    objectReference: {fileID: 21300000, guid: 46ed09dec1f4c4545a5a8c3757711af7, type: 3}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[2].name
+    value: No Bounce
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[2].material
+    value: 
+    objectReference: {fileID: 13400000, guid: fc76308f8d713254d9b188f4a5491dc0, type: 2}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[2].image
+    value: 
+    objectReference: {fileID: 21300000, guid: 551d74eb1c820684684c999a92eb5d5f, type: 3}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[3].name
+    value: Friction
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[3].material
+    value: 
+    objectReference: {fileID: 13400000, guid: 20fd4b381cb5856498d9466d7b800ccf, type: 2}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[3].image
+    value: 
+    objectReference: {fileID: 21300000, guid: 1d49e450c8653c940a425d7702a46500, type: 3}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[4].name
+    value: No Friction
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[4].material
+    value: 
+    objectReference: {fileID: 13400000, guid: 65f4d21e66cc4ce46901e4dae9faf895, type: 2}
+  - target: {fileID: 0}
+    propertyPath: physMaterials.Array.data[4].image
+    value: 
+    objectReference: {fileID: 21300000, guid: add63e691bc7a44479ffc1a3fb7280e3, type: 3}
+  - target: {fileID: 0}
+    propertyPath: matImage
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: matName
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gravityEnabled
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gravityImage
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gravityValue
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: onSprite
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: offSprite
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: noneSprite
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layerEnabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[0].name
+    value: Default
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[0].layer
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[0].image
+    value: 
+    objectReference: {fileID: 21300000, guid: f34b16f8099f99e4eb26448e46e9a2e3, type: 3}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[1].name
+    value: Barrier
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[1].layer
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[1].image
+    value: 
+    objectReference: {fileID: 21300000, guid: 5d2d3737594b39d4daadce6b9edaf881, type: 3}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[2].name
+    value: Ignore Barrier
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[2].layer
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layers.Array.data[2].image
+    value: 
+    objectReference: {fileID: 21300000, guid: 38019ef076583d646a1fdd38f3fa369c, type: 3}
+  - target: {fileID: 0}
+    propertyPath: layerImage
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layerName
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: kinematicValue
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: forceEnabled
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: force.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: force.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: force.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: forceStepAmount
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: camera
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: forceImage
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magnetEnabled
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magForce.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magForce.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magForce.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueEnabled
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torque.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torque.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torque.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: bigMass
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: lilMass
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: layer
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: bounce
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: noBounce
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: friction
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: noFriction
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.size
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[2]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[3]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[4]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[5]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[6]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: UIPanels.Array.data[7]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: visualTarget
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shotPointParticles
+    value: 
+    objectReference: {fileID: 0}

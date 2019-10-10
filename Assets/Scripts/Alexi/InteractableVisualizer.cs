@@ -28,7 +28,7 @@ public class InteractableVisualizer : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(PhysicsValues.instance.visualTarget);
+        // transform.LookAt(PhysicsValues.instance.visualTarget);
     }
 
     /// <summary>
