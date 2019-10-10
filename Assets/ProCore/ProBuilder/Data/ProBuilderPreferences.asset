@@ -16,7 +16,6 @@ MonoBehaviour:
   - pbIconGUI
   - pbDefaultOpenInDockableWindow
   - pbDragSelectWholeElement
-  - pb_TorusUsesInnerOuterMethod
   m_Int_keys:
   - pbDefaultEditLevel
   - pbDefaultSelectionMode
@@ -30,8 +29,8 @@ MonoBehaviour:
   - pbCurrentMaterialPalette
   m_Color_keys: []
   m_Material_keys: []
-  m_Bool_values: 00010001
-  m_Int_values: 0100000002000000000000000000000000000000
+  m_Bool_values: 000100
+  m_Int_values: 0000000002000000000000000000000000000000
   m_Float_values:
   - 0
   - 0
