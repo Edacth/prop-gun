@@ -10,7 +10,6 @@ public class BasicCube : InteractableObject
 
         visual?.ShowDisplay(transform.position);
 
-        // This might be a really dumb way to do this. SORRY ALEXI
         PhysicsEffect.current.OnPointerEnter(this);
     }
 
@@ -20,7 +19,6 @@ public class BasicCube : InteractableObject
 
         visual?.HideDisplay();
 
-        // This might be a really dumb way to do this. SORRY ALEXI
         PhysicsEffect.current.OnPointerExit();
     }
 }

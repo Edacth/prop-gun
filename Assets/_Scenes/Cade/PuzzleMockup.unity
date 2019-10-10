@@ -3631,6 +3631,56 @@ PrefabInstance:
       propertyPath: aimDownSights
       value: 
       objectReference: {fileID: 239548639}
+    - target: {fileID: 5844804891084169702, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804891084169702, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260133229206965264, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260133229206965264, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804890954361242, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804891409034776, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176776476325437115, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176776476325437115, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804890668719462, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844804890668719462, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
 --- !u!1 &1172001306 stripped

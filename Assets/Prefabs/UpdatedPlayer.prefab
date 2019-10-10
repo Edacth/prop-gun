@@ -181,11 +181,11 @@ MonoBehaviour:
   matImage: {fileID: 5844804891346467575}
   matName: {fileID: 5844804890201854724}
   gravityEnabled: 0
-  gravityImage: {fileID: 0}
-  gravityValue: {fileID: 0}
-  onSprite: {fileID: 0}
-  offSprite: {fileID: 0}
-  noneSprite: {fileID: 0}
+  gravityImage: {fileID: 8299661474828475604}
+  gravityValue: {fileID: 5004895942956291009}
+  onSprite: {fileID: 21300000, guid: 366fe8726d9e90343b66193664228f67, type: 3}
+  offSprite: {fileID: 21300000, guid: bd555bc6859b5f54e9ac5103703a6d49, type: 3}
+  noneSprite: {fileID: 21300000, guid: a0177c1ffc4f50044ac5b808165c96d2, type: 3}
   layerEnabled: 1
   layers:
   - name: Default
@@ -200,11 +200,11 @@ MonoBehaviour:
   layerImage: {fileID: 1054665288283038373}
   layerName: {fileID: 8260133229206965264}
   kinematicValue: {fileID: 2486751842858096308}
-  forceEnabled: 0
-  force: {x: 0, y: 0, z: 0}
-  forceStepAmount: 10
-  camera: {fileID: 0}
-  forceImage: {fileID: 0}
+  forceEnabled: 1
+  force: {x: 0, y: 0, z: -1000}
+  forceStepAmount: 20
+  camera: {fileID: 6064873328608475992}
+  forceImage: {fileID: 3317050841114678790}
   magnetEnabled: 0
   magForce: {x: 0, y: 0, z: 0}
   torqueEnabled: 0

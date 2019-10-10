@@ -22,7 +22,7 @@ public class InteractableChecker : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(sourceTransform.position, sourceTransform.forward * checkDistance, Color.red);
+        Debug.DrawRay(sourceTransform.position, sourceTransform.forward * raycastHit.distance, Color.red);
         InteractableCheck();
     }
 
