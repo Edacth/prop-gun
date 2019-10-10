@@ -409,13 +409,13 @@ public class ApplyForce : PhysicsEffect
 
             rotation += stepAmount;
             if (rotation > 360) { rotation -= 360; }
-            PhysicsValues.instance.forceImage.transform.eulerAngles = new Vector3(0, 0, rotation);
+            PhysicsValues.instance.forceImage.transform.localEulerAngles = new Vector3(0, 0, rotation);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
             rotation -= stepAmount;
             if (rotation < 360) { rotation += 360; }
-            PhysicsValues.instance.forceImage.transform.eulerAngles = new Vector3(0, 0, rotation);
+            PhysicsValues.instance.forceImage.transform.localEulerAngles = new Vector3(0, 0, rotation);
         }
     }
 }
