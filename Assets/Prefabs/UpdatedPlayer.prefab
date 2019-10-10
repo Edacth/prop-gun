@@ -53,6 +53,7 @@ MonoBehaviour:
   interactableChecker: {fileID: 4744173237126182768}
   data: {fileID: 5081299081438396291}
   grabPoint: {fileID: 1177963131364136155}
+  aimDownSights: {fileID: 1884567673270918705}
 --- !u!114 &4744173237126182768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +925,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6064873328110577891}
     m_Modifications:
+    - target: {fileID: 100138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
+      propertyPath: m_Name
+      value: xbot
+      objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -979,10 +984,6 @@ PrefabInstance:
     - target: {fileID: 400138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.4738817
-      objectReference: {fileID: 0}
-    - target: {fileID: 100138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
-      propertyPath: m_Name
-      value: xbot
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
       propertyPath: m_Controller
