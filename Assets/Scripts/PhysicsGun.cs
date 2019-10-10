@@ -24,12 +24,12 @@ public class PhysicsGun : MonoBehaviour
 
     public InteractableChecker interactableChecker;
     public PhysicsValues data;
+    public InteractableObjectCollectionManager collectionManager;
 
     const int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
     public static InteractableObject currentObject;
-    InteractableObjectCollectionManager collectionManager;
     static Dictionary<Mode, PhysicsEffect> effects;
     [SerializeField] Transform grabPoint;
     InteractableObject grabedObject;
@@ -68,14 +68,11 @@ public class PhysicsGun : MonoBehaviour
         SwitchMode(currentMode); // initialize effect
 
         // debug for physics effect
-        if(null == PhysicsEffect.current)
+        if (null == PhysicsEffect.current)
         {
             Debug.LogWarning("Physics effect not set. Default to mass");
             PhysicsEffect.current = new ChangeMass();
         }
-
-        // can be changed to drag and drop for performance later
-        collectionManager = FindObjectOfType<InteractableObjectCollectionManager>(); // bad
     }
 
     void Update()
