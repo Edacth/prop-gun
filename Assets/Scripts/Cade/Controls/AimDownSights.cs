@@ -16,11 +16,11 @@ public class AimDownSights : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            lerpGoal = 1;
+            //lerpGoal = 1;
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            lerpGoal = 0;
+            //lerpGoal = 0;
         }
 
         if (lerpFraction < lerpGoal)
@@ -35,5 +35,15 @@ public class AimDownSights : MonoBehaviour
         }
 
         transform.localPosition = Vector3.Lerp(normalOffset, scopedOffset, lerpFraction);
+    }
+
+    public void TakeAim()
+    {
+        lerpGoal = 1;
+    }
+
+    public void ReleaseAim()
+    {
+        lerpGoal = 0;
     }
 }

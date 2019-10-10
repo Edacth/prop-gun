@@ -33,6 +33,8 @@ public class PhysicsGun : MonoBehaviour
     static Dictionary<Mode, PhysicsEffect> effects;
     [SerializeField] Transform grabPoint;
     InteractableObject grabedObject;
+    [SerializeField]
+    AimDownSights aimDownSights;
 
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -90,6 +92,7 @@ public class PhysicsGun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             PhysicsEffect.current.EnterEditMode();
+            aimDownSights.TakeAim();
         }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -98,6 +101,7 @@ public class PhysicsGun : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             PhysicsEffect.current.ExitEditMode();
+            aimDownSights.ReleaseAim();
         }
         else //not in edit mode
         {
@@ -123,15 +127,15 @@ public class PhysicsGun : MonoBehaviour
 
              
         }
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(1))
         {
             GetGrab();
         }
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton(1))
         {
             Grab();
         }
-        if (Input.GetMouseButtonUp(2))
+        if (Input.GetMouseButtonUp(1))
         {
             UnGrab();
         }

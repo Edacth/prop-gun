@@ -126,6 +126,10 @@ Preset:
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: kinematicValue
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: forceEnabled
     value: 0
     objectReference: {fileID: 0}
@@ -251,5 +255,9 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: visualTarget
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shotPointParticles
     value: 
     objectReference: {fileID: 0}
