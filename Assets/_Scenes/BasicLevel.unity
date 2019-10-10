@@ -696,7 +696,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1160,7 +1160,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1345,5 +1345,25 @@ PrefabInstance:
       propertyPath: UIPanels.Array.data[7]
       value: 
       objectReference: {fileID: 1408808744}
+    - target: {fileID: 635323513, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
+      propertyPath: m_IntensityMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635323513, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
+      propertyPath: m_BoxProjection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635323513, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
+      propertyPath: m_BoxSize.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635323513, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
+      propertyPath: m_BoxSize.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635323513, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
+      propertyPath: m_BoxSize.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
