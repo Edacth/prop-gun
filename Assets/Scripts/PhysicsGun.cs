@@ -24,7 +24,6 @@ public class PhysicsGun : MonoBehaviour
 
     public InteractableChecker interactableChecker;
     public PhysicsValues data;
-    public InteractableObjectCollectionManager collectionManager;
 
     const int modeCount = 8; // how many modes there are
 
@@ -155,7 +154,7 @@ public class PhysicsGun : MonoBehaviour
 
     public void SwitchMode(Mode newMode)
     {
-        collectionManager.SwitchMode(newMode);
+        InteractableObjectCollectionManager.SwitchMode(newMode);
 
         // any kind of animation here
 

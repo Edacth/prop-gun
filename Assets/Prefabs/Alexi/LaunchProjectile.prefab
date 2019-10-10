@@ -3811,7 +3811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f02b79c8e17e54cad0c484da6ef9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compatibleModes: 
+  compatibleModes: 01000000
   visual: {fileID: 0}
   interactableChecker: {fileID: 0}
   P: 25

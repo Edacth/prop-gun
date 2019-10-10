@@ -20,6 +20,13 @@ public class GlowOutlinePostProcessing : MonoBehaviour
     [Tooltip("Find objects and move them to object layer?")]
     [SerializeField] bool setObjectLayer = false;
 
+    public static int ObjectLayer { get; private set; }
+
+    void Awake()
+    {
+        ObjectLayer = objectLayer;
+    }
+
     void Start()
     {
         mainCamera.cullingMask &= ~(1 << objectLayer); // take off layer
