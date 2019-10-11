@@ -32,7 +32,7 @@ public class Projectile : InteractableObject
     public override void OnPointerExit()
     {
         PhysicsGun.currentObject = null;
-        PhysicsEffect.current.OnPointerExit();
+        PhysicsEffect.current.OnPointerExit(this);
         Debug.Log(name + " unselected");
     }
 
