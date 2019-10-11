@@ -38,7 +38,7 @@ public class GlowOutlinePostProcessing : MonoBehaviour
 
         // for some reason runningwith this enabled once fixed the smearing
         // problem, despite mode always being set to solidcolor in editor
-        // objectCamera.clearFlags = CameraClearFlags.SolidColor;
+        objectCamera.clearFlags = CameraClearFlags.SolidColor;
 
         _secondaryDepth = new RenderTexture(objectCamera.pixelWidth, objectCamera.pixelHeight, 16, RenderTextureFormat.Depth);
         objectCamera.SetTargetBuffers(_secondaryDepth.colorBuffer, _secondaryDepth.depthBuffer);
@@ -70,6 +70,7 @@ public class GlowOutlinePostProcessing : MonoBehaviour
         Graphics.Blit(_objects, _outline, _effect);
         _combiner.SetTexture("_ObjectTex", _outline);
         Graphics.Blit(source, destination, _combiner);
+        RenderTexture.ReleaseTemporary(_outline);
     }
 
     void OnApplicationQuit()

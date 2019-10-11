@@ -179,12 +179,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5081299081438396291, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: physMaterials.Array.data[4].image
-      value: 
-      objectReference: {fileID: 21300000, guid: 7a64bb430178fd94c95cbef4bc8e1258,
-        type: 3}
     - target: {fileID: 5844804891084169702, guid: 56e94c698c81914429c1a35b1e27441a,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -234,27 +228,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 3863
-      objectReference: {fileID: 0}
-    - target: {fileID: 173713288, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
-      propertyPath: _effect
-      value: 
-      objectReference: {fileID: 2100000, guid: ec81d99b9ab35f94dad0ed09e706c009, type: 2}
-    - target: {fileID: 173713288, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
-      propertyPath: hideObjects
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2106065764, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2106065764, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e94c698c81914429c1a35b1e27441a, type: 3}
