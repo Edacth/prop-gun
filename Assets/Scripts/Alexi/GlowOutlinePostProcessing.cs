@@ -9,12 +9,12 @@ public class GlowOutlinePostProcessing : MonoBehaviour
     [SerializeField] Camera objectCamera;
     [Tooltip("Object layer number")]
     [SerializeField] int objectLayer = 11;
-    [Tooltip("RenderTexture for objects")]
-    [SerializeField] RenderTexture _objects;
+    // [Tooltip("RenderTexture for objects")]
+    // [SerializeField] RenderTexture _objects;
     [Tooltip("Object layer manipulation")]
     [SerializeField] Material _effect;
-    [Tooltip("Layering combine material")]
-    [SerializeField]  Material _combiner;
+    // [Tooltip("Layering combine material")]
+    // [SerializeField]  Material _combiner;
     [Tooltip("HIde objects from main camera?")]
     [SerializeField] bool hideObjects = false;
 
@@ -38,7 +38,7 @@ public class GlowOutlinePostProcessing : MonoBehaviour
 
         // for some reason runningwith this enabled once fixed the smearing
         // problem, despite mode always being set to solidcolor in editor
-        objectCamera.clearFlags = CameraClearFlags.SolidColor;
+        //objectCamera.clearFlags = CameraClearFlags.SolidColor;
 
         _secondaryDepth = new RenderTexture(objectCamera.pixelWidth, objectCamera.pixelHeight, 16, RenderTextureFormat.Depth);
         objectCamera.SetTargetBuffers(_secondaryDepth.colorBuffer, _secondaryDepth.depthBuffer);
@@ -65,12 +65,8 @@ public class GlowOutlinePostProcessing : MonoBehaviour
         //RenderTexture.ReleaseTemporary(_hori);
         //RenderTexture.ReleaseTemporary(_vert);
 
-        // outline
-        RenderTexture _outline = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
-        Graphics.Blit(_objects, _outline, _effect);
-        _combiner.SetTexture("_ObjectTex", _outline);
-        Graphics.Blit(source, destination, _combiner);
-        RenderTexture.ReleaseTemporary(_outline);
+        Graphics.Blit(source, destination, _effect);
+      
     }
 
     void OnApplicationQuit()
