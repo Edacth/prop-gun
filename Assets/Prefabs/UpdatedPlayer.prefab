@@ -128,6 +128,7 @@ MonoBehaviour:
   data: {fileID: 5081299081438396291}
   grabPoint: {fileID: 1177963131364136155}
   aimDownSights: {fileID: 1884567673270918705}
+  colorDelay: 0.1
 --- !u!114 &4744173237126182768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +272,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f466e9898eacdf43a333739758ce6ec, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -314,8 +315,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.5481436, g: 1, b: 0, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.057513747, b: 0, a: 1}
+      key1: {r: 1, g: 0.057513747, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -338,7 +339,7 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
