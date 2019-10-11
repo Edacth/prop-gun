@@ -63,7 +63,9 @@ public abstract class PhysicsEffect
     /// </summary>
     public virtual void OnPointerExit(InteractableObject previousTarget) { }
 
-    public virtual void OnSwitchedTo() { }
+    public virtual void OnSwitchedTo(InteractableObject target) { }
+
+    public virtual void OnSwitchedFrom(InteractableObject target) { }
 
 }
 
@@ -251,7 +253,7 @@ public class ChangeGravity : PhysicsEffect
 
     public override void RunEditMode() { }
 
-    public override void OnSwitchedTo()
+    public override void OnSwitchedTo(InteractableObject target)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -352,7 +354,7 @@ public class ToggleKinematic : PhysicsEffect
 
     public override void RunEditMode() { }
 
-    public override void OnSwitchedTo()
+    public override void OnSwitchedTo(InteractableObject target)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -423,6 +425,23 @@ public class ApplyForce : PhysicsEffect
             rotation -= stepAmount;
             if (rotation < 360) { rotation += 360; }
             PhysicsValues.instance.forceImage.transform.localEulerAngles = new Vector3(0, 0, rotation);
+        }
+    }
+
+    public override void OnSwitchedTo(InteractableObject target)
+    {
+        if (null != target)
+        {
+            target.setLineActive(true);
+        }
+        
+    }
+
+    public override void OnSwitchedFrom(InteractableObject target)
+    {
+        if (null != target)
+        {
+            target.setLineActive(false);
         }
     }
 }

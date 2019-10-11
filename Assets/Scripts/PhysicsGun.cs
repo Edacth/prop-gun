@@ -22,6 +22,7 @@ public class PhysicsGun : MonoBehaviour
     };
 
     public InteractableChecker interactableChecker;
+    LineRenderer lineRenderer;
     public PhysicsValues data;
 
     int modeCount = 8; // how many modes there are
@@ -31,7 +32,12 @@ public class PhysicsGun : MonoBehaviour
     static Dictionary<Mode, PhysicsEffect> effects;
     [SerializeField] Transform grabPoint;
     InteractableObject grabedObject;
-    [SerializeField] AimDownSights aimDownSights;
+    [SerializeField]
+    AimDownSights aimDownSights;
+    float colorTime = 0;
+    [SerializeField]
+    float colorDelay = 0.1f;
+    Color fireColor;
 
     bool fireEnabled; // can we fire at things?
 
@@ -74,12 +80,23 @@ public class PhysicsGun : MonoBehaviour
             PhysicsEffect.current = new ChangeMass();
         }
 
-        fireEnabled = true;
+        lineRenderer = GetComponent<LineRenderer>();
+        fireColor = new Color(0, 255, 255);
     }
 
     void Update()
     {
         TakeInput();
+
+        if (colorTime != -1)
+        {
+            colorTime += Time.deltaTime;
+            if (colorTime >= colorDelay)
+            {
+                colorTime = -1;
+                lineRenderer.startColor = Color.red;
+            }
+        }
     }
 
     /// <summary>
@@ -123,8 +140,6 @@ public class PhysicsGun : MonoBehaviour
                 SwitchMode(newMode);
                 //Debug.Log(numberPressed);
             }
-
-             
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -138,7 +153,6 @@ public class PhysicsGun : MonoBehaviour
         {
             UnGrab();
         }
-
     }
 
     /// <summary>
@@ -161,11 +175,16 @@ public class PhysicsGun : MonoBehaviour
 
         // any kind of animation here
 
+        if (currentMode != newMode)
+        {
+            PhysicsEffect.current.OnSwitchedFrom(currentObject);
+        }
+
         currentMode = newMode;
         effects.TryGetValue(currentMode, out PhysicsEffect.current);
 
         if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect: " + newMode); }
-        else { PhysicsEffect.current.OnSwitchedTo(); }
+        else { PhysicsEffect.current.OnSwitchedTo(currentObject); }
 
         // Switch gun UI panels
         SwitchUI(newMode);
@@ -187,10 +206,12 @@ public class PhysicsGun : MonoBehaviour
             Debug.LogError("shotPointParticles is null. Assign it in physics values to the 'Spark emitter' prefab");
         }
 
-        if(null == currentObject) { return; }
+        lineRenderer.startColor = fireColor;
+        colorTime = 0.0f;
 
-
+        if (null == currentObject) { return; }
         PhysicsEffect.current.ApplyEffect(currentObject);
+        
     }
     public void Grab()
     {
