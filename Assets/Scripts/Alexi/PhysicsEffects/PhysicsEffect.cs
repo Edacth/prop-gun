@@ -61,9 +61,11 @@ public abstract class PhysicsEffect
     /// <summary>
     /// terminate effect
     /// </summary>
-    public virtual void OnPointerExit() { }
+    public virtual void OnPointerExit(InteractableObject previousTarget) { }
 
-    public virtual void OnSwitchedTo() { }
+    public virtual void OnSwitchedTo(InteractableObject target) { }
+
+    public virtual void OnSwitchedFrom(InteractableObject target) { }
 
 }
 
@@ -106,7 +108,7 @@ public class ChangeMass : PhysicsEffect
         }
     }
 
-    public override void OnPointerExit()
+    public override void OnPointerExit(InteractableObject previousTarget)
     {
         // base.OnPointerExit();
         // InteractableVisualizer.instance.HideDisplay();
@@ -245,7 +247,7 @@ public class ChangeGravity : PhysicsEffect
         }
     }
 
-    public override void OnPointerExit()
+    public override void OnPointerExit(InteractableObject previousTarget)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -255,7 +257,7 @@ public class ChangeGravity : PhysicsEffect
 
     public override void RunEditMode() { }
 
-    public override void OnSwitchedTo()
+    public override void OnSwitchedTo(InteractableObject target)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -347,7 +349,7 @@ public class ToggleKinematic : PhysicsEffect
             newTarget = false;
         }
     }
-    public override void OnPointerExit()
+    public override void OnPointerExit(InteractableObject previousTarget)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -356,7 +358,7 @@ public class ToggleKinematic : PhysicsEffect
 
     public override void RunEditMode() { }
 
-    public override void OnSwitchedTo()
+    public override void OnSwitchedTo(InteractableObject target)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -390,6 +392,11 @@ public class ApplyForce : PhysicsEffect
         
     }
 
+    public override void OnPointerEnter(InteractableObject target)
+    {
+        target.setLineActive(true);
+    }
+
     public override void OnPointerStay(InteractableObject target)
     {
         float rotationInRadians = ((rotation) * (Mathf.PI / 180)) - ((camera.transform.localEulerAngles.y) * (Mathf.PI / 180)); // Convert to radians
@@ -400,6 +407,12 @@ public class ApplyForce : PhysicsEffect
         //Debug.Log(camera.transform.localEulerAngles);
 
         Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
+        target.SetLineDirection(force.normalized * 2);
+    }
+
+    public override void OnPointerExit(InteractableObject previousTarget)
+    {
+        previousTarget.setLineActive(false);
     }
 
     public override void RunEditMode()
@@ -409,13 +422,30 @@ public class ApplyForce : PhysicsEffect
 
             rotation += stepAmount;
             if (rotation > 360) { rotation -= 360; }
-            PhysicsValues.instance.forceImage.transform.eulerAngles = new Vector3(0, 0, rotation);
+            PhysicsValues.instance.forceImage.transform.localEulerAngles = new Vector3(0, 0, rotation);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
             rotation -= stepAmount;
             if (rotation < 360) { rotation += 360; }
-            PhysicsValues.instance.forceImage.transform.eulerAngles = new Vector3(0, 0, rotation);
+            PhysicsValues.instance.forceImage.transform.localEulerAngles = new Vector3(0, 0, rotation);
+        }
+    }
+
+    public override void OnSwitchedTo(InteractableObject target)
+    {
+        if (null != target)
+        {
+            target.setLineActive(true);
+        }
+        
+    }
+
+    public override void OnSwitchedFrom(InteractableObject target)
+    {
+        if (null != target)
+        {
+            target.setLineActive(false);
         }
     }
 }
@@ -444,31 +474,4 @@ public class UseMagnet : PhysicsEffect
         Debug.LogError("magnet not implemented");
     }
 }
-
-public class ApplyTorque : PhysicsEffect
-{
-    Vector3 force;
-    public ApplyTorque(Vector3 _force)
-    {
-        force = _force;
-    }
-
-    private ApplyTorque() { }
-
-    public override void ApplyEffect(InteractableObject target)
-    {
-        target.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 1);
-    }
-
-    public override void OnPointerStay(InteractableObject target)
-    {
-        // torque things
-    }
-
-    public override void RunEditMode()
-    {
-        throw new System.NotImplementedException();
-    }
-}
-
 

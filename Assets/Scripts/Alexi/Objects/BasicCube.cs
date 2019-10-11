@@ -19,6 +19,6 @@ public class BasicCube : InteractableObject
 
         visual?.HideDisplay();
 
-        PhysicsEffect.current.OnPointerExit();
+        PhysicsEffect.current.OnPointerExit(this);
     }
 }

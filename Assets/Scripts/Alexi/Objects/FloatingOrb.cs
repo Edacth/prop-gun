@@ -21,6 +21,6 @@ public class FloatingOrb : InteractableObject
         visual?.HideDisplay();
 
         // This might be a really dumb way to do this. SORRY ALEXI
-        PhysicsEffect.current.OnPointerExit();
+        PhysicsEffect.current.OnPointerExit(this);
     }
 }

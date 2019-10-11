@@ -10,7 +10,7 @@ public class InteractableChecker : MonoBehaviour
     float checkDistance = 5.0f;
     RaycastHit raycastHit;
     LayerMask layerMask = 1 << 2;
-    
+    LineRenderer lineRenderer;   
 
     public delegate void OnInteractableCheckDelegate();
     public static event OnInteractableCheckDelegate interactableCheckDelegate;
@@ -18,11 +18,15 @@ public class InteractableChecker : MonoBehaviour
     private void Start()
     {
         layerMask = ~layerMask;
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     void Update()
     {
-        Debug.DrawRay(sourceTransform.position, sourceTransform.forward * raycastHit.distance, Color.red);
+        Debug.DrawRay(sourceTransform.position, sourceTransform.forward * checkDistance, Color.red);
+        lineRenderer.SetPosition(0, transform.InverseTransformPoint(sourceTransform.position));
+        lineRenderer.SetPosition(1, Vector3.forward * checkDistance);
+
         InteractableCheck();
     }
 

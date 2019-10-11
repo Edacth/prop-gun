@@ -19,14 +19,13 @@ public class PhysicsGun : MonoBehaviour
         kinematic,  // toggle isKinematic
         force,      // apply pushing force
         magnet,     // apply pulling force
-        torque      // apply torque
     };
 
     public InteractableChecker interactableChecker;
+    LineRenderer lineRenderer;
     public PhysicsValues data;
-    public InteractableObjectCollectionManager collectionManager;
 
-    const int modeCount = 8; // how many modes there are
+    int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
     public static InteractableObject currentObject;
@@ -35,6 +34,12 @@ public class PhysicsGun : MonoBehaviour
     InteractableObject grabedObject;
     [SerializeField]
     AimDownSights aimDownSights;
+    float colorTime = 0;
+    [SerializeField]
+    float colorDelay = 0.1f;
+    Color fireColor;
+
+    bool fireEnabled; // can we fire at things?
 
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -61,7 +66,8 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.kinematic, new ToggleKinematic());
             effects.Add(Mode.force,     new ApplyForce(data.force, data.forceStepAmount, data.camera));
             effects.Add(Mode.magnet,    new UseMagnet(data.magForce));
-            effects.Add(Mode.torque,    new ApplyTorque(data.torque));
+
+            modeCount = effects.Count;
         }
 
         currentMode = Mode.mass; // initialize to default
@@ -73,11 +79,24 @@ public class PhysicsGun : MonoBehaviour
             Debug.LogWarning("Physics effect not set. Default to mass");
             PhysicsEffect.current = new ChangeMass();
         }
+
+        lineRenderer = GetComponent<LineRenderer>();
+        fireColor = new Color(0, 255, 255);
     }
 
     void Update()
     {
         TakeInput();
+
+        if (colorTime != -1)
+        {
+            colorTime += Time.deltaTime;
+            if (colorTime >= colorDelay)
+            {
+                colorTime = -1;
+                lineRenderer.startColor = Color.red;
+            }
+        }
     }
 
     /// <summary>
@@ -121,8 +140,6 @@ public class PhysicsGun : MonoBehaviour
                 SwitchMode(newMode);
                 //Debug.Log(numberPressed);
             }
-
-             
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -136,7 +153,6 @@ public class PhysicsGun : MonoBehaviour
         {
             UnGrab();
         }
-
     }
 
     /// <summary>
@@ -155,18 +171,25 @@ public class PhysicsGun : MonoBehaviour
 
     public void SwitchMode(Mode newMode)
     {
-        collectionManager.SwitchMode(newMode);
+        InteractableObjectCollectionManager.SwitchMode(newMode);
 
         // any kind of animation here
+
+        if (currentMode != newMode)
+        {
+            PhysicsEffect.current.OnSwitchedFrom(currentObject);
+        }
 
         currentMode = newMode;
         effects.TryGetValue(currentMode, out PhysicsEffect.current);
 
         if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect: " + newMode); }
-        else { PhysicsEffect.current.OnSwitchedTo(); }
+        else { PhysicsEffect.current.OnSwitchedTo(currentObject); }
 
         // Switch gun UI panels
         SwitchUI(newMode);
+
+        StartCoroutine("FinishSwitch");
     }
 
     /// <summary>
@@ -183,10 +206,12 @@ public class PhysicsGun : MonoBehaviour
             Debug.LogError("shotPointParticles is null. Assign it in physics values to the 'Spark emitter' prefab");
         }
 
-        if(null == currentObject) { return; }
+        lineRenderer.startColor = fireColor;
+        colorTime = 0.0f;
 
-
+        if (null == currentObject) { return; }
         PhysicsEffect.current.ApplyEffect(currentObject);
+        
     }
     public void Grab()
     {
@@ -222,5 +247,19 @@ public class PhysicsGun : MonoBehaviour
             data.UIPanels[index].SetActive(false);
             //Debug.Log("Disable " + (Mode)index);
         }
+    }
+
+    /// <summary>
+    /// disable fire until end of frame, to combat weird object issue
+    /// </summary>
+    /// 
+    /// <returns>
+    /// coroutine, end of frame
+    /// </returns>
+    IEnumerator FinishSwitch()
+    {
+        fireEnabled = false;
+        yield return new WaitForEndOfFrame();
+        fireEnabled = true;
     }
 }
