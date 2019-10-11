@@ -19,14 +19,12 @@ public class PhysicsGun : MonoBehaviour
         kinematic,  // toggle isKinematic
         force,      // apply pushing force
         magnet,     // apply pulling force
-        torque      // apply torque
     };
 
     public InteractableChecker interactableChecker;
     public PhysicsValues data;
-    public InteractableObjectCollectionManager collectionManager;
 
-    const int modeCount = 8; // how many modes there are
+    int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
     public static InteractableObject currentObject;
@@ -61,7 +59,8 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.kinematic, new ToggleKinematic());
             effects.Add(Mode.force,     new ApplyForce(data.force, data.forceStepAmount, data.camera));
             effects.Add(Mode.magnet,    new UseMagnet(data.magForce));
-            effects.Add(Mode.torque,    new ApplyTorque(data.torque));
+
+            modeCount = effects.Count;
         }
 
         currentMode = Mode.mass; // initialize to default
@@ -155,7 +154,7 @@ public class PhysicsGun : MonoBehaviour
 
     public void SwitchMode(Mode newMode)
     {
-        collectionManager.SwitchMode(newMode);
+        InteractableObjectCollectionManager.SwitchMode(newMode);
 
         // any kind of animation here
 

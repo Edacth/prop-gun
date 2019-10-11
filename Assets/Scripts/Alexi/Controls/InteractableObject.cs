@@ -41,8 +41,7 @@ public abstract class InteractableObject : MonoBehaviour
         myMeshRenderer = GetComponent<MeshRenderer>();
         lineRenderer = GetComponent<LineRenderer>();
 
-        selectable = true;
-        // selectable = InteractableObjectCollectionManager.QuerySelectable(this);
+        InteractableObjectCollectionManager.PushInteractable(this);
 
         interactableChecker = GameObject.FindObjectOfType<InteractableChecker>(); // change this
         lineRenderer.SetPosition(1, Vector3.zero);
@@ -52,20 +51,19 @@ public abstract class InteractableObject : MonoBehaviour
     {
         if (selected)
         {
-            if(null == PhysicsEffect.current)
-            { /*Debug.LogWarning("Invalid physics effect");*/ }
-            else { PhysicsEffect.current.OnPointerStay(this); }
-
+            PhysicsEffect.current.OnPointerStay(this);
         } 
     }
 
+    /// <summary>
+    /// check if this object is being hovered over
+    /// </summary>
     void CheckIfSelected()
     {
         if (!selectable) { return; }
 
         if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
-            // _meshRenderer.material.color = selectedColor;
             currentSelection = this;
             selected = true;
             OnPointerEnter();
@@ -73,8 +71,6 @@ public abstract class InteractableObject : MonoBehaviour
         }
         else if (interactableChecker.getRaycastHit().transform != transform && selected)
         {
-            //myMeshRenderer.material.color = unselectedColor;
-
             currentSelection = null;
             selected = false;
             OnPointerExit();
@@ -97,11 +93,8 @@ public abstract class InteractableObject : MonoBehaviour
     /// </summary>
     public void MarkActive()
     {
-        // ToDo: implement interactability effect
-
+        gameObject.layer = GlowOutlinePostProcessing.ObjectLayer;
         selectable = true;
-
-        // Debug.Log(name + " active");
     }
 
     /// <summary>
@@ -109,9 +102,8 @@ public abstract class InteractableObject : MonoBehaviour
     /// </summary>
     public void UnmarkActive()
     {
+        gameObject.layer = 0; // default
         selectable = false;
-
-        // Debug.Log(name + " inactive");
     }
 
     // Subscribing Delegate

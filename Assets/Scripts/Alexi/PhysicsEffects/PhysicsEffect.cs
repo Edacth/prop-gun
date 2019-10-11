@@ -456,30 +456,3 @@ public class UseMagnet : PhysicsEffect
     }
 }
 
-public class ApplyTorque : PhysicsEffect
-{
-    Vector3 force;
-    public ApplyTorque(Vector3 _force)
-    {
-        force = _force;
-    }
-
-    private ApplyTorque() { }
-
-    public override void ApplyEffect(InteractableObject target)
-    {
-        target.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 1);
-    }
-
-    public override void OnPointerStay(InteractableObject target)
-    {
-        // torque things
-    }
-
-    public override void RunEditMode()
-    {
-        throw new System.NotImplementedException();
-    }
-}
-
-
