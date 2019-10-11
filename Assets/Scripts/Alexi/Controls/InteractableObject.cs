@@ -31,8 +31,7 @@ public abstract class InteractableObject : MonoBehaviour
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false;
-    bool selectable;
-    
+    bool selectable;    
 
     void Awake()
     {

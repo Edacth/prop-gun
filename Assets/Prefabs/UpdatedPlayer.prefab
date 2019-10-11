@@ -58,7 +58,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableChecker: {fileID: 4744173237126182768}
   data: {fileID: 5081299081438396291}
+  outlineEffect: {fileID: 173713288}
   grabPoint: {fileID: 1177963131364136155}
   aimDownSights: {fileID: 1884567673270918705}
   colorDelay: 0.1
@@ -826,10 +827,23 @@ MonoBehaviour:
   mainCamera: {fileID: 6064873328608475998}
   objectCamera: {fileID: 2106065764}
   objectLayer: 11
-  _objects: {fileID: 8600000, guid: 74eb1adf4976406469d91c0423003f69, type: 2}
   _effect: {fileID: 2100000, guid: ec81d99b9ab35f94dad0ed09e706c009, type: 2}
-  _combiner: {fileID: 2100000, guid: 2e936672b6ac597478df32ec569f4deb, type: 2}
   hideObjects: 0
+  typeColors:
+  - mode: 0
+    outlineColor: {r: 0, g: 0.013993597, b: 0.4339623, a: 1}
+  - mode: 1
+    outlineColor: {r: 0.02114594, g: 1, b: 0, a: 1}
+  - mode: 2
+    outlineColor: {r: 0, g: 0.0377028, b: 1, a: 1}
+  - mode: 3
+    outlineColor: {r: 1, g: 0, b: 0.7535238, a: 1}
+  - mode: 4
+    outlineColor: {r: 1, g: 0.66730344, b: 0, a: 1}
+  - mode: 5
+    outlineColor: {r: 1, g: 0.03164478, b: 0, a: 1}
+  - mode: 6
+    outlineColor: {r: 1, g: 0.98470956, b: 0, a: 1}
   setObjectLayer: 1
 --- !u!1 &6175379170138560489
 GameObject:
