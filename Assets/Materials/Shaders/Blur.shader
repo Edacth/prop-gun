@@ -1,5 +1,5 @@
 ﻿// provides highlight effect for objects
-Shader "Custom/Blur"
+Shader "Custom/Glow"
 {
     Properties
     {

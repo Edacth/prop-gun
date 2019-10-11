@@ -38,6 +38,9 @@ public class PhysicsGun : MonoBehaviour
     [SerializeField]
     float colorDelay = 0.1f;
     Color fireColor;
+    [SerializeField] AimDownSights aimDownSights;
+
+    bool fireEnabled; // can we fire at things?
 
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -186,6 +189,8 @@ public class PhysicsGun : MonoBehaviour
 
         // Switch gun UI panels
         SwitchUI(newMode);
+
+        StartCoroutine("FinishSwitch");
     }
 
     /// <summary>
@@ -243,5 +248,19 @@ public class PhysicsGun : MonoBehaviour
             data.UIPanels[index].SetActive(false);
             //Debug.Log("Disable " + (Mode)index);
         }
+    }
+
+    /// <summary>
+    /// disable fire until end of frame, to combat weird object issue
+    /// </summary>
+    /// 
+    /// <returns>
+    /// coroutine, end of frame
+    /// </returns>
+    IEnumerator FinishSwitch()
+    {
+        fireEnabled = false;
+        yield return new WaitForEndOfFrame();
+        fireEnabled = true;
     }
 }

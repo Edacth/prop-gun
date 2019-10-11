@@ -10,8 +10,7 @@ public class InteractableChecker : MonoBehaviour
     float checkDistance = 5.0f;
     RaycastHit raycastHit;
     LayerMask layerMask = 1 << 2;
-    LineRenderer lineRenderer;
-    
+    LineRenderer lineRenderer;   
 
     public delegate void OnInteractableCheckDelegate();
     public static event OnInteractableCheckDelegate interactableCheckDelegate;
