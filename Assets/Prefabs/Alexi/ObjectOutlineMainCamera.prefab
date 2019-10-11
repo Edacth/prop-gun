@@ -173,5 +173,7 @@ MonoBehaviour:
   objectCamera: {fileID: 8641728462161264698}
   objectLayer: 11
   _objects: {fileID: 8600000, guid: 74eb1adf4976406469d91c0423003f69, type: 2}
-  _blur: {fileID: 2100000, guid: 0d9a2293f1de4ce4a89d2001a37a9c8a, type: 2}
+  _effect: {fileID: 2100000, guid: ec81d99b9ab35f94dad0ed09e706c009, type: 2}
   _combiner: {fileID: 2100000, guid: 2e936672b6ac597478df32ec569f4deb, type: 2}
+  hideObjects: 0
+  setObjectLayer: 1

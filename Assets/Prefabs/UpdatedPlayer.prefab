@@ -735,7 +735,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1815
+    m_Bits: 3863
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -826,8 +826,9 @@ MonoBehaviour:
   objectCamera: {fileID: 2106065764}
   objectLayer: 11
   _objects: {fileID: 8600000, guid: 74eb1adf4976406469d91c0423003f69, type: 2}
-  _blur: {fileID: 2100000, guid: 0d9a2293f1de4ce4a89d2001a37a9c8a, type: 2}
+  _effect: {fileID: 2100000, guid: ec81d99b9ab35f94dad0ed09e706c009, type: 2}
   _combiner: {fileID: 2100000, guid: 2e936672b6ac597478df32ec569f4deb, type: 2}
+  hideObjects: 0
   setObjectLayer: 1
 --- !u!1 &6175379170138560489
 GameObject:
@@ -1145,6 +1146,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6064873328110577891}
     m_Modifications:
+    - target: {fileID: 100138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
+      propertyPath: m_Name
+      value: xbot
+      objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1200,10 +1205,6 @@ PrefabInstance:
     - target: {fileID: 400138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.4738817
-      objectReference: {fileID: 0}
-    - target: {fileID: 100138, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
-      propertyPath: m_Name
-      value: xbot
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: c6e2c440db6c12d47b02cf52ffa1c27f, type: 3}
       propertyPath: m_Controller

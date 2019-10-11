@@ -31,8 +31,9 @@ public class PhysicsGun : MonoBehaviour
     static Dictionary<Mode, PhysicsEffect> effects;
     [SerializeField] Transform grabPoint;
     InteractableObject grabedObject;
-    [SerializeField]
-    AimDownSights aimDownSights;
+    [SerializeField] AimDownSights aimDownSights;
+
+    bool fireEnabled; // can we fire at things?
 
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -72,6 +73,8 @@ public class PhysicsGun : MonoBehaviour
             Debug.LogWarning("Physics effect not set. Default to mass");
             PhysicsEffect.current = new ChangeMass();
         }
+
+        fireEnabled = true;
     }
 
     void Update()
@@ -166,6 +169,8 @@ public class PhysicsGun : MonoBehaviour
 
         // Switch gun UI panels
         SwitchUI(newMode);
+
+        StartCoroutine("FinishSwitch");
     }
 
     /// <summary>
@@ -221,5 +226,19 @@ public class PhysicsGun : MonoBehaviour
             data.UIPanels[index].SetActive(false);
             //Debug.Log("Disable " + (Mode)index);
         }
+    }
+
+    /// <summary>
+    /// disable fire until end of frame, to combat weird object issue
+    /// </summary>
+    /// 
+    /// <returns>
+    /// coroutine, end of frame
+    /// </returns>
+    IEnumerator FinishSwitch()
+    {
+        fireEnabled = false;
+        yield return new WaitForEndOfFrame();
+        fireEnabled = true;
     }
 }
