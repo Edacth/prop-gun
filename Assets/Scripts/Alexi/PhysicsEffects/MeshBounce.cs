@@ -25,6 +25,7 @@ public class MeshBounce : MonoBehaviour
     Rigidbody rb;
     Mesh mesh;
     List<Vector3> originalVerts, squishedVerts;
+    Vector3 hitVelocity;
 
     void Start()
     {
@@ -48,25 +49,27 @@ public class MeshBounce : MonoBehaviour
             else if(cur.y > max.y) { max = cur; }
         }
         height = max.y - min.y;
-
-        Debug.Log("height: " + height);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         isSquishing = true;
         t = 0; // initialize motion
+        hitVelocity = rb.velocity;
         initialV = rb.velocity.y;
-        Debug.Log("vi: " + initialV);
+        rb.velocity = Vector3.zero;
 
         deltaV = 2 * initialV; // change and go equally positive
 
         totalT = 2 * Mathf.PI * Mathf.Pow(m / k, 0.5f);
+
+        Debug.Break();
     }
 
     void Update()
     {
         if (!isSquishing) { return; }
+        if(t > totalT) { isSquishing = false; }
 
         t += Time.deltaTime;
 
@@ -78,18 +81,20 @@ public class MeshBounce : MonoBehaviour
     {
         Vector3 cur;
 
-        // currentV = ; // ??????
-        deltaV = initialV = currentV;
+        currentV = -Mathf.Sin(t / totalT);
+        deltaV = initialV - currentV;
 
         // calculate max offset
         deltaY = (-m * deltaV) / (k * t);
+        deltaY *= -10;
         float scale = deltaY / height;
+        Debug.Log("currentV: " + currentV + " scale: " + scale + " initialV: " + initialV + " height: " + height);
 
         // set vertices as a scale of the offset
         for(int i = 0; i < squishedVerts.Count; i++)
         {
-            cur = squishedVerts[i];
-            cur.y = Mathf.Lerp(min.y, max.y, scale);
+            cur = originalVerts[i];
+            cur.y = Mathf.Lerp(min.y, cur.y, scale);
             squishedVerts[i] = cur;
         }
     }
