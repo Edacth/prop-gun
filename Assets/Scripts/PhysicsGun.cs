@@ -38,7 +38,6 @@ public class PhysicsGun : MonoBehaviour
     [SerializeField]
     float colorDelay = 0.1f;
     Color fireColor;
-    [SerializeField] AimDownSights aimDownSights;
 
     bool fireEnabled; // can we fire at things?
 
