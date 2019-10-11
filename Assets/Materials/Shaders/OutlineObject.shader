@@ -85,7 +85,7 @@
                 // scale to distance from camera
                 float scaledEdgeDepth = _DepthThreshold * depth0;
 
-                return edgeDepth > scaledEdgeDepth ? _Outline : 0;
+                return edgeDepth > scaledEdgeDepth ? _Outline : tex2D(_MainTex, i.uv);
             }
             ENDCG
         }

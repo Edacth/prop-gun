@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Camera))]
 public class GlowOutlinePostProcessing : MonoBehaviour
@@ -9,36 +11,32 @@ public class GlowOutlinePostProcessing : MonoBehaviour
     [SerializeField] Camera objectCamera;
     [Tooltip("Object layer number")]
     [SerializeField] int objectLayer = 11;
-    [Tooltip("RenderTexture for objects")]
-    [SerializeField] RenderTexture _objects;
     [Tooltip("Object layer manipulation")]
     [SerializeField] Material _effect;
-    [Tooltip("Layering combine material")]
-    [SerializeField]  Material _combiner;
     [Tooltip("HIde objects from main camera?")]
     [SerializeField] bool hideObjects = false;
-
+    [Tooltip("Outline colors for different modes")]
+    [SerializeField] List<TypeColor> typeColors;
     [Header("Setup")]
     [Tooltip("Find objects and move them to object layer?")]
     [SerializeField] bool setObjectLayer = false;
 
     RenderTexture _secondaryDepth;
+    Dictionary<PhysicsGun.Mode, Color> colorKey;
 
     public static int ObjectLayer { get; private set; }
 
     void Awake()
     {
         ObjectLayer = objectLayer;
+        colorKey = new Dictionary<PhysicsGun.Mode, Color>();
+        foreach (TypeColor tc in typeColors) { colorKey.Add(tc.mode, tc.outlineColor); }
     }
 
     void Start()
     {
         if (hideObjects) { mainCamera.cullingMask &= ~(1 << objectLayer); } // take off layer
         objectCamera.cullingMask = 1 << objectLayer;
-
-        // for some reason runningwith this enabled once fixed the smearing
-        // problem, despite mode always being set to solidcolor in editor
-        // objectCamera.clearFlags = CameraClearFlags.SolidColor;
 
         _secondaryDepth = new RenderTexture(objectCamera.pixelWidth, objectCamera.pixelHeight, 16, RenderTextureFormat.Depth);
         objectCamera.SetTargetBuffers(_secondaryDepth.colorBuffer, _secondaryDepth.depthBuffer);
@@ -50,30 +48,31 @@ public class GlowOutlinePostProcessing : MonoBehaviour
             {
                 io.gameObject.layer = objectLayer;
             }
-        }
+        }       
     }
+
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        // blur
-        //RenderTexture _hori = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
-        //RenderTexture _vert = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
-        //Graphics.Blit(_objects, _vert, _blur, 0);
-        //Graphics.Blit(_vert, _hori, _blur, 1);
-        //_combiner.SetTexture("_ObjectTex", _hori);
-        //Graphics.Blit(source, destination, _combiner);
-        //RenderTexture.ReleaseTemporary(_hori);
-        //RenderTexture.ReleaseTemporary(_vert);
-
-        // outline
-        RenderTexture _outline = RenderTexture.GetTemporary(new RenderTextureDescriptor(_objects.width, _objects.height));
-        Graphics.Blit(_objects, _outline, _effect);
-        _combiner.SetTexture("_ObjectTex", _outline);
-        Graphics.Blit(source, destination, _combiner);
+        Graphics.Blit(source, destination, _effect);     
     }
 
     void OnApplicationQuit()
     {
         mainCamera.cullingMask = ~0; // add layer back
     }
+
+    public void SwitchOutlineColor(PhysicsGun.Mode newMode)
+    {
+        Color c;
+        colorKey.TryGetValue(newMode, out c);
+        _effect.SetColor("_Outline", c == Color.clear ? Color.black : c);
+    }
+}
+
+[Serializable]
+public class TypeColor
+{
+    public PhysicsGun.Mode mode;
+    public Color outlineColor;
 }

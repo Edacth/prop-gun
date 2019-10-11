@@ -24,6 +24,7 @@ public class PhysicsGun : MonoBehaviour
     public InteractableChecker interactableChecker;
     LineRenderer lineRenderer;
     public PhysicsValues data;
+    public GlowOutlinePostProcessing outlineEffect;
 
     int modeCount = 8; // how many modes there are
 
@@ -190,6 +191,7 @@ public class PhysicsGun : MonoBehaviour
         SwitchUI(newMode);
 
         StartCoroutine("FinishSwitch");
+        outlineEffect?.SwitchOutlineColor(newMode);
     }
 
     /// <summary>
