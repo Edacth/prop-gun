@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(LineRenderer))]
 [Serializable]
 public abstract class InteractableObject : MonoBehaviour
 {
@@ -26,21 +27,25 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField]
     InteractableChecker interactableChecker = null;
     public MeshRenderer myMeshRenderer { get; private set; }
+    LineRenderer lineRenderer;
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false;
     bool selectable;
+    
 
     void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
         myMeshRenderer = GetComponent<MeshRenderer>();
+        lineRenderer = GetComponent<LineRenderer>();
 
         selectable = true;
         // selectable = InteractableObjectCollectionManager.QuerySelectable(this);
 
         interactableChecker = GameObject.FindObjectOfType<InteractableChecker>(); // change this
+        lineRenderer.SetPosition(1, Vector3.zero);
     }
 
     void Update()
@@ -143,5 +148,16 @@ public abstract class InteractableObject : MonoBehaviour
         //Derivitive (Don't over shoot)
         correction += Vector3.Project(myRigidbody.velocity, myRigidbody.velocity) * D * Time.fixedDeltaTime;//how fast are we changing our error; //maybe make use velocity
         myRigidbody.AddForce(correction);
+    }
+
+    public void setLineActive(bool enabled)
+    {
+        lineRenderer.enabled = enabled;
+    }
+
+    public void SetLineDirection(Vector3 direction)
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position + direction);
     }
 }

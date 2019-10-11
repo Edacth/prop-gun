@@ -61,7 +61,7 @@ public abstract class PhysicsEffect
     /// <summary>
     /// terminate effect
     /// </summary>
-    public virtual void OnPointerExit() { }
+    public virtual void OnPointerExit(InteractableObject previousTarget) { }
 
     public virtual void OnSwitchedTo() { }
 
@@ -106,7 +106,7 @@ public class ChangeMass : PhysicsEffect
         }
     }
 
-    public override void OnPointerExit()
+    public override void OnPointerExit(InteractableObject previousTarget)
     {
         // base.OnPointerExit();
         // InteractableVisualizer.instance.HideDisplay();
@@ -245,7 +245,7 @@ public class ChangeGravity : PhysicsEffect
         }
     }
 
-    public override void OnPointerExit()
+    public override void OnPointerExit(InteractableObject previousTarget)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -347,7 +347,7 @@ public class ToggleKinematic : PhysicsEffect
             newTarget = false;
         }
     }
-    public override void OnPointerExit()
+    public override void OnPointerExit(InteractableObject previousTarget)
     {
         if (!PhysicsValues.instance.gravityEnabled) { return; }
 
@@ -390,6 +390,11 @@ public class ApplyForce : PhysicsEffect
         
     }
 
+    public override void OnPointerEnter(InteractableObject target)
+    {
+        target.setLineActive(true);
+    }
+
     public override void OnPointerStay(InteractableObject target)
     {
         float rotationInRadians = ((rotation) * (Mathf.PI / 180)) - ((camera.transform.localEulerAngles.y) * (Mathf.PI / 180)); // Convert to radians
@@ -400,6 +405,12 @@ public class ApplyForce : PhysicsEffect
         //Debug.Log(camera.transform.localEulerAngles);
 
         Debug.DrawRay(target.transform.position, force.normalized * 2 , Color.red);
+        target.SetLineDirection(force.normalized * 2);
+    }
+
+    public override void OnPointerExit(InteractableObject previousTarget)
+    {
+        previousTarget.setLineActive(false);
     }
 
     public override void RunEditMode()
