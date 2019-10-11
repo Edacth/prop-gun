@@ -25,8 +25,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     bool grounded = false;
     Vector3 fakeVelocity = Vector3.zero;
-    float tempDeleteThis = 0;
+    float speed = 0;
     Rigidbody[] rbs;
+ 
     private void Start()
     {
         rbs = transform.GetComponentsInChildren<Rigidbody>();
@@ -43,6 +44,13 @@ public class PlayerController : MonoBehaviour
         {
             rbs[i].isKinematic = false;
             rbs[i].transform.GetComponent<Collider>().enabled = true;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump")&&grounded)
+        {
+            Jump();
         }
     }
 
@@ -66,10 +74,10 @@ public class PlayerController : MonoBehaviour
         if(grounded)
         {
            
-            if (Input.GetButtonDown("Jump"))
+            if (jumpedThisFrame)
             {
                 Die();
-                Jump();
+                
                 Accelerate((Vector3.ProjectOnPlane(cam.transform.forward * Input.GetAxisRaw("Vertical") + cam.transform.right * Input.GetAxisRaw("Horizontal"), Vector3.up)).normalized, airSpeed, airAccel);
             } else
             {
@@ -85,7 +93,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnGUI()
     {
-        GUI.Label(new Rect(0,0,100,100), tempDeleteThis.ToString());
+        GUI.Label(new Rect(0,0,100,100), speed.ToString());
     }
     void Accelerate(Vector3 wishDir, float wishSpeed, float accel)
     {
@@ -100,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         #endif
         float speed = Vector3.Dot(fakeVelocity,wishDir);
-        tempDeleteThis = speed;
+        this.speed = speed;
         float addspeed = wishSpeed - speed;
         if (addspeed <= 0)
         {
