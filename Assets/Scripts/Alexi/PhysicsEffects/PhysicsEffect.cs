@@ -303,11 +303,7 @@ public class ChangeLayer : PhysicsEffect
 
     public override void OnPointerStay(InteractableObject target)
     {
-        for (float i = 0; i < 2 * Mathf.PI; i += Mathf.PI / 12)
-        {
-            Debug.DrawLine(target.transform.position, target.transform.position
-                + new Vector3(0, Mathf.Sin(i) * 2, Mathf.Cos(i) * 2), Color.green);
-        }
+
     }
 }
 
