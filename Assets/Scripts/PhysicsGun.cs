@@ -35,7 +35,7 @@ public class PhysicsGun : MonoBehaviour
     InteractableObject grabedObject;
     [SerializeField]
     AimDownSights aimDownSights;
-    float colorTime = 0;
+    float colorTime = -1;
     [SerializeField]
     float colorDelay = 0.1f;
     Color fireColor;
