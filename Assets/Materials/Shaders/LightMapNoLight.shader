@@ -1,5 +1,7 @@
-﻿Shader "Unlit/LightMapNoLight"
+﻿
+Shader "Unlit/LightMapNoLight"
 {
+	
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
@@ -8,7 +10,7 @@
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
-
+		
         Pass
         {
             CGPROGRAM
