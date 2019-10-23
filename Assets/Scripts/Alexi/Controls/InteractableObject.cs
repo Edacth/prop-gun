@@ -35,8 +35,6 @@ public abstract class InteractableObject : MonoBehaviour
 
     void Awake()
     {
-        interactableChecker = FindObjectOfType<InteractableChecker>();
-        grabTarget = GameObject.Find("GrabPoint").transform;
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
         myMeshRenderer = GetComponent<MeshRenderer>();
