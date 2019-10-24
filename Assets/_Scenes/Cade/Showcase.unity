@@ -185,6 +185,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 65f4d21e66cc4ce46901e4dae9faf895,
         type: 2}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}
 --- !u!1 &47823470
@@ -1277,6 +1287,16 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}
 --- !u!1 &643738407
@@ -2156,6 +2176,16 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}
 --- !u!1001 &920517067
@@ -2849,6 +2879,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.data[0]
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}
@@ -4143,6 +4183,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 7025f754af1c93648b0d695eab01243c,
         type: 2}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}
 --- !u!43 &1825900235
@@ -4376,6 +4426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}
@@ -4674,6 +4729,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036074018416749196, guid: 0dba119ea5c747441b930ed43214c8be,
+        type: 3}
+      propertyPath: compatibleModes.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba119ea5c747441b930ed43214c8be, type: 3}

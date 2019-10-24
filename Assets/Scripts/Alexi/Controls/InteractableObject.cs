@@ -49,7 +49,7 @@ public class InteractableObject : MonoBehaviour
             PhysicsEffect.current.OnPointerStay(this);
         }
 
-        if (Input.GetKeyDown(KeyCode.F)) { Debug.Log(PhysicsGun.currentInteractingObject == null ? "null" : PhysicsGun.currentInteractingObject.name); }
+        // if (Input.GetKeyDown(KeyCode.F)) { Debug.Log(PhysicsGun.currentInteractingObject == null ? "null" : PhysicsGun.currentInteractingObject.name); }
     }
 
     /// <summary>
@@ -59,13 +59,11 @@ public class InteractableObject : MonoBehaviour
     {
         if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
-            Debug.Log("object selected");
             PhysicsGun.currentPointingObject = this;
             if (selectable)
             {
                 PhysicsGun.currentInteractingObject = this;
                 OnPointerEnter();
-                Debug.Log("object also interactable");
             }
         }
     }

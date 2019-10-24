@@ -52,12 +52,10 @@ public class InteractableChecker : MonoBehaviour
             if (raycastHit.transform == null || (raycastHit.transform.gameObject.layer != 10 && raycastHit.transform.gameObject.layer != 11))
             {
                 PhysicsGun.currentPointingObject = PhysicsGun.currentInteractingObject = null;
-                Debug.Log("not");
             }
             else
             {
                 interactableCheckDelegate();
-                Debug.Log("interactable");
             }
 
             oldHit = raycastHit.transform;
