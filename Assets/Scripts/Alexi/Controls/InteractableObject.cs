@@ -44,10 +44,9 @@ public class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        if (selected)
-        {
-            PhysicsEffect.current.OnPointerStay(this);
-        }
+        // ToDo: Rewrite logic
+        if(null != PhysicsGun.currentInteractingObject) { PhysicsEffect.current.OnPointerStay(PhysicsGun.currentInteractingObject); }
+
 
         // if (Input.GetKeyDown(KeyCode.F)) { Debug.Log(PhysicsGun.currentInteractingObject == null ? "null" : PhysicsGun.currentInteractingObject.name); }
     }
