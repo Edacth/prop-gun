@@ -24,16 +24,14 @@ public class Projectile : InteractableObject
 
     public override void OnPointerEnter()
     {
-        PhysicsGun.currentObject = this;
+        PhysicsGun.currentInteractingObject = this;
         PhysicsEffect.current.OnPointerEnter(this);
-        Debug.Log(name + " selected");
     }
 
     public override void OnPointerExit()
     {
-        PhysicsGun.currentObject = null;
+        PhysicsGun.currentInteractingObject = null;
         PhysicsEffect.current.OnPointerExit(this);
-        Debug.Log(name + " unselected");
     }
 
     /// <summary>

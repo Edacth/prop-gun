@@ -157,9 +157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   massEnabled: 1
-  minMass: 0.2
-  maxMass: 2
-  step: 0.2
+  minMass: 1
+  maxMass: 30
+  step: 1
   defMass: 1
   massPanel: {fileID: 5844804889883828454}
   massSlider: {fileID: 5844804890332388693}
@@ -183,7 +183,7 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 7a64bb430178fd94c95cbef4bc8e1258, type: 3}
   matImage: {fileID: 5844804891346467575}
   matName: {fileID: 5844804890201854724}
-  gravityEnabled: 0
+  gravityEnabled: 1
   gravityImage: {fileID: 8299661474828475604}
   gravityValue: {fileID: 5004895942956291009}
   onSprite: {fileID: 21300000, guid: 366fe8726d9e90343b66193664228f67, type: 3}

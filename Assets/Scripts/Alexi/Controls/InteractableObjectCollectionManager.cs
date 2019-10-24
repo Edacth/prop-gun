@@ -9,12 +9,13 @@ using UnityEngine;
 /// </summary>
 public class InteractableObjectCollectionManager : MonoBehaviour
 {
-    static List<InteractableObject> objects; // all interactable objects
+    public static List<InteractableObject> objects { get; private set; } // all interactable objects
     static PhysicsGun.Mode currentMode; // current gun mode
 
     void Start()
     {
         currentMode = PhysicsGun.currentMode;
+        foreach(InteractableObject io in objects) { SortInteractable(io); }
     }
 
     /// <summary>
@@ -33,7 +34,7 @@ public class InteractableObjectCollectionManager : MonoBehaviour
 
         currentMode = newMode;
 
-        foreach (InteractableObject io in objects.FindAll(io => io.compatibleModes.Contains(currentMode)))
+        foreach (InteractableObject io in objects.FindAll(io => io.compatibleModes.Contains(newMode)))
         {
             io.MarkActive();
         }
@@ -47,7 +48,7 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     /// object to check
     /// param>
     /// <returns>
-    /// this objece is selectable
+    /// this object is selectable
     /// </returns>
     public static bool QuerySelectable(InteractableObject io)
     {
@@ -65,7 +66,6 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     {
         if(null == objects) { objects = new List<InteractableObject>(); }
         objects.Add(io);
-        SortInteractable(io);
     }
 
     /// <summary>

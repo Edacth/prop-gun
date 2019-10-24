@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4449723280288160161}
   - component: {fileID: 4449723280288160160}
   - component: {fileID: 4449723280288160175}
-  - component: {fileID: 4160886234148281582}
+  - component: {fileID: 69325374710173678}
   m_Layer: 0
   m_Name: Interactable Cube
   m_TagString: Untagged
