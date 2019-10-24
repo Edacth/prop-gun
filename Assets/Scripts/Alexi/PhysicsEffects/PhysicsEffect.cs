@@ -381,6 +381,7 @@ public class ApplyForce : PhysicsEffect
     {
         target.GetComponent<Renderer>().material.color = new Color(0, 1, 1, 1);
         target.myRigidbody.AddForce(force);
+        Debug.Log("force applied to " + target.name);
         
     }
 

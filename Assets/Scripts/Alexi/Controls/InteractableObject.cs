@@ -10,18 +10,14 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(LineRenderer))]
 [Serializable]
-public abstract class InteractableObject : MonoBehaviour
+public class InteractableObject : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("All modes that can interact with this object")]
     public List<PhysicsGun.Mode> compatibleModes;
-    [Tooltip("Effect visualiation")]
-    public InteractableVisualizer visual;
 
     public Rigidbody myRigidbody { get; private set; }
     public Collider myCollider { get; private set; }
-
-    public static InteractableObject currentSelection { get; private set; }
 
     // Cade
     [SerializeField]
@@ -30,8 +26,8 @@ public abstract class InteractableObject : MonoBehaviour
     LineRenderer lineRenderer;
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
-    bool selected = false;
-    bool selectable;    
+    bool selected = false; // is this object currently selected?
+    bool selectable; // can this object be selected? (mode-wise) 
 
     void Awake()
     {
@@ -51,41 +47,46 @@ public abstract class InteractableObject : MonoBehaviour
         if (selected)
         {
             PhysicsEffect.current.OnPointerStay(this);
-        } 
+        }
+
+        if (Input.GetKeyDown(KeyCode.F)) { Debug.Log(PhysicsGun.currentInteractingObject == null ? "null" : PhysicsGun.currentInteractingObject.name); }
     }
 
     /// <summary>
-    /// check if this object is being hovered over
+    /// update with new selection
     /// </summary>
-    void CheckIfSelected()
+    void UpdateSelection()
     {
-        if (!selectable) { return; }
-
         if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
-            currentSelection = this;
-            selected = true;
-            OnPointerEnter();
-            // PhysicsEffect.current.OnPointerEnter();
-        }
-        else if (interactableChecker.getRaycastHit().transform != transform && selected)
-        {
-            currentSelection = null;
-            selected = false;
-            OnPointerExit();
-            // PhysicsEffect.current.OnPointerExit();
+            Debug.Log("object selected");
+            PhysicsGun.currentPointingObject = this;
+            if (selectable)
+            {
+                PhysicsGun.currentInteractingObject = this;
+                OnPointerEnter();
+                Debug.Log("object also interactable");
+            }
         }
     }
 
     /// <summary>
     /// called on selection enter
     /// </summary>
-    public abstract void OnPointerEnter();
+    public virtual void OnPointerEnter()
+    {
+        PhysicsEffect.current.OnPointerEnter(this);
+        selected = true;
+    }
 
     /// <summary>
     /// called on selection exit
     /// </summary>
-    public abstract void OnPointerExit();
+    public virtual void OnPointerExit()
+    {
+        PhysicsEffect.current.OnPointerExit(this);
+        selected = false;
+    }
 
     /// <summary>
     /// shows this object can be interacted with
@@ -101,20 +102,20 @@ public abstract class InteractableObject : MonoBehaviour
     /// </summary>
     public void UnmarkActive()
     {
-        gameObject.layer = 0; // default
+        gameObject.layer = 10; // default
         selectable = false;
     }
 
     // Subscribing Delegate
     private void OnEnable()
     {
-        InteractableChecker.interactableCheckDelegate += CheckIfSelected;
+        InteractableChecker.interactableCheckDelegate += UpdateSelection;
     }
 
     // Unsubsribing Delegate
     private void OnDisable()
     {
-        InteractableChecker.interactableCheckDelegate -= CheckIfSelected;
+        InteractableChecker.interactableCheckDelegate -= UpdateSelection;
     }
 
     public float P = 25, I = 3, D = -60;

@@ -10,15 +10,21 @@ public class InteractableChecker : MonoBehaviour
     float checkDistance = 5.0f;
     RaycastHit raycastHit;
     LayerMask layerMask = 1 << 2;
-    LineRenderer lineRenderer;   
+
+    LineRenderer lineRenderer;
+
+    Transform oldHit;
 
     public delegate void OnInteractableCheckDelegate();
     public static event OnInteractableCheckDelegate interactableCheckDelegate;
 
     private void Start()
     {
-        layerMask = ~layerMask;
+        layerMask = ~layerMask; // invert
+
         lineRenderer = GetComponent<LineRenderer>();
+        Physics.Raycast(sourceTransform.position, sourceTransform.forward, out raycastHit, checkDistance, layerMask);
+        oldHit = raycastHit.transform;
     }
 
     void Update()
@@ -32,11 +38,31 @@ public class InteractableChecker : MonoBehaviour
 
     void InteractableCheck()
     {
-        
         Physics.Raycast(sourceTransform.position, sourceTransform.forward, out raycastHit, checkDistance, layerMask);
+        if (oldHit != raycastHit.transform) { CheckInteractableHelper(); }
+    }
+
+    public void CheckInteractableHelper()
+    {
         if (interactableCheckDelegate != null)
         {
-            interactableCheckDelegate();
+            // if its new thing, current thing exits (if not null)
+            if (PhysicsGun.currentInteractingObject != null && raycastHit.transform != PhysicsGun.currentInteractingObject.transform) { PhysicsGun.currentInteractingObject.OnPointerExit(); }
+            //if not hitting interactable
+            if (raycastHit.transform == null || (raycastHit.transform.gameObject.layer != 10 && raycastHit.transform.gameObject.layer != 11))
+            {
+                PhysicsGun.currentPointingObject = PhysicsGun.currentInteractingObject = null;
+                Debug.Log("not");
+            }
+            else
+            {
+                interactableCheckDelegate();
+                Debug.Log("interactable");
+            }
+
+            oldHit = raycastHit.transform;
+
+            if (PhysicsGun.currentInteractingObject != null && PhysicsGun.currentInteractingObject.transform != oldHit) { PhysicsGun.currentInteractingObject = null; }
         }
     }
 

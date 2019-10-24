@@ -29,10 +29,11 @@ public class PhysicsGun : MonoBehaviour
     int modeCount = 8; // how many modes there are
 
     public static Mode currentMode;
-    public static InteractableObject currentObject;
+    public static InteractableObject currentInteractingObject;
+    public static InteractableObject currentPointingObject;
     static Dictionary<Mode, PhysicsEffect> effects;
     [SerializeField] Transform grabPoint;
-    InteractableObject grabedObject;
+    InteractableObject grabbedObject;
     [SerializeField]
     AimDownSights aimDownSights;
     float colorTime = -1;
@@ -178,14 +179,16 @@ public class PhysicsGun : MonoBehaviour
 
         if (currentMode != newMode)
         {
-            PhysicsEffect.current.OnSwitchedFrom(currentObject);
+            PhysicsEffect.current.OnSwitchedFrom(currentInteractingObject);
         }
 
         currentMode = newMode;
         effects.TryGetValue(currentMode, out PhysicsEffect.current);
 
         if (null == PhysicsEffect.current) { Debug.LogWarning("Invalid physics effect: " + newMode); }
-        else { PhysicsEffect.current.OnSwitchedTo(currentObject); }
+        else { PhysicsEffect.current.OnSwitchedTo(currentInteractingObject); }
+
+        interactableChecker.CheckInteractableHelper();
 
         // Switch gun UI panels
         SwitchUI(newMode);
@@ -211,8 +214,8 @@ public class PhysicsGun : MonoBehaviour
         lineRenderer.startColor = fireColor;
         colorTime = 0.0f;
 
-        if (null == currentObject) { return; }
-        PhysicsEffect.current.ApplyEffect(currentObject);
+        if (null == currentInteractingObject) { return; }
+        PhysicsEffect.current.ApplyEffect(currentInteractingObject);
         
     }
     public void Grab()
@@ -221,18 +224,17 @@ public class PhysicsGun : MonoBehaviour
         {
             throw new System.Exception("You guys remeber to set grab point to an empty vaugly infront of the charecter");
         }
-        if (null == grabedObject) { return; }
-        grabedObject.grabTarget = grabPoint;      
-        grabedObject.grabUpdate();
+        if (null == grabbedObject) { return; }
+        grabbedObject.grabTarget = grabPoint;      
+        grabbedObject.grabUpdate();
     }
     public void GetGrab()
     {
-        if (null == currentObject) { return; }
-        grabedObject = currentObject;
+        grabbedObject = currentPointingObject;
     }
     public void UnGrab()
     {
-        grabedObject = null;
+        grabbedObject = null;
     }
 
     /// <summary>
