@@ -9,46 +9,31 @@ public class GlowOutlinePostProcessing : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [Tooltip("Physics object view camera")]
     [SerializeField] Camera objectCamera;
-    [Tooltip("Object layer number")]
-    [SerializeField] int objectLayer = 11;
     [Tooltip("Object layer manipulation")]
     [SerializeField] Material _effect;
     [Tooltip("HIde objects from main camera?")]
     [SerializeField] bool hideObjects = false;
     [Tooltip("Outline colors for different modes")]
     [SerializeField] List<TypeColor> typeColors;
-    [Header("Setup")]
-    [Tooltip("Find objects and move them to object layer?")]
-    [SerializeField] bool setObjectLayer = false;
 
     RenderTexture _secondaryDepth;
     Dictionary<PhysicsGun.Mode, Color> colorKey;
 
-    public static int ObjectLayer { get; private set; }
-
     void Awake()
     {
-        ObjectLayer = objectLayer;
         colorKey = new Dictionary<PhysicsGun.Mode, Color>();
         foreach (TypeColor tc in typeColors) { colorKey.Add(tc.mode, tc.outlineColor); }
     }
 
     void Start()
     {
-        if (hideObjects) { mainCamera.cullingMask &= ~(1 << objectLayer); } // take off layer
-        objectCamera.cullingMask = 1 << objectLayer;
+        LayerMask mask = (1 << PhysicsValues.instance.objectOutlineLayer) | (1 << PhysicsValues.instance.objectGoThruLayer);
+        if (hideObjects) { mainCamera.cullingMask &= ~mask; } // take off layer
+        objectCamera.cullingMask = mask;
 
         _secondaryDepth = new RenderTexture(objectCamera.pixelWidth, objectCamera.pixelHeight, 16, RenderTextureFormat.Depth);
         objectCamera.SetTargetBuffers(_secondaryDepth.colorBuffer, _secondaryDepth.depthBuffer);
-        Shader.SetGlobalTexture("_ObjectDepth", _secondaryDepth);
-
-        if (setObjectLayer)
-        {
-            foreach(InteractableObject io in FindObjectsOfType<InteractableObject>())
-            {
-                io.gameObject.layer = objectLayer;
-            }
-        }       
+        Shader.SetGlobalTexture("_ObjectDepth", _secondaryDepth);      
     }
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
