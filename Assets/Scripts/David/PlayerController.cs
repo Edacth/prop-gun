@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Jump")&&grounded)
+        if (Input.GetButton("Jump")&&grounded)
         {
             Jump();
         }
