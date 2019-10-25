@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Cade/PuzzleMockup.unity
     guid: 4df6801a040f813408061ca9c0da0d1d
+  - enabled: 1
+    path: Assets/_Scenes/BounceCannon.unity
+    guid: 4569da1585de6ce4280da8eccd79e10c
+  - enabled: 1
+    path: Assets/_Scenes/Cade/Showcase.unity
+    guid: 91c31005e4f57e34fa09ec01270abc85
   m_configObjects: {}
