@@ -149,4 +149,9 @@ public class InteractableObject : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, transform.position + direction);
     }
+
+    void OnDestroy()
+    {
+        InteractableObjectCollectionManager.PopInteractable(this);
+    }
 }

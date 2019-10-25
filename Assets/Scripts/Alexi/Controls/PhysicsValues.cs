@@ -76,15 +76,6 @@ public class PhysicsValues : MonoBehaviour
     [Tooltip("Mass panel UI")]
     public GameObject forceImage;
 
-    [Header("Visualizer images")]
-    public Sprite bigMass;
-    public Sprite lilMass;
-    public Sprite layer;
-    public Sprite bounce;
-    public Sprite noBounce;
-    public Sprite friction;
-    public Sprite noFriction;
-
     [Header("UI Panels")]
     public GameObject[] UIPanels;
 
