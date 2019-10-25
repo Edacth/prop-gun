@@ -189,29 +189,21 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: 366fe8726d9e90343b66193664228f67, type: 3}
   offSprite: {fileID: 21300000, guid: bd555bc6859b5f54e9ac5103703a6d49, type: 3}
   noneSprite: {fileID: 21300000, guid: a0177c1ffc4f50044ac5b808165c96d2, type: 3}
-  layerEnabled: 1
-  layers:
-  - name: Default
-    layer: 0
-    image: {fileID: 21300000, guid: f34b16f8099f99e4eb26448e46e9a2e3, type: 3}
-  - name: Barrier
-    layer: 9
-    image: {fileID: 21300000, guid: 8bd78be10746de441be9e8c4465b7175, type: 3}
-  - name: Ignore Barrier
-    layer: 10
-    image: {fileID: 21300000, guid: da96c80a6fec79547b1c26b5205ec034, type: 3}
+  objectLayer: 10
+  objectOutlineLayer: 11
+  objectGoThruLayer: 12
   layerImage: {fileID: 1054665288283038373}
   layerName: {fileID: 8260133229206965264}
+  defaultLayerName: Default
+  defaultLayerSprite: {fileID: 21300000, guid: 8bd78be10746de441be9e8c4465b7175, type: 3}
+  thruLayerName: GoThru
+  thruLayerSprite: {fileID: 21300000, guid: da96c80a6fec79547b1c26b5205ec034, type: 3}
   kinematicValue: {fileID: 2486751842858096308}
   forceEnabled: 1
   force: {x: 0, y: 0, z: -1000}
   forceStepAmount: 20
   camera: {fileID: 6064873328608475992}
   forceImage: {fileID: 3317050841114678790}
-  magnetEnabled: 0
-  magForce: {x: 0, y: 0, z: 0}
-  torqueEnabled: 0
-  torque: {x: 0, y: 0, z: 0}
   bigMass: {fileID: 0}
   lilMass: {fileID: 0}
   layer: {fileID: 0}
@@ -835,7 +827,7 @@ MonoBehaviour:
   - mode: 1
     outlineColor: {r: 0.02114594, g: 1, b: 0, a: 1}
   - mode: 2
-    outlineColor: {r: 0, g: 0.0377028, b: 1, a: 1}
+    outlineColor: {r: 0, g: 0.88042784, b: 1, a: 1}
   - mode: 3
     outlineColor: {r: 1, g: 0, b: 0.7535238, a: 1}
   - mode: 4
@@ -992,6 +984,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1054665287784496879, guid: 5cddf593ad22adf44ae948e18a52875a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8bd78be10746de441be9e8c4465b7175,
+        type: 3}
     - target: {fileID: 8260133228700487770, guid: 5cddf593ad22adf44ae948e18a52875a,
         type: 3}
       propertyPath: m_fontSize

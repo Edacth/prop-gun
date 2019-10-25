@@ -8,11 +8,3 @@ public class MaterialUI
     public PhysicMaterial material;
     public Sprite image;
 }
-
-[Serializable]
-public class LayerUI
-{
-    public string name;
-    public int layer;
-    public Sprite image;
-}

@@ -265,40 +265,24 @@ public class ChangeGravity : PhysicsEffect
 
 public class ChangeLayer : PhysicsEffect
 {
-    int idx;
-    LayerUI currentLayer;
+    bool onDefault;
     public ChangeLayer()
     {
-        if (!PhysicsValues.instance.layerEnabled) { return; }
-
-        idx = 0;
-        currentLayer = PhysicsValues.instance.layers[idx];
+        onDefault = true;
     }
 
     public override void ApplyEffect(InteractableObject target)
     {
-        target.gameObject.layer = currentLayer.layer;
+        target.gameObject.layer = onDefault ? PhysicsValues.instance.objectOutlineLayer : PhysicsValues.instance.objectGoThruLayer;
     }
 
     public override void RunEditMode()
     {
-        if (!PhysicsValues.instance.layerEnabled) { return; }
-
         if(Input.mouseScrollDelta.y == 0) { return; }
-        else if (Input.mouseScrollDelta.y > 0)
-        {
-            idx++;
-            if (idx >= PhysicsValues.instance.layers.Length) { idx = 0; }
-        }
-        else
-        {
-            idx--;
-            if (idx < 0) { idx = PhysicsValues.instance.layers.Length - 1; }
-        }
+        onDefault = !onDefault;
 
-        currentLayer = PhysicsValues.instance.layers[idx];
-        PhysicsValues.instance.layerName.text = currentLayer.name;
-        PhysicsValues.instance.layerImage.sprite = currentLayer.image;
+        PhysicsValues.instance.layerName.text = onDefault ? PhysicsValues.instance.defaultLayerName : PhysicsValues.instance.thruLayerName;
+        PhysicsValues.instance.layerImage.sprite = onDefault ? PhysicsValues.instance.defaultLayerSprite : PhysicsValues.instance.thruLayerSprite;
     }
 
     public override void OnPointerStay(InteractableObject target)
