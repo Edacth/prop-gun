@@ -71,7 +71,12 @@ public class MeshJiggle : MonoBehaviour
         }
     }
 
-    public void ApplyPressureToPoint(Vector3 _point, float _pressure)
+    public void OnRaycastHit(Vector3 position)
+    {
+        ApplyPressureToPoint(position, fallForce);
+    }
+
+    void ApplyPressureToPoint(Vector3 _point, float _pressure)
     {
         for(int i = 0; i < jellyVertices.Length; i++)
         {

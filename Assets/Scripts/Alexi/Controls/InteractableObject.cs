@@ -29,7 +29,7 @@ public class InteractableObject : MonoBehaviour
     bool selected = false; // is this object currently selected?
     bool selectable; // can this object be selected? (mode-wise) 
 
-    void Awake()
+    public void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
@@ -90,7 +90,7 @@ public class InteractableObject : MonoBehaviour
     /// </summary>
     public void MarkActive()
     {
-        gameObject.layer = GlowOutlinePostProcessing.ObjectLayer;
+        gameObject.layer = PhysicsValues.instance.objectOutlineLayer;
         selectable = true;
     }
 
@@ -99,7 +99,7 @@ public class InteractableObject : MonoBehaviour
     /// </summary>
     public void UnmarkActive()
     {
-        gameObject.layer = 10; // default
+        gameObject.layer = PhysicsValues.instance.objectLayer; // default
         selectable = false;
     }
 
@@ -148,5 +148,10 @@ public class InteractableObject : MonoBehaviour
     {
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, transform.position + direction);
+    }
+
+    void OnDestroy()
+    {
+        InteractableObjectCollectionManager.PopInteractable(this);
     }
 }

@@ -66,6 +66,8 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     {
         if(null == objects) { objects = new List<InteractableObject>(); }
         objects.Add(io);
+
+        SortInteractable(io);
     }
 
     /// <summary>

@@ -48,13 +48,17 @@ public class PhysicsValues : MonoBehaviour
     public Sprite noneSprite;
 
     [Header("Layer")]
-    public bool layerEnabled = false;
-    [Tooltip("Default object layer")]
-    public LayerUI[] layers;
+    public int objectLayer = 10;
+    public int objectOutlineLayer = 11;
+    public int objectGoThruLayer = 12;
     [Tooltip("Layer image")]
     public Image layerImage;
     [Tooltip("Layer name text")]
     public TextMeshProUGUI layerName;
+    public string defaultLayerName;
+    public Sprite defaultLayerSprite;
+    public string thruLayerName;
+    public Sprite thruLayerSprite;
 
     [Header("Kinematic")]
     [Tooltip("Mass panel UI")]
@@ -72,27 +76,6 @@ public class PhysicsValues : MonoBehaviour
     [Tooltip("Mass panel UI")]
     public GameObject forceImage;
 
-    [Header("Magnet")]
-    public bool magnetEnabled;
-    [SerializeField]
-    [Tooltip("Force applied towards player")]
-    public Vector3 magForce;
-
-    [Header("Torque")]
-    public bool torqueEnabled = false;
-    [SerializeField]
-    [Tooltip("Torque applied")]
-    public Vector3 torque;
-
-    [Header("Visualizer images")]
-    public Sprite bigMass;
-    public Sprite lilMass;
-    public Sprite layer;
-    public Sprite bounce;
-    public Sprite noBounce;
-    public Sprite friction;
-    public Sprite noFriction;
-
     [Header("UI Panels")]
     public GameObject[] UIPanels;
 
@@ -105,4 +88,11 @@ public class PhysicsValues : MonoBehaviour
         instance = this;
     }
 
+    public static bool IsGameObjectOnObjectLayer(GameObject toCheck)
+    {
+        if(toCheck.layer == instance.objectLayer 
+            || toCheck.layer == instance.objectOutlineLayer 
+            || toCheck.layer == instance.objectGoThruLayer) { return true; }
+        return false;
+    }
 }

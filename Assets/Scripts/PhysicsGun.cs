@@ -18,7 +18,6 @@ public class PhysicsGun : MonoBehaviour
         layer,      // change collision layer
         kinematic,  // toggle isKinematic
         force,      // apply pushing force
-        magnet,     // apply pulling force
     };
 
     public InteractableChecker interactableChecker;
@@ -26,7 +25,7 @@ public class PhysicsGun : MonoBehaviour
     public PhysicsValues data;
     public GlowOutlinePostProcessing outlineEffect;
 
-    int modeCount = 8; // how many modes there are
+    int modeCount = 6; // how many modes there are
 
     public static Mode currentMode;
     public static InteractableObject currentInteractingObject;
@@ -49,9 +48,7 @@ public class PhysicsGun : MonoBehaviour
          KeyCode.Alpha3,
          KeyCode.Alpha4,
          KeyCode.Alpha5,
-         KeyCode.Alpha6,
-         KeyCode.Alpha7,
-         KeyCode.Alpha8
+         KeyCode.Alpha6
     };
 
     // Start is called before the first frame update
@@ -67,7 +64,6 @@ public class PhysicsGun : MonoBehaviour
             effects.Add(Mode.layer,     new ChangeLayer());
             effects.Add(Mode.kinematic, new ToggleKinematic());
             effects.Add(Mode.force,     new ApplyForce(data.force, data.forceStepAmount, data.camera));
-            effects.Add(Mode.magnet,    new UseMagnet(data.magForce));
 
             modeCount = effects.Count;
         }
