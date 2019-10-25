@@ -9,6 +9,8 @@ public class ObjectSpawner : MonoBehaviour
     public Transform spawnPoint;
     public float spawnTimer;
     public int maxSpawnCount;
+    [SerializeField] public Vector3 force;
+    public bool useCollision;
 
     float spawnElapsed;
     int spawnCount;
@@ -23,14 +25,31 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (useCollision) { return; }
         spawnElapsed += Time.deltaTime;
-        if(spawnElapsed >= spawnTimer)
+        if (spawnElapsed >= spawnTimer)
         {
-            spawnElapsed = 0f;
-            spawnCount++;
-            Instantiate(objectToSpawn, spawnPoint.position, Quaternion.identity);
+            Spawn();
+            if (spawnCount >= maxSpawnCount) { gameObject.SetActive(false); }
+        }
+    }
 
-            if(spawnCount >= maxSpawnCount) { gameObject.SetActive(false); }
+    void Spawn()
+    {
+        spawnElapsed = 0f;
+        spawnCount++;
+        GameObject g = Instantiate(objectToSpawn, spawnPoint.position, Quaternion.identity);
+        if (force.magnitude != 0) { g.GetComponent<Rigidbody>().AddForce(force); }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+      
+        if (!useCollision) { return; }
+        spawnElapsed += Time.deltaTime;
+        if (spawnElapsed >= spawnTimer)
+        {
+            Spawn();
         }
     }
 }
