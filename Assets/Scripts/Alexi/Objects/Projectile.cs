@@ -11,8 +11,9 @@ public class Projectile : InteractableObject
     float lifetime;
     ObjectLauncher recyclePoint;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         if (startBouncy)
         {
             PhysicMaterial pm = new PhysicMaterial();
