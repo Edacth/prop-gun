@@ -30,7 +30,7 @@ public class PhysicsGun : MonoBehaviour
     public static Mode currentMode;
     public static InteractableObject currentInteractingObject;
     public static InteractableObject currentPointingObject;
-    static Dictionary<Mode, PhysicsEffect> effects;
+    public static Dictionary<Mode, PhysicsEffect> effects { get; private set; }
     [SerializeField] Transform grabPoint;
     InteractableObject grabbedObject;
     [SerializeField]
