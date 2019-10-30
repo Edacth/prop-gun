@@ -345,8 +345,8 @@ public class ToggleKinematic : PhysicsEffect
 
 public class ApplyForce : PhysicsEffect
 {
-    Vector3 defaultForce;
-    Vector3 force;
+    public Vector3 defaultForce;
+    public Vector3 force;
     float rotation;
     float stepAmount;
     GameObject camera;
