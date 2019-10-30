@@ -20,7 +20,13 @@ public class ForceToolAdjuster : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PhysicsValues>().force = forceValueToSet;
+            PhysicsEffect force;
+            PhysicsGun.effects.TryGetValue(PhysicsGun.Mode.force, out force);
+            if (null != force)
+            {
+                ((ApplyForce)force).force = forceValueToSet;
+                ((ApplyForce)force).defaultForce = forceValueToSet;
+            }
         }
     }
 }
