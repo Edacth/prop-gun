@@ -158,55 +158,39 @@ Preset:
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: layerEnabled
-    value: 1
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.size
-    value: 3
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[0].name
-    value: Default
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[0].layer
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[0].image
-    value: 
-    objectReference: {fileID: 21300000, guid: f34b16f8099f99e4eb26448e46e9a2e3, type: 3}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[1].name
-    value: Barrier
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[1].layer
-    value: 9
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[1].image
-    value: 
-    objectReference: {fileID: 21300000, guid: 5d2d3737594b39d4daadce6b9edaf881, type: 3}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[2].name
-    value: Ignore Barrier
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layers.Array.data[2].layer
+    propertyPath: objectLayer
     value: 10
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: layers.Array.data[2].image
-    value: 
-    objectReference: {fileID: 21300000, guid: 38019ef076583d646a1fdd38f3fa369c, type: 3}
+    propertyPath: objectOutlineLayer
+    value: 11
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: objectGoThruLayer
+    value: 12
+    objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layerImage
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layerName
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: defaultLayerName
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: defaultLayerSprite
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: thruLayerName
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: thruLayerSprite
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
@@ -239,66 +223,6 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: forceImage
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: magnetEnabled
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: magForce.x
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: magForce.y
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: magForce.z
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: torqueEnabled
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: torque.x
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: torque.y
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: torque.z
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: bigMass
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: lilMass
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: layer
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: bounce
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: noBounce
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: friction
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: noFriction
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
@@ -335,10 +259,6 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: UIPanels.Array.data[7]
-    value: 
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: visualTarget
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
