@@ -12,7 +12,7 @@ public class restart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < -1)
+        if (transform.position.y < -30)
         {
             transform.position = start;
         }
