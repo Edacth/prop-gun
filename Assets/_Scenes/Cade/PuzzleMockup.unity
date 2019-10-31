@@ -9192,6 +9192,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b0beee02a484b4b9d0842a20ce7ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialPieces:
+  - mode: 0
+  - mode: 0
+  - mode: 0
+  - mode: 0
+  - mode: 0
+  - mode: 0
+  - mode: 0
+  - mode: 0
 --- !u!4 &947901241
 Transform:
   m_ObjectHideFlags: 0

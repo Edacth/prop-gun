@@ -51,9 +51,3 @@ public class TutorialState : MonoBehaviour
     }
 }
 
-public class Door : MonoBehaviour
-{
-    public PhysicsGun.Mode modeToOpen;
-
-    public void Open() { }
-}
