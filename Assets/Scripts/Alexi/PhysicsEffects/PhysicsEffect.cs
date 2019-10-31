@@ -13,6 +13,9 @@ public abstract class PhysicsEffect
 {
     public static PhysicsEffect current;
 
+    public delegate void EffectApplied();
+    public event EffectApplied effectAppliedEvent;
+
     /// <summary>
     /// apply this physics effect
     /// </summary>
@@ -20,7 +23,11 @@ public abstract class PhysicsEffect
     /// <param name="target">
     /// the target of this effect
     /// </param>
-    public abstract void ApplyEffect(InteractableObject target);
+    public virtual void ApplyEffect(InteractableObject target)
+    {
+        effectAppliedEvent?.Invoke();
+    }
+
 
     /// <summary>
     /// open effect editor gui
@@ -90,6 +97,8 @@ public class ChangeMass : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        base.ApplyEffect(target);
+
         target.myRigidbody.mass = currentMass;
         target.myRigidbody.WakeUp();
     }
@@ -170,7 +179,9 @@ public class ChangeMaterial : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
-        if(null == current) { return; }
+        base.ApplyEffect(target);
+
+        if (null == current) { return; }
         target.myCollider.material = currentMat.material;
 
         Debug.Log(target.name + " physics material set to " + currentMat.name);
@@ -219,6 +230,7 @@ public class ChangeGravity : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        base.ApplyEffect(target);
 
         target.myRigidbody.useGravity = !target.myRigidbody.useGravity;
         gravityImage.sprite = target.myRigidbody.useGravity ? PhysicsValues.instance.onSprite : PhysicsValues.instance.offSprite;
@@ -273,6 +285,8 @@ public class ChangeLayer : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        base.ApplyEffect(target);
+
         target.gameObject.layer = onDefault ? PhysicsValues.instance.objectOutlineLayer : PhysicsValues.instance.objectGoThruLayer;
     }
 
@@ -304,6 +318,8 @@ public class ToggleKinematic : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        base.ApplyEffect(target);
+
         target.myRigidbody.isKinematic = !target.myRigidbody.isKinematic;
         kinematicValue.text = target.myRigidbody.isKinematic ? "ON" : "OFF";
         Debug.Log("Kinematic shoot");
@@ -345,8 +361,8 @@ public class ToggleKinematic : PhysicsEffect
 
 public class ApplyForce : PhysicsEffect
 {
-    Vector3 defaultForce;
-    Vector3 force;
+    public Vector3 defaultForce;
+    public Vector3 force;
     float rotation;
     float stepAmount;
     GameObject camera;
@@ -363,6 +379,8 @@ public class ApplyForce : PhysicsEffect
 
     public override void ApplyEffect(InteractableObject target)
     {
+        base.ApplyEffect(target);
+
         target.GetComponent<Renderer>().material.color = new Color(0, 1, 1, 1);
         target.myRigidbody.AddForce(force);
         Debug.Log("force applied to " + target.name);
@@ -438,6 +456,8 @@ public class UseMagnet : PhysicsEffect
     private UseMagnet() { }
     public override void ApplyEffect(InteractableObject target)
     {
+        base.ApplyEffect(target);
+
         target.GetComponent<Renderer>().material.color = Color.red;
     }
 
