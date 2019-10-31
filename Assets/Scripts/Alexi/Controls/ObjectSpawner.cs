@@ -30,7 +30,7 @@ public class ObjectSpawner : MonoBehaviour
         if (spawnElapsed >= spawnTimer)
         {
             Spawn();
-            if (spawnCount >= maxSpawnCount) { gameObject.SetActive(false); }
+            if (spawnCount >= maxSpawnCount) { enabled = false; }
         }
     }
 

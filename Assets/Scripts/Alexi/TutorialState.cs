@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class TutorialState : MonoBehaviour
 {
-    // Start is called before the first frame update
+    List<PhysicsGun.Mode> modesLeftToTry;
+
     void Start()
     {
+        modesLeftToTry = new List<PhysicsGun.Mode>();
         foreach(KeyValuePair<PhysicsGun.Mode, PhysicsEffect> effectPair in PhysicsGun.effects)
         {
-            effectPair.Value.effectAppliedEvent += Thing;
+            effectPair.Value.effectAppliedEvent += ApplyEffectAction;
+            modesLeftToTry.Add(effectPair.Key);
         }
     }
 
-    public void Thing()
+    public void ApplyEffectAction()
     {
-        Debug.Log("Thing");
+
+        Debug.Log(modesLeftToTry.Count + " modes left to try");
+
+        if (modesLeftToTry.Remove(PhysicsGun.currentMode))
+        {
+            SectionCompleted();
+        }
+    }
+
+    void SectionCompleted()
+    {
+
     }
 }
