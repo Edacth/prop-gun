@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialState : MonoBehaviour
 {
@@ -59,8 +60,10 @@ public class TutorialState : MonoBehaviour
 
     void GrabFunc()
     {
-        grabDoor.Open();
+        // grabDoor.Open();
         PhysicsGun.objectGrabbedEvent -= GrabFunc;
+        grabDoor.Open();
+        StartCoroutine("StartGame");
     }
 
     void JumpFunc()
@@ -72,6 +75,12 @@ public class TutorialState : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         moveDoor.Open();
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("BounceCannon");
     }
 }
 
