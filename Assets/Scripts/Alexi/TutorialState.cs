@@ -11,8 +11,8 @@ public class TutorialState : MonoBehaviour
         [SerializeField] public Door door;
 
         public TutorialPiece(PhysicsGun.Mode _mode,
-                             PhysicsEffect _effect,
-                             Door _door)
+                             PhysicsEffect   _effect,
+                             Door            _door)
         {
             mode = _mode;
             effect = _effect;
@@ -20,13 +20,16 @@ public class TutorialState : MonoBehaviour
         }
     }
 
+    public List<Door> doors;
+    public Door moveDoor;
+    public Door jumpDoor;
+    public Door grabDoor;
+
     List<TutorialPiece> tutorialPieces;
 
     void Start()
     {
         tutorialPieces = new List<TutorialPiece>();
-
-        List<Door> doors = new List<Door>(FindObjectsOfType<Door>());
 
         foreach(KeyValuePair<PhysicsGun.Mode, PhysicsEffect> pair in PhysicsGun.effects)
         {
@@ -35,19 +38,40 @@ public class TutorialState : MonoBehaviour
             newPiece.effect.effectAppliedEvent += ApplyEffectAction;
             tutorialPieces.Add(newPiece);
         }
+
+        PhysicsGun.objectGrabbedEvent += GrabFunc;
+        PlayerController.jumpEvent += JumpFunc;
     }
 
     public void ApplyEffectAction()
     {
-        Debug.Log(tutorialPieces.Count + " modes left to try");
+        // Debug.Log(tutorialPieces.Count + " modes left to try");
 
         TutorialPiece removing;
         removing = tutorialPieces.Find(piece => piece.mode == PhysicsGun.currentMode);
         if (null != removing)
         {
             tutorialPieces.Remove(removing);
-            removing.door.Open();
+            if(null != removing.door) { removing.door.Open(); }
+            else { Debug.LogWarning("No " + removing.mode + " door"); }
         }
+    }
+
+    void GrabFunc()
+    {
+        grabDoor.Open();
+        PhysicsGun.objectGrabbedEvent -= GrabFunc;
+    }
+
+    void JumpFunc()
+    {
+        jumpDoor.Open();
+        PlayerController.jumpEvent -= JumpFunc;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        moveDoor.Open();
     }
 }
 
