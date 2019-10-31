@@ -1,5 +1,5 @@
 # Property Gun
-by Alexi Most, David Warford, and Cade Anderson
+### by Alexi Most, David Warford, and Cade Anderson
 
 Criteria met:
 -A physics joint can be found in the seesaw puzzle.
@@ -10,12 +10,12 @@ Criteria met:
 -The shot-spark particle effect has collision
 
 Controls:
-    WASD to move
-    Space to jump
-    Right click to grab
-    Left click to apply physics effect
-    Scroll to switch physics effect
-    Left shift to open effect menu
-    Left shift + scroll to change effect settings
+    - WASD to move
+    - Space to jump
+    - Right click to grab
+    - Left click to apply physics effect
+    - Scroll to switch physics effect
+    - Left shift to open effect menu
+    - Left shift + scroll to change effect settings
 
 
