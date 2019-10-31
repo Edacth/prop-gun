@@ -15,7 +15,7 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     void Start()
     {
         currentMode = PhysicsGun.currentMode;
-        foreach(InteractableObject io in objects) { SortInteractable(io); }
+        // foreach(InteractableObject io in objects) { SortInteractable(io); }
     }
 
     /// <summary>
@@ -92,6 +92,7 @@ public class InteractableObjectCollectionManager : MonoBehaviour
     /// </param>
     static void SortInteractable(InteractableObject io)
     {
+        if (null == io.compatibleModes) { Debug.Log(io.gameObject.name); }
         if (io.compatibleModes.Contains(currentMode)) { io.MarkActive(); }
         else { io.UnmarkActive(); }
     }

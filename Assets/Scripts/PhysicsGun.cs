@@ -62,20 +62,20 @@ public class PhysicsGun : MonoBehaviour
         currentMode = Mode.mass; // initialize to default
         SwitchMode(currentMode); // initialize effect
 
+        lineRenderer = GetComponent<LineRenderer>();
+        fireColor = new Color(0, 255, 255);
+
+
         // debug for physics effect
         if (null == PhysicsEffect.current)
         {
             Debug.LogWarning("Physics effect not set. Default to mass");
-            PhysicsEffect.current = new ChangeMass();
+            PhysicsEffect.current = effects[0];
         }
-
-        lineRenderer = GetComponent<LineRenderer>();
-        fireColor = new Color(0, 255, 255);
     }
 
     void InitializeEffects()
     {
-
         effects = new Dictionary<Mode, PhysicsEffect>();
         effects.Add(Mode.mass, new ChangeMass());
         effects.Add(Mode.material, new ChangeMaterial());

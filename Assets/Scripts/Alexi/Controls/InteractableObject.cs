@@ -17,14 +17,14 @@ public class InteractableObject : MonoBehaviour
     public List<PhysicsGun.Mode> compatibleModes;
     public bool shouldAddRestartScript = true;
 
-    public Rigidbody myRigidbody { get; private set; }
-    public Collider myCollider { get; private set; }
+    public Rigidbody myRigidbody { get; protected set; }
+    public Collider myCollider { get; protected set; }
 
     // Cade
     [SerializeField]
-    InteractableChecker interactableChecker = null;
-    public MeshRenderer myMeshRenderer { get; private set; }
-    LineRenderer lineRenderer;
+    protected InteractableChecker interactableChecker = null;
+    public MeshRenderer myMeshRenderer { get; protected set; }
+    protected LineRenderer lineRenderer;
     Color unselectedColor = Color.white;
     Color selectedColor = Color.green;
     bool selected = false; // is this object currently selected?
@@ -59,6 +59,11 @@ public class InteractableObject : MonoBehaviour
     /// </summary>
     void UpdateSelection()
     {
+        if(null == interactableChecker.getRaycastHit().transform)
+        {
+            Debug.LogWarning("null hit");
+            return;
+        }
         if (interactableChecker.getRaycastHit().transform == transform && !selected)
         {
             PhysicsGun.currentPointingObject = this;
@@ -91,7 +96,7 @@ public class InteractableObject : MonoBehaviour
     /// <summary>
     /// shows this object can be interacted with
     /// </summary>
-    public void MarkActive()
+    public virtual void MarkActive()
     {
         gameObject.layer = PhysicsValues.instance.objectOutlineLayer;
         selectable = true;
@@ -100,9 +105,9 @@ public class InteractableObject : MonoBehaviour
     /// <summary>
     /// takes away interactable indication
     /// </summary>
-    public void UnmarkActive()
+    public virtual void UnmarkActive()
     {
-        gameObject.layer = PhysicsValues.instance.objectLayer; // default
+        gameObject.layer = PhysicsValues.instance.objectLayer; // default       
         selectable = false;
     }
 

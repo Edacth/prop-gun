@@ -49,7 +49,9 @@ public class InteractableChecker : MonoBehaviour
             // if its new thing, current thing exits (if not null)
             if (PhysicsGun.currentInteractingObject != null && raycastHit.transform != PhysicsGun.currentInteractingObject.transform) { PhysicsGun.currentInteractingObject.OnPointerExit(); }
             //if not hitting interactable
-            if (raycastHit.transform == null || (raycastHit.transform.gameObject.layer != 10 && raycastHit.transform.gameObject.layer != 11))
+            if (raycastHit.transform == null || 
+                (raycastHit.transform.gameObject.layer != PhysicsValues.instance.objectLayer 
+                && raycastHit.transform.gameObject.layer != PhysicsValues.instance.objectOutlineLayer))
             {
                 PhysicsGun.currentPointingObject = PhysicsGun.currentInteractingObject = null;
             }

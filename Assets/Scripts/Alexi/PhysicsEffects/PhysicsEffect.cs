@@ -288,6 +288,10 @@ public class ChangeLayer : PhysicsEffect
         base.ApplyEffect(target);
 
         target.gameObject.layer = onDefault ? PhysicsValues.instance.objectOutlineLayer : PhysicsValues.instance.objectGoThruLayer;
+        for(int i = 0; i < target.transform.childCount; i++)
+        {
+            target.transform.GetChild(i).gameObject.layer = target.gameObject.layer;
+        }
     }
 
     public override void RunEditMode()
@@ -442,33 +446,6 @@ public class ApplyForce : PhysicsEffect
         {
             target.setLineActive(false);
         }
-    }
-}
-
-public class UseMagnet : PhysicsEffect
-{
-    Vector3 force;
-    public UseMagnet(Vector3 _force)
-    {
-        force = _force;
-    }
-
-    private UseMagnet() { }
-    public override void ApplyEffect(InteractableObject target)
-    {
-        base.ApplyEffect(target);
-
-        target.GetComponent<Renderer>().material.color = Color.red;
-    }
-
-    public override void OnPointerStay(InteractableObject target)
-    {
-        // magnet things
-    }
-
-    public override void RunEditMode()
-    {
-        Debug.LogError("magnet not implemented");
     }
 }
 
