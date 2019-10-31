@@ -61,9 +61,12 @@ public class TutorialState : MonoBehaviour
     void GrabFunc()
     {
         // grabDoor.Open();
-        PhysicsGun.objectGrabbedEvent -= GrabFunc;
         grabDoor.Open();
-        if(tutorialPieces.Count == 0) { StartCoroutine("StartGame"); }
+        if(tutorialPieces.Count == 0)
+        {
+            PhysicsGun.objectGrabbedEvent -= GrabFunc;
+            StartCoroutine("StartGame");
+        }
     }
 
     void JumpFunc()
