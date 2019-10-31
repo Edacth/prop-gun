@@ -1228,6 +1228,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 3615488640013181814}
   spawnTimer: 5
   maxSpawnCount: 10
+  force: {x: 0, y: 0, z: 0}
+  useCollision: 0
+  parentTransform: {fileID: 3615488640240714256}
 --- !u!1 &3615488640013181817
 GameObject:
   m_ObjectHideFlags: 0

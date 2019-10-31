@@ -15,6 +15,7 @@ public class InteractableObject : MonoBehaviour
     [SerializeField]
     [Tooltip("All modes that can interact with this object")]
     public List<PhysicsGun.Mode> compatibleModes;
+    public bool shouldAddRestartScript = true;
 
     public Rigidbody myRigidbody { get; private set; }
     public Collider myCollider { get; private set; }
@@ -40,6 +41,8 @@ public class InteractableObject : MonoBehaviour
 
         interactableChecker = GameObject.FindObjectOfType<InteractableChecker>(); // change this
         lineRenderer.SetPosition(1, Vector3.zero);
+
+        if (shouldAddRestartScript) { gameObject.AddComponent<restart>(); }
     }
 
     void Update()

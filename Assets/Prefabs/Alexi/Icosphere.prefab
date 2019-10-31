@@ -3908,6 +3908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compatibleModes: 03000000
+  shouldAddRestartScript: 0
   interactableChecker: {fileID: 0}
   P: 25
   I: 3
