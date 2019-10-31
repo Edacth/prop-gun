@@ -118,6 +118,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 751479706}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &282353273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282353272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18eaa5343112cff42a07a6f19c805a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &282353278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,21 +606,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 867484612}
-    - target: {fileID: 2332975935483286350, guid: f54560403b781244380d19abbea8a7dc,
+    - target: {fileID: 2332975936394857678, guid: f54560403b781244380d19abbea8a7dc,
         type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 0.8409476
+      propertyPath: animationTrigger
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2332975935483286350, guid: f54560403b781244380d19abbea8a7dc,
+    - target: {fileID: 2332975936394857678, guid: f54560403b781244380d19abbea8a7dc,
         type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 2.1252608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332975935483286350, guid: f54560403b781244380d19abbea8a7dc,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.z
-      value: -26.460356
-      objectReference: {fileID: 0}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1123673111}
     - target: {fileID: 2332975936394857674, guid: f54560403b781244380d19abbea8a7dc,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -639,16 +646,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 9.12
       objectReference: {fileID: 0}
-    - target: {fileID: 2332975936394857678, guid: f54560403b781244380d19abbea8a7dc,
+    - target: {fileID: 2332975935483286350, guid: f54560403b781244380d19abbea8a7dc,
         type: 3}
-      propertyPath: animationTrigger
-      value: 0
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.8409476
       objectReference: {fileID: 0}
-    - target: {fileID: 2332975936394857678, guid: f54560403b781244380d19abbea8a7dc,
+    - target: {fileID: 2332975935483286350, guid: f54560403b781244380d19abbea8a7dc,
         type: 3}
-      propertyPath: door
-      value: 
-      objectReference: {fileID: 1123673111}
+      propertyPath: m_ConnectedAnchor.y
+      value: 2.1252608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332975935483286350, guid: f54560403b781244380d19abbea8a7dc,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -26.460356
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f54560403b781244380d19abbea8a7dc, type: 3}
 --- !u!1 &578984079
@@ -872,31 +884,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 64791
-      objectReference: {fileID: 0}
     - target: {fileID: 5844804891084169702, guid: 56e94c698c81914429c1a35b1e27441a,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -946,6 +933,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064873328608475998, guid: 56e94c698c81914429c1a35b1e27441a,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 64791
       objectReference: {fileID: 0}
     - target: {fileID: 5081299081438396291, guid: 56e94c698c81914429c1a35b1e27441a,
         type: 3}
