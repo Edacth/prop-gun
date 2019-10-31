@@ -16,6 +16,7 @@ public class restart : MonoBehaviour
         if (transform.position.y < zplane)
         {
             transform.position = start;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }
