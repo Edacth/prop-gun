@@ -57,19 +57,7 @@ public class PhysicsGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // initalize effects
-        if (null == effects)
-        {
-            effects = new Dictionary<Mode, PhysicsEffect>();
-            effects.Add(Mode.mass,      new ChangeMass());
-            effects.Add(Mode.material,  new ChangeMaterial());
-            effects.Add(Mode.gravity,   new ChangeGravity());
-            effects.Add(Mode.layer,     new ChangeLayer());
-            effects.Add(Mode.kinematic, new ToggleKinematic());
-            effects.Add(Mode.force,     new ApplyForce(data.force, data.forceStepAmount, data.camera));
-
-            modeCount = effects.Count;
-        }
+        InitializeEffects();
 
         currentMode = Mode.mass; // initialize to default
         SwitchMode(currentMode); // initialize effect
@@ -83,6 +71,20 @@ public class PhysicsGun : MonoBehaviour
 
         lineRenderer = GetComponent<LineRenderer>();
         fireColor = new Color(0, 255, 255);
+    }
+
+    void InitializeEffects()
+    {
+
+        effects = new Dictionary<Mode, PhysicsEffect>();
+        effects.Add(Mode.mass, new ChangeMass());
+        effects.Add(Mode.material, new ChangeMaterial());
+        effects.Add(Mode.gravity, new ChangeGravity());
+        effects.Add(Mode.layer, new ChangeLayer());
+        effects.Add(Mode.kinematic, new ToggleKinematic());
+        effects.Add(Mode.force, new ApplyForce(data.force, data.forceStepAmount, data.camera));
+
+        modeCount = effects.Count;
     }
 
     void Update()

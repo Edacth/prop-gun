@@ -16,6 +16,5 @@ public class Door : MonoBehaviour
     public void Open()
     {
         anim.SetTrigger("Open");
-        Debug.Log("opening");
     }
 }
