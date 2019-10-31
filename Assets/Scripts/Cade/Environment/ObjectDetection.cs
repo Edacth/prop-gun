@@ -7,16 +7,26 @@ public class ObjectDetection : MonoBehaviour
     [SerializeField]
     Animator doorAnimatior;
     [SerializeField]
+    Transform door;
+    [SerializeField]
     GameObject[] acceptedObjects;
     List<GameObject> penetratingObjects = new List<GameObject>();
+    [SerializeField]
+    bool animationTrigger = true;
 
     private void OnTriggerEnter(Collider other)
     {
         for (int i = 0; i < acceptedObjects.Length; i++)
-        {
+        {   
             if (other.gameObject == acceptedObjects[i])
             {
+                if (animationTrigger) {
                 OpenDoor();
+                }
+                else
+                {
+                    door.gameObject.SetActive(false);
+                }
             }
         }
         //Debug.Log(other.gameObject.name);
@@ -48,7 +58,12 @@ public class ObjectDetection : MonoBehaviour
 
         if (!containsAcceptedObject)
         {
-            CloseDoor();
+            if (animationTrigger)
+            {
+                CloseDoor();
+            } else {
+                door.gameObject.SetActive(true);
+            }
         }
     }
 
