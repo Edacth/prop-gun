@@ -11,8 +11,8 @@ public class TutorialState : MonoBehaviour
         [SerializeField] public Door door;
 
         public TutorialPiece(PhysicsGun.Mode _mode,
-                             PhysicsEffect _effect,
-                             Door _door)
+                             PhysicsEffect   _effect,
+                             Door            _door)
         {
             mode = _mode;
             effect = _effect;
@@ -39,7 +39,7 @@ public class TutorialState : MonoBehaviour
 
     public void ApplyEffectAction()
     {
-        Debug.Log(tutorialPieces.Count + " modes left to try");
+        // Debug.Log(tutorialPieces.Count + " modes left to try");
 
         TutorialPiece removing;
         removing = tutorialPieces.Find(piece => piece.mode == PhysicsGun.currentMode);
