@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class PhysicsGun : MonoBehaviour
 {
+    public delegate void ObjectGrabbed();
+    public static event ObjectGrabbed objectGrabbedEvent;
+
     /// <summary>
     /// how the gun affects physics objects
     /// </summary>
@@ -166,7 +169,14 @@ public class PhysicsGun : MonoBehaviour
 
         SwitchMode((Mode)cur); 
     }
-
+    
+    /// <summary>
+    /// switch gun mode
+    /// </summary>
+    /// 
+    /// <param name="newMode">
+    /// mode to switch to
+    /// </param>
     public void SwitchMode(Mode newMode)
     {
         InteractableObjectCollectionManager.SwitchMode(newMode);
@@ -221,6 +231,8 @@ public class PhysicsGun : MonoBehaviour
             throw new System.Exception("You guys remeber to set grab point to an empty vaugly infront of the charecter");
         }
         if (null == grabbedObject) { return; }
+
+        objectGrabbedEvent?.Invoke();
         grabbedObject.grabTarget = grabPoint;      
         grabbedObject.grabUpdate();
     }

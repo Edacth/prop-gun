@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     Vector3 fakeVelocity = Vector3.zero;
     float speed = 0;
     Rigidbody[] rbs;
+
+    // action events
+    public delegate void JumpEvent();
+    public static event JumpEvent jumpEvent;
  
     private void Start()
     {
@@ -128,6 +132,8 @@ public class PlayerController : MonoBehaviour
         grounded = false;
         jumpedThisFrame = true;
         fakeVelocity = new Vector3(fakeVelocity.x,jumpPower,fakeVelocity.z);
+
+        jumpEvent?.Invoke();
     }
     private void OnCollisionEnter(Collision collision)
     {

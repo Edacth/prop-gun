@@ -20,13 +20,16 @@ public class TutorialState : MonoBehaviour
         }
     }
 
+    public List<Door> doors;
+    public Door moveDoor;
+    public Door jumpDoor;
+    public Door grabDoor;
+
     List<TutorialPiece> tutorialPieces;
 
     void Start()
     {
         tutorialPieces = new List<TutorialPiece>();
-
-        List<Door> doors = new List<Door>(FindObjectsOfType<Door>());
 
         foreach(KeyValuePair<PhysicsGun.Mode, PhysicsEffect> pair in PhysicsGun.effects)
         {
@@ -35,6 +38,9 @@ public class TutorialState : MonoBehaviour
             newPiece.effect.effectAppliedEvent += ApplyEffectAction;
             tutorialPieces.Add(newPiece);
         }
+
+        PhysicsGun.objectGrabbedEvent += GrabFunc;
+        PlayerController.jumpEvent += JumpFunc;
     }
 
     public void ApplyEffectAction()
@@ -46,8 +52,26 @@ public class TutorialState : MonoBehaviour
         if (null != removing)
         {
             tutorialPieces.Remove(removing);
-            removing.door.Open();
+            if(null != removing.door) { removing.door.Open(); }
+            else { Debug.LogWarning("No " + removing.mode + " door"); }
         }
+    }
+
+    void GrabFunc()
+    {
+        grabDoor.Open();
+        PhysicsGun.objectGrabbedEvent -= GrabFunc;
+    }
+
+    void JumpFunc()
+    {
+        jumpDoor.Open();
+        PlayerController.jumpEvent -= JumpFunc;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        moveDoor.Open();
     }
 }
 
