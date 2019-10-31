@@ -4,31 +4,56 @@ using UnityEngine;
 
 public class TutorialState : MonoBehaviour
 {
-    List<PhysicsGun.Mode> modesLeftToTry;
+    public class TutorialPiece
+    {
+        [SerializeField] public PhysicsGun.Mode mode;
+        [SerializeField] public PhysicsEffect effect;
+        [SerializeField] public Door door;
+
+        public TutorialPiece(PhysicsGun.Mode _mode,
+                             PhysicsEffect _effect,
+                             Door _door)
+        {
+            mode = _mode;
+            effect = _effect;
+            door = _door;
+        }
+    }
+
+    List<TutorialPiece> tutorialPieces;
 
     void Start()
     {
-        modesLeftToTry = new List<PhysicsGun.Mode>();
-        foreach(KeyValuePair<PhysicsGun.Mode, PhysicsEffect> effectPair in PhysicsGun.effects)
+        tutorialPieces = new List<TutorialPiece>();
+
+        List<Door> doors = new List<Door>(FindObjectsOfType<Door>());
+
+        foreach(KeyValuePair<PhysicsGun.Mode, PhysicsEffect> pair in PhysicsGun.effects)
         {
-            effectPair.Value.effectAppliedEvent += ApplyEffectAction;
-            modesLeftToTry.Add(effectPair.Key);
+            TutorialPiece newPiece = new TutorialPiece(pair.Key, pair.Value, 
+                    doors.Find(door => door.modeToOpen == pair.Key));
+            newPiece.effect.effectAppliedEvent += ApplyEffectAction;
+            tutorialPieces.Add(newPiece);
         }
     }
 
     public void ApplyEffectAction()
     {
+        Debug.Log(tutorialPieces.Count + " modes left to try");
 
-        Debug.Log(modesLeftToTry.Count + " modes left to try");
-
-        if (modesLeftToTry.Remove(PhysicsGun.currentMode))
+        TutorialPiece removing;
+        removing = tutorialPieces.Find(piece => piece.mode == PhysicsGun.currentMode);
+        if (null != removing)
         {
-            SectionCompleted();
+            tutorialPieces.Remove(removing);
+            removing.door.Open();
         }
     }
+}
 
-    void SectionCompleted()
-    {
+public class Door : MonoBehaviour
+{
+    public PhysicsGun.Mode modeToOpen;
 
-    }
+    public void Open() { }
 }
