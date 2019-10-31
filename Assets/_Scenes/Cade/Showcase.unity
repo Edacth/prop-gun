@@ -25797,6 +25797,25 @@ Transform:
   m_Father: {fileID: 2062755355}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1990214052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6064873328110577913, guid: 56e94c698c81914429c1a35b1e27441a,
+    type: 3}
+  m_PrefabInstance: {fileID: 923908706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1990214053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990214052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b716c31927f4b41830822712a09c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zplane: -5
 --- !u!43 &2036625504
 Mesh:
   m_ObjectHideFlags: 0
@@ -26735,7 +26754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9122f65427b2b242befb59c28022427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compatibleModes: 05000000
+  compatibleModes: 
   shouldAddRestartScript: 1
   interactableChecker: {fileID: 0}
   P: 25
